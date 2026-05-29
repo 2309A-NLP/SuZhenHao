@@ -26,7 +26,7 @@ from prompts import build_user_message, get_system_prompt
 from role_config import get_role_config
 
 # 从环境变量读取DeepSeek大模型API密钥，无环境变量则使用默认值
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-840d940fbe6647109da000608d2a011a")
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-840d940fbe6647109da000608d2a")
 # 从环境变量读取DeepSeek API基础地址，无环境变量则使用默认值
 DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
 # 从环境变量读取DeepSeek模型名称，无环境变量则使用默认值
