@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>多角色对话平台</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <div id="loginView" class="login-view">
+      <section class="login-card">
+        <div class="brand-card">
+          <div class="brand-icon">AI</div>
+          <div>
+            <h1>AI多角色对话助手</h1>
+            <p>专业、清晰、可追溯</p>
+          </div>
+        </div>
+
+        <section id="authSection" class="auth-card">
+          <h2>用户中心</h2>
+          <div class="auth-tabs">
+            <button id="loginTabBtn" class="auth-tab active" type="button">用户登录</button>
+            <button id="registerTabBtn" class="auth-tab" type="button">用户注册</button>
+          </div>
+
+          <div class="auth-form">
+            <div class="auth-field">
+              <label for="authUsername">用户名</label>
+              <input id="authUsername" type="text" maxlength="32" placeholder="请输入用户名" />
+            </div>
+            <div class="auth-field">
+              <label for="authPassword">密码</label>
+              <input id="authPassword" type="password" maxlength="32" placeholder="请输入密码" />
+            </div>
+            <div class="auth-field">
+              <label for="authCaptchaInput">验证码</label>
+              <div class="captcha-row">
+                <input id="authCaptchaInput" type="text" maxlength="6" placeholder="输入验证码" />
+                <span id="authCaptchaText" class="captcha-code"></span>
+              </div>
+              <button id="refreshCaptchaBtn" type="button" class="secondary-btn full-width">刷新验证码</button>
+            </div>
+            <button id="authSubmitBtn" type="button" class="primary-btn full-width">登录</button>
+            <div id="authTip" class="auth-tip">已退出登录，请重新登录。</div>
+          </div>
+        </section>
+      </section>
+
+      <section class="login-hero">
+        <h2>欢迎进入AI多角色对话助手</h2>
+        <p>请先在左侧完成用户注册或登录，登录成功后即可进入完整问答界面。</p>
+      </section>
+    </div>
+
+    <main id="appView" class="app-shell hidden">
+      <aside class="role-sidebar">
+        <div class="sidebar-head">
+          <div class="brand-mini">AI</div>
+          <div>
+            <div class="sidebar-title">AI 角色</div>
+            <div class="sidebar-subtitle">选择一个角色开始对话</div>
+          </div>
+        </div>
+
+        <div class="user-panel">
+          <div class="user-line">
+            <span>当前用户</span>
+            <strong id="currentUser">test</strong>
+          </div>
+          <div class="user-line">
+            <span>服务状态</span>
+            <span id="healthStatus" class="status-pill checking">检查中</span>
+          </div>
+          <button id="logoutBtn" class="secondary-btn full-width" type="button">退出登录</button>
+        </div>
+
+        <div class="role-section-title">角色列表</div>
+        <div id="roleList" class="role-list"></div>
+        <div id="roleListError" class="role-list-error"></div>
+
+        <section class="left-history-section">
+          <div class="history-head">
+            <h3>历史会话</h3>
+            <button id="refreshSessionsBtn" class="icon-btn" type="button">↻</button>
+          </div>
+
+          <button id="createSessionBtn" class="new-session-btn" type="button">+ 新建对话</button>
+          <div id="currentSessionLabel" class="current-session-label">当前会话：default</div>
+          <div id="sessionList" class="session-list"></div>
+          <div class="session-action-group">
+            <button id="clearBtn" class="secondary-btn full-width" type="button">清空当前会话</button>
+            <button id="deleteSessionBtn" class="danger-btn full-width" type="button">删除当前会话</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="chat-stage">
+        <header class="chat-topbar">
+          <div class="role-summary">
+            <div id="currentRoleIcon" class="role-avatar role-avatar-large">P</div>
+            <div>
+              <h2 id="currentRoleName">心理医生</h2>
+              <p id="currentRoleSubtitle">心理咨询师</p>
+            </div>
+          </div>
+        </header>
+
+        <div id="chatBox" class="chat-box"></div>
+        <div id="sourcesBox" class="sources-box hidden"></div>
+
+        <div id="kbPanel" class="kb-panel">
+          <div class="kb-panel-header">
+            <h3>📚 知识库管理</h3>
+          </div>
+          <div class="kb-upload-box">
+            <div class="upload-area" id="uploadArea">
+              <input id="pdfFileInput" type="file" accept=".pdf" multiple hidden />
+              <div class="upload-icon">📄</div>
+              <div class="upload-text">点击或拖拽上传PDF文件</div>
+              <div class="upload-hint">支持多文件上传，单个文件不超过50MB</div>
+            </div>
+            
+            <div id="uploadedFiles" class="uploaded-files"></div>
+            
+            <div class="kb-config">
+              <label for="parseMethodSelect">解析方式</label>
+              <select id="parseMethodSelect" class="parse-select">
+                <option value="auto">自动选择</option>
+                <option value="pymupdf">PyMuPDF（快速）</option>
+                <option value="pdfplumber">pdfplumber（精准）</option>
+                <option value="mineru">MinerU（高精度）</option>
+                <option value="paddleocr">PaddleOCR（扫描版）</option>
+              </select>
+            </div>
+            
+            <button id="buildKbBtn" class="kb-build-btn" type="button" disabled>
+              开始构建知识库
+            </button>
+            
+            <div id="kbBuildStatus" class="kb-build-status"></div>
+          </div>
+        </div>
+
+        <form id="chatForm" class="input-area">
+          <input
+            id="messageInput"
+            type="text"
+            placeholder="请输入你想咨询的问题"
+            autocomplete="off"
+            required
+          />
+          <button id="sendBtn" type="submit">发送</button>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
