@@ -15,7 +15,7 @@ from role_config import get_role_config
 
 # ================== 修改点 1：环境变量改为 vLLM 相关 ==================
 # 原 DeepSeek 配置（已注释，保留备用）
-# DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-840d940fbe6647109da000608d2a011a")
+# DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "sk-840d940fbe6647109da000608d2")
 # DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com/v1")
 # DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
 
