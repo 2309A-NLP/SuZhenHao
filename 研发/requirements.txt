@@ -1,0 +1,18 @@
+pymysql
+fastapi
+uvicorn
+openai
+pymilvus
+redis
+sentence-transformers
+torch
+langchain
+langchain-community
+langchain-text-splitters
+beautifulsoup4
+
+# PDF解析依赖
+PyMuPDF>=1.24.0
+pdfplumber>=0.11.0
+mineru[all]>=1.0.0
+paddleocr>=2.8.0
