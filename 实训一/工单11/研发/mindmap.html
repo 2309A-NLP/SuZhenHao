@@ -1,0 +1,260 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>招股说明书智能问答系统（含嵌入模型微调） - 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc; --fg: #172033; --muted: #5b6475; --line: #64748b;
+    --neutral: #e2e8f0; --input: #bfdbfe; --process: #c7d2fe;
+    --storage: #99f6e4; --external: #fde68a; --risk: #fecaca;
+    --newfeat: #bbf7d0; --imagefeat: #fde68a; --streamfeat: #e9d5ff;
+    --retrieval: #fcd34d; --finetune: #c4b5fd;
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.4 ui-sans-serif, system-ui, sans-serif; overflow-x: auto; }
+  main { max-width: 1500px; margin: 24px auto; padding: 0 20px; }
+  h1 { text-align: center; font-size: 22px; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .badge { display: inline-block; background: var(--newfeat); color: #166534; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-ft { display: inline-block; background: var(--finetune); color: #4c1d95; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-retrieval { display: inline-block; background: var(--retrieval); color: #78350f; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 16px; font-weight: 700; }
+  .label { font-size: 13px; font-weight: 600; }
+  .small { font-size: 11px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 8; ry: 8; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.6; rx: 12; ry: 12; }
+</style>
+<main>
+<h1>📚 招股说明书智能问答系统 — 思维导图</h1>
+<p class="subtitle">
+  <span class="badge-ft">🧠 嵌入模型微调</span>
+  <span class="badge-retrieval">🔍 混合检索</span>
+  <span class="badge">多PDF</span>
+  <span class="badge">🖼️ 图片理解</span>
+  <span class="badge">💬 多轮对话</span>
+</p>
+
+<svg viewBox="0 0 1500 1060" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="var(--line)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== 中心节点 ==================== -->
+  <rect x="530" y="430" width="420" height="80" fill="#6366f1" stroke="#4f46e5" stroke-width="2" rx="14" ry="14"/>
+  <text x="740" y="460" text-anchor="middle" class="title" fill="white">📚 RAG 智能问答系统</text>
+  <text x="740" y="480" text-anchor="middle" class="small" fill="#e0e7ff">混合检索 · 多模态 · 嵌入微调</text>
+  <text x="740" y="498" text-anchor="middle" class="small" fill="#c7d2fe">DeepSeek + Qwen-VL + m3e + Reranker</text>
+
+  <!-- ==================== 分支1: 嵌入模型微调 (上方 - 核心亮点) ==================== -->
+  <path d="M740,430 C740,370 740,280 740,200" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="280" y="15" width="920" height="195" fill="var(--finetune)" stroke="#7c3aed" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="280" y="15" width="920" height="195" class="zone" stroke="#7c3aed" stroke-width="2"/>
+  <text x="300" y="40" class="label" fill="#4c1d95">🧠 嵌入模型微调流水线（核心亮点）</text>
+
+  <!-- 流水线步骤 -->
+  <rect x="300" y="55" width="150" height="45" fill="var(--process)" class="node"/>
+  <text x="375" y="75" text-anchor="middle" class="label" style="font-size:11px">📄 文档 Chunks</text>
+  <text x="375" y="93" text-anchor="middle" class="small">FAISS 索引</text>
+
+  <rect x="465" y="55" width="150" height="45" fill="var(--external)" class="node"/>
+  <text x="540" y="75" text-anchor="middle" class="label" style="font-size:11px">🤖 自动 QA 生成</text>
+  <text x="540" y="93" text-anchor="middle" class="small">正则模板匹配</text>
+
+  <rect x="630" y="55" width="150" height="45" fill="var(--input)" class="node"/>
+  <text x="705" y="75" text-anchor="middle" class="label" style="font-size:11px">📊 训练/评估集</text>
+  <text x="705" y="93" text-anchor="middle" class="small">80/20 划分</text>
+
+  <rect x="795" y="55" width="150" height="45" fill="var(--finetune)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="870" y="75" text-anchor="middle" class="label" style="font-size:11px">🚀 微调训练</text>
+  <text x="870" y="93" text-anchor="middle" class="small">MNRLoss</text>
+
+  <rect x="960" y="55" width="150" height="45" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1035" y="75" text-anchor="middle" class="label" style="font-size:11px">📊 效果对比</text>
+  <text x="1035" y="93" text-anchor="middle" class="small">Recall@K</text>
+
+  <rect x="1125" y="55" width="60" height="45" fill="var(--storage)" class="node"/>
+  <text x="1155" y="75" text-anchor="middle" class="label" style="font-size:11px">💾</text>
+  <text x="1155" y="93" text-anchor="middle" class="small">保存</text>
+
+  <!-- 连接箭头 -->
+  <path d="M450,77 L465,77" class="edge" marker-end="url(#arrow)"/>
+  <path d="M615,77 L630,77" class="edge" marker-end="url(#arrow)"/>
+  <path d="M780,77 L795,77" class="edge" marker-end="url(#arrow)"/>
+  <path d="M945,77 L960,77" class="edge" marker-end="url(#arrow)"/>
+  <path d="M1110,77 L1125,77" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- 微调详情 -->
+  <rect x="300" y="110" width="280" height="50" fill="var(--neutral)" class="node"/>
+  <text x="440" y="130" text-anchor="middle" class="label">📝 训练数据自动生成</text>
+  <text x="440" y="148" text-anchor="middle" class="small">11 种正则模板 · 500 QA 对 · 负采样</text>
+
+  <rect x="600" y="110" width="280" height="50" fill="var(--finetune)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="740" y="130" text-anchor="middle" class="label">🎯 MultipleNegativesRankingLoss</text>
+  <text x="740" y="148" text-anchor="middle" class="small">batch 内负样本 · 检索任务专用损失</text>
+
+  <rect x="900" y="110" width="280" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1040" y="130" text-anchor="middle" class="label">📊 基线 vs 微调对比</text>
+  <text x="1040" y="148" text-anchor="middle" class="small">Recall@1/3/5 · avg_similarity · 自动更新配置</text>
+
+  <rect x="300" y="170" width="880" height="30" fill="var(--finetune)" class="node" stroke="#7c3aed" stroke-width="1"/>
+  <text x="740" y="190" text-anchor="middle" class="small" style="font-weight:600">🔄 手动训练循环（绕过版本兼容） · 每 epoch 保存检查点 · 交互式测试 · 自动更新 config.py</text>
+
+  <!-- ==================== 分支2: 用户交互层 (左侧) ==================== -->
+  <path d="M530,460 C450,450 380,370 340,290" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,465 C450,460 380,420 340,380" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,470 C450,470 380,480 340,470" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,475 C450,480 380,540 340,560" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,480 C450,500 380,640 340,680" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="20" y="220" width="340" height="510" class="zone"/>
+  <text x="40" y="245" class="label" fill="var(--fg)">🖥️ 用户交互层</text>
+
+  <rect x="40" y="260" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="190" y="280" text-anchor="middle" class="label">💬 Web 聊天界面</text>
+  <text x="190" y="298" text-anchor="middle" class="small">侧边栏 · PDF管理 · 图片上传 · 流式渲染</text>
+
+  <rect x="40" y="320" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="190" y="340" text-anchor="middle" class="label">🎨 Streamlit 界面</text>
+  <text x="190" y="358" text-anchor="middle" class="small">问答 · 演示 · 系统状态 · 语音输入</text>
+
+  <rect x="40" y="380" width="300" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="190" y="400" text-anchor="middle" class="label">📄 PDF 管理</text>
+  <text x="190" y="418" text-anchor="middle" class="small">上传 · 删除 · 激活/停用 · 重建索引</text>
+
+  <rect x="40" y="440" width="300" height="50" fill="var(--external)" class="node"/>
+  <text x="190" y="460" text-anchor="middle" class="label">🖼️ 图片上传</text>
+  <text x="190" y="478" text-anchor="middle" class="small">Qwen-VL 分析 · 联合问答</text>
+
+  <rect x="40" y="510" width="300" height="50" fill="var(--streamfeat)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="190" y="530" text-anchor="middle" class="label">📜 多轮对话 · 流式输出 (SSE)</text>
+  <text x="190" y="548" text-anchor="middle" class="small">上下文消歧 · 逐字渲染 · 来源追溯</text>
+
+  <rect x="40" y="580" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="190" y="600" text-anchor="middle" class="label">🎤 语音输入 · 置信度评估</text>
+  <text x="190" y="618" text-anchor="middle" class="small">STT 转文字 · 0-100% 置信度</text>
+
+  <rect x="40" y="650" width="300" height="40" fill="var(--finetune)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="190" y="675" text-anchor="middle" class="label">🧪 交互式微调测试</text>
+
+  <!-- ==================== 分支3: 检索引擎 (右侧中部) ==================== -->
+  <path d="M950,460 C1010,450 1060,380 1100,320" class="edge" marker-end="url(#arrow)"/>
+  <path d="M950,470 C1010,470 1060,440 1100,420" class="edge" marker-end="url(#arrow)"/>
+  <path d="M950,480 C1010,500 1060,520 1100,520" class="edge" marker-end="url(#arrow)"/>
+  <path d="M950,490 C1010,530 1060,610 1100,640" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1080" y="220" width="400" height="470" fill="var(--retrieval)" stroke="#d97706" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="1080" y="220" width="400" height="470" class="zone" stroke="#d97706" stroke-width="2"/>
+  <text x="1100" y="245" class="label" fill="#78350f">🔍 检索引擎</text>
+
+  <!-- 三模式 -->
+  <rect x="1100" y="260" width="115" height="45" fill="var(--input)" class="node"/>
+  <text x="1157" y="280" text-anchor="middle" class="label">🔵 向量</text>
+  <text x="1157" y="298" text-anchor="middle" class="small">m3e-base</text>
+
+  <rect x="1230" y="260" width="115" height="45" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1287" y="280" text-anchor="middle" class="label">🟢 BM25</text>
+  <text x="1287" y="298" text-anchor="middle" class="small">jieba</text>
+
+  <rect x="1360" y="260" width="110" height="45" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="1415" y="280" text-anchor="middle" class="label">🟡 Hybrid</text>
+  <text x="1415" y="298" text-anchor="middle" class="small">RRF+Rerank</text>
+
+  <!-- 流水线 -->
+  <rect x="1100" y="315" width="360" height="45" fill="var(--process)" class="node"/>
+  <text x="1280" y="335" text-anchor="middle" class="label">⚙️ 混合检索流水线</text>
+  <text x="1280" y="353" text-anchor="middle" class="small">BM25召回 → 向量召回 → RRF融合 → Reranker精排</text>
+
+  <!-- RRF + Reranker -->
+  <rect x="1100" y="370" width="175" height="50" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="1187" y="390" text-anchor="middle" class="label">📊 RRF 融合</text>
+  <text x="1187" y="408" text-anchor="middle" class="small">排名融合算法</text>
+
+  <rect x="1290" y="370" width="170" height="50" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="1375" y="390" text-anchor="middle" class="label">🎯 Reranker</text>
+  <text x="1375" y="408" text-anchor="middle" class="small">bge-reranker-base</text>
+
+  <!-- 微调集成 -->
+  <rect x="1100" y="430" width="360" height="55" fill="var(--finetune)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="1280" y="450" text-anchor="middle" class="label">🧠 微调后嵌入模型</text>
+  <text x="1280" y="468" text-anchor="middle" class="small">m3e-base → 微调 → finetuned_model/</text>
+  <text x="1280" y="486" text-anchor="middle" class="small">领域自适应 · Recall 提升 · 自动替换</text>
+
+  <!-- 本地模型 -->
+  <rect x="1100" y="495" width="360" height="45" fill="var(--external)" class="node"/>
+  <text x="1280" y="515" text-anchor="middle" class="label">📁 本地模型路径</text>
+  <text x="1280" y="533" text-anchor="middle" class="small">m3e-base + bge-reranker-base（离线可用）</text>
+
+  <!-- ==================== 分支4: 业务逻辑层 (右侧上方) ==================== -->
+  <path d="M950,450 C1010,430 1060,340 1100,220" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1080" y="700" width="400" height="60" class="zone"/>
+  <text x="1100" y="725" class="label" fill="var(--fg)">🤖 业务逻辑层</text>
+
+  <rect x="1100" y="740" width="185" height="15" fill="var(--process)" class="node" opacity="0"/>
+  <text x="1192" y="752" text-anchor="middle" class="small">QASystem · DeepSeekLLM · ImageProcessor</text>
+
+  <!-- ==================== 分支5: 数据层 (下方) ==================== -->
+  <path d="M740,510 C740,580 740,660 740,740" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="350" y="730" width="700" height="110" class="zone"/>
+  <text x="370" y="755" class="label" fill="var(--fg)">💾 数据层</text>
+
+  <rect x="370" y="770" width="130" height="45" fill="var(--storage)" class="node"/>
+  <text x="435" y="790" text-anchor="middle" class="label">📄 多PDF</text>
+  <text x="435" y="808" text-anchor="middle" class="small">data/*.pdf</text>
+
+  <rect x="515" y="770" width="130" height="45" fill="var(--storage)" class="node"/>
+  <text x="580" y="790" text-anchor="middle" class="label">🗂️ FAISS</text>
+  <text x="580" y="808" text-anchor="middle" class="small">向量索引</text>
+
+  <rect x="660" y="770" width="130" height="45" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="725" y="790" text-anchor="middle" class="label">📝 BM25</text>
+  <text x="725" y="808" text-anchor="middle" class="small">bm25_data.pkl</text>
+
+  <rect x="805" y="770" width="130" height="45" fill="var(--finetune)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="870" y="790" text-anchor="middle" class="label">🧠 微调模型</text>
+  <text x="870" y="808" text-anchor="middle" class="small">finetuned_model/</text>
+
+  <rect x="950" y="770" width="90" height="45" fill="var(--external)" class="node"/>
+  <text x="995" y="790" text-anchor="middle" class="label">🖼️ 图片</text>
+  <text x="995" y="808" text-anchor="middle" class="small">images/</text>
+
+  <!-- ==================== 技术栈 ==================== -->
+  <rect x="350" y="880" width="700" height="110" fill="var(--neutral)" stroke="var(--line)" stroke-width="1" rx="10" ry="10" opacity="0.5"/>
+  <text x="700" y="905" text-anchor="middle" class="label" fill="var(--fg)">🛠️ 技术栈</text>
+
+  <rect x="370" y="920" width="80" height="25" fill="var(--input)" class="node"/>
+  <text x="410" y="937" text-anchor="middle" class="small" style="font-weight:600">Python</text>
+
+  <rect x="460" y="920" width="80" height="25" fill="var(--process)" class="node"/>
+  <text x="500" y="937" text-anchor="middle" class="small" style="font-weight:600">FastAPI</text>
+
+  <rect x="550" y="920" width="80" height="25" fill="var(--storage)" class="node"/>
+  <text x="590" y="937" text-anchor="middle" class="small" style="font-weight:600">FAISS</text>
+
+  <rect x="640" y="920" width="80" height="25" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="680" y="937" text-anchor="middle" class="small" style="font-weight:600">jieba</text>
+
+  <rect x="730" y="920" width="80" height="25" fill="var(--external)" class="node"/>
+  <text x="770" y="937" text-anchor="middle" class="small" style="font-weight:600">DeepSeek</text>
+
+  <rect x="820" y="920" width="80" height="25" fill="var(--imagefeat)" class="node"/>
+  <text x="860" y="937" text-anchor="middle" class="small" style="font-weight:600">Qwen-VL</text>
+
+  <rect x="910" y="920" width="80" height="25" fill="var(--finetune)" class="node" stroke="#7c3aed" stroke-width="1"/>
+  <text x="950" y="937" text-anchor="middle" class="small" style="font-weight:600">ST 微调</text>
+
+  <rect x="1000" y="920" width="40" height="25" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="1"/>
+  <text x="1020" y="937" text-anchor="middle" class="small" style="font-weight:600">RRF</text>
+
+  <!-- 微调说明 -->
+  <rect x="370" y="960" width="660" height="25" fill="var(--finetune)" stroke="#7c3aed" stroke-width="1" rx="6" ry="6" opacity="0.4"/>
+  <text x="700" y="978" text-anchor="middle" class="small" style="font-weight:600; fill:#4c1d95">🧠 MNRLoss · 自动 QA 生成 · 基线 vs 微调对比 · Recall@K 评估 · 自动更新配置</text>
+
+</svg>
+</main>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="pageTitle">招股说明书智能问答</title>
+  <link rel="stylesheet" href="/static/css/chat.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1 data-i18n="appTitle">招股说明书智能问答</h1>
+      <p data-i18n="appSubtitle">基于 RAG 的文档问答助手</p>
+      <button class="lang-switch" id="langSwitch" type="button" title="切换语言 / Switch Language">
+        <span id="langLabel">EN</span>
+      </button>
+    </header>
+
+    <main class="chat-area" id="chatArea">
+      <div class="welcome">
+        <h2 data-i18n="welcomeTitle">您好，有什么可以帮您？</h2>
+        <p data-i18n="welcomeDesc">请输入关于招股说明书的问题，我将为您检索并解答</p>
+        <div class="suggestions">
+          <button class="suggestion" type="button" data-query-zh="公司的主营业务是什么？" data-query-en="What is the company's main business?" data-i18n="sug1">主营业务</button>
+          <button class="suggestion" type="button" data-query-zh="公司面临的主要风险因素有哪些？" data-query-en="What are the main risk factors the company faces?" data-i18n="sug2">风险因素</button>
+          <button class="suggestion" type="button" data-query-zh="公司最近三年的营业收入是多少？" data-query-en="What is the company's revenue for the last three years?" data-i18n="sug3">营业收入</button>
+          <button class="suggestion" type="button" data-query-zh="公司的主要产品有哪些？" data-query-en="What are the company's main products?" data-i18n="sug4">主要产品</button>
+        </div>
+      </div>
+    </main>
+
+    <div class="input-bar">
+      <div class="input-wrap" id="inputWrap">
+        <button class="clear-btn" id="clearBtn" type="button" title="清空输入" style="display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+        <textarea
+          id="queryInput"
+          rows="1"
+          data-i18n-placeholder="inputPlaceholder"
+          placeholder="输入您的问题，或点击右侧麦克风语音输入..."
+          autocomplete="off"
+        ></textarea>
+        <button class="voice-btn" id="voiceBtn" type="button" title="语音输入（点击开始/停止录音）">
+          <svg class="mic-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+          <div class="recording-indicator" style="display:none;">
+            <span class="rec-dot"></span>
+            <span class="rec-time" id="recTime">0:00</span>
+          </div>
+        </button>
+        <button class="send-btn" id="sendBtn" type="button" title="发送（Enter）">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint" id="inputHint">
+        <span data-i18n="inputHintSend">按 <kbd>Enter</kbd> 发送，<kbd>Shift+Enter</kbd> 换行</span>
+        <span id="voiceHint" data-i18n="inputHintVoice">| 点击 🎤 语音输入</span>
+      </div>
+      <div class="voice-status" id="voiceStatus" style="display:none;">
+        <span class="voice-status-dot"></span>
+        <span id="voiceStatusText" data-i18n="voiceListening">正在聆听，请说话...</span>
+        <span class="voice-cancel-hint" data-i18n="voiceCancelHint">点击麦克风按钮停止</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="scroll-bottom" id="scrollBottom" type="button" title="回到底部">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </button>
+
+  <div class="toast" id="toast"></div>
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>

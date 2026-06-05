@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="pageTitle">招股说明书智能问答</title>
+  <link rel="stylesheet" href="/static/css/chat.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
+</head>
+<body>
+  <div class="app">
+    <!-- 侧边栏 -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button class="new-chat-btn" id="newChatBtn" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          <span data-i18n="newChat">新对话</span>
+        </button>
+      </div>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <div class="history-label" data-i18n="historyLabel">历史记录</div>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="sidebar-footer-btn" id="pdfManageBtn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span data-i18n="pdfManage">文档管理</span>
+        </button>
+        <button class="sidebar-footer-btn" id="clearHistoryBtn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+          </svg>
+          <span data-i18n="clearHistory">清空记录</span>
+        </button>
+        <button class="sidebar-footer-btn" id="langSwitchBtn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+          <span id="langLabel">English</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- 主区域 -->
+    <div class="main">
+      <!-- 顶栏 -->
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" type="button" title="菜单">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+        <div class="topbar-title" data-i18n="appTitle">招股说明书智能问答</div>
+        <div class="topbar-retrieval-mode" id="retrievalModeWrap" title="检索模式">
+          <button class="retrieval-mode-btn active" data-mode="hybrid" type="button">🔀 混合</button>
+          <button class="retrieval-mode-btn" data-mode="vector" type="button">📐 向量</button>
+          <button class="retrieval-mode-btn" data-mode="bm25" type="button">🔤 全文</button>
+        </div>
+        <div class="topbar-pdf-badge" id="pdfBadge" title="当前加载的文档">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span id="pdfBadgeText">-</span>
+        </div>
+      </header>
+
+      <!-- 聊天区域 -->
+      <main class="chat-area" id="chatArea">
+        <!-- 欢迎页 -->
+        <div class="welcome" id="welcomeScreen">
+          <div class="welcome-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h1 data-i18n="welcomeTitle">招股说明书智能问答</h1>
+          <p class="welcome-desc" data-i18n="welcomeDesc">基于 RAG 技术，智能解析招股说明书，精准回答您的问题</p>
+          <div class="suggestions">
+            <button class="suggestion" type="button" data-query-zh="公司的主营业务是什么？" data-query-en="What is the company's main business?" data-i18n="sug1">公司的主营业务是什么？</button>
+            <button class="suggestion" type="button" data-query-zh="公司面临的主要风险因素有哪些？" data-query-en="What are the main risk factors?" data-i18n="sug2">公司面临的主要风险因素有哪些？</button>
+            <button class="suggestion" type="button" data-query-zh="公司最近三年的营业收入是多少？" data-query-en="What is the revenue for the last three years?" data-i18n="sug3">公司最近三年的营业收入是多少？</button>
+            <button class="suggestion" type="button" data-query-zh="公司的发展战略和未来规划是什么？" data-query-en="What is the company's development strategy?" data-i18n="sug4">公司的发展战略和未来规划是什么？</button>
+          </div>
+        </div>
+      </main>
+
+      <!-- PDF 管理弹窗 -->
+      <div class="modal-overlay" id="pdfModal">
+        <div class="modal">
+          <div class="modal-header">
+            <h3 data-i18n="pdfModalTitle">文档管理</h3>
+            <button class="modal-close" id="pdfModalClose" type="button">&times;</button>
+          </div>
+          <div class="modal-body">
+            <!-- 上传区 -->
+            <div class="pdf-upload-zone" id="pdfDropzone">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <p data-i18n="uploadHint">拖放 PDF 到此处，或点击选择</p>
+              <input type="file" id="pdfFileInput" accept=".pdf" hidden />
+              <button class="upload-btn" id="selectPdfBtn" type="button" data-i18n="selectPdfBtn">选择文件</button>
+            </div>
+            <div class="upload-progress" id="uploadProgress" style="display:none;">
+              <div class="spinner"></div>
+              <span id="uploadProgressText">上传中...</span>
+            </div>
+
+            <!-- PDF 列表 -->
+            <div class="pdf-list-header">
+              <span data-i18n="pdfListTitle">已上传文档</span>
+              <button class="rebuild-btn" id="rebuildBtn" type="button" data-i18n="rebuildIndex">重建索引</button>
+            </div>
+            <div class="pdf-list" id="pdfList">
+              <!-- 动态渲染 -->
+            </div>
+            <div class="pdf-list-footer">
+              <span class="pdf-hint" data-i18n="pdfActiveHint">勾选的文档将参与检索问答</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 输入区域 -->
+      <div class="input-area">
+        <div class="input-wrap" id="inputWrap">
+          <textarea
+            id="queryInput"
+            rows="1"
+            data-i18n-placeholder="inputPlaceholder"
+            placeholder="输入您的问题..."
+            autocomplete="off"
+          ></textarea>
+          <div class="input-actions">
+            <button class="image-btn" id="imageBtn" type="button" title="图片识别">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </button>
+            <input type="file" id="imageFileInput" accept="image/*" hidden />
+            <button class="voice-btn" id="voiceBtn" type="button" title="语音输入">
+              <svg class="mic-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+                <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+              <div class="recording-indicator" style="display:none;">
+                <span class="rec-dot"></span>
+              </div>
+            </button>
+            <button class="send-btn" id="sendBtn" type="button" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="input-footer">
+          <span data-i18n="inputHint">按 Enter 发送，Shift+Enter 换行</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>

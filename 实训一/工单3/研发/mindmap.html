@@ -1,0 +1,266 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>招股说明书智能问答系统（多PDF版） - 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+    --accent: #818cf8;
+    --newfeat: #bbf7d0;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, sans-serif;
+    overflow-x: auto;
+  }
+  main {
+    max-width: 1500px;
+    margin: 24px auto;
+    padding: 0 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--newfeat);
+    color: #166534;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+  }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 16px; font-weight: 700; }
+  .label { font-size: 13px; font-weight: 600; }
+  .small { font-size: 11px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 8; ry: 8; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.6; rx: 12; ry: 12; }
+  .highlight { stroke: #16a34a; stroke-width: 2; stroke-dasharray: none; opacity: 1; }
+</style>
+<main>
+<h1>📚 招股说明书智能问答系统（多PDF版） - 思维导图</h1>
+<p class="subtitle"><span class="badge">多PDF管理</span> 基于 RAG 的大语言模型文档问答系统全景图</p>
+
+<svg viewBox="0 0 1460 1020" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="var(--line)"/>
+    </marker>
+    <marker id="arrowG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== 中心节点 ==================== -->
+  <rect x="590" y="450" width="280" height="65" fill="#6366f1" stroke="#4f46e5" stroke-width="2" rx="14" ry="14"/>
+  <text x="730" y="478" text-anchor="middle" class="title" fill="white">📚 RAG 多PDF问答系统</text>
+  <text x="730" y="498" text-anchor="middle" class="small" fill="#e0e7ff">多文档管理 · 动态索引 · 智能检索</text>
+
+  <!-- ==================== 分支1: 用户交互层 (左侧上方) ==================== -->
+  <path d="M590,470 C500,460 430,380 380,300" class="edge" marker-end="url(#arrow)"/>
+  <path d="M590,470 C500,460 430,440 380,400" class="edge" marker-end="url(#arrow)"/>
+  <path d="M590,470 C500,470 430,500 380,510" class="edge" marker-end="url(#arrow)"/>
+  <path d="M590,480 C500,490 430,560 380,590" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="240" width="350" height="400" class="zone"/>
+  <text x="70" y="265" class="label" fill="var(--fg)">🖥️ 用户交互层</text>
+
+  <rect x="70" y="280" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="225" y="300" text-anchor="middle" class="label">💬 Web 聊天界面</text>
+  <text x="225" y="318" text-anchor="middle" class="small">FastAPI + 前端 (侧边栏 + PDF管理弹窗)</text>
+
+  <rect x="70" y="345" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="225" y="365" text-anchor="middle" class="label">🎨 Streamlit 界面</text>
+  <text x="225" y="383" text-anchor="middle" class="small">ui_app.py - 问答/演示/状态/指南</text>
+
+  <rect x="70" y="410" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="225" y="430" text-anchor="middle" class="label">🎤 语音输入 (STT)</text>
+  <text x="225" y="448" text-anchor="middle" class="small">SpeechRecognition + Google API</text>
+
+  <rect x="70" y="475" width="310" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="225" y="495" text-anchor="middle" class="label">📄 PDF 管理面板 <tspan class="badge">新增</tspan></text>
+  <text x="225" y="513" text-anchor="middle" class="small">上传 · 删除 · 激活/停用 · 重建索引</text>
+
+  <rect x="70" y="540" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="225" y="560" text-anchor="middle" class="label">📜 对话历史管理</text>
+  <text x="225" y="578" text-anchor="middle" class="small">侧边栏 · 新对话 · 清空记录</text>
+
+  <!-- ==================== 分支2: API 接口层 (上方) ==================== -->
+  <path d="M730,450 C730,380 730,300 730,210" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="540" y="50" width="380" height="170" class="zone"/>
+  <text x="560" y="75" class="label" fill="var(--fg)">🔌 API 接口层</text>
+
+  <rect x="560" y="90" width="170" height="40" fill="var(--process)" class="node"/>
+  <text x="645" y="115" text-anchor="middle" class="label">POST /api/chat</text>
+
+  <rect x="745" y="90" width="160" height="40" fill="var(--process)" class="node"/>
+  <text x="825" y="115" text-anchor="middle" class="label">GET /api/pdfs</text>
+
+  <rect x="560" y="140" width="170" height="40" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="645" y="165" text-anchor="middle" class="label">POST /api/upload-pdf</text>
+
+  <rect x="745" y="140" width="160" height="40" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="825" y="165" text-anchor="middle" class="label">POST /api/set-active</text>
+
+  <rect x="560" y="190" width="170" height="25" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="645" y="207" text-anchor="middle" class="small" style="font-weight:600">DELETE /api/pdfs/{name}</text>
+
+  <rect x="745" y="190" width="160" height="25" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="825" y="207" text-anchor="middle" class="small" style="font-weight:600">POST /api/rebuild-index</text>
+
+  <!-- ==================== 分支3: 业务逻辑层 (右侧上方) ==================== -->
+  <path d="M870,470 C930,450 980,380 1020,300" class="edge" marker-end="url(#arrow)"/>
+  <path d="M870,470 C930,460 980,420 1020,380" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1000" y="200" width="400" height="210" class="zone"/>
+  <text x="1020" y="225" class="label" fill="var(--fg)">🤖 业务逻辑层</text>
+
+  <rect x="1020" y="240" width="360" height="50" fill="var(--process)" class="node"/>
+  <text x="1200" y="260" text-anchor="middle" class="label">QASystem 问答系统</text>
+  <text x="1200" y="278" text-anchor="middle" class="small">协调检索 + 生成 + 多PDF源追踪</text>
+
+  <rect x="1020" y="300" width="170" height="40" fill="var(--external)" class="node"/>
+  <text x="1105" y="325" text-anchor="middle" class="label">RAGGenerator</text>
+
+  <rect x="1210" y="300" width="170" height="40" fill="var(--external)" class="node"/>
+  <text x="1295" y="325" text-anchor="middle" class="label">DeepSeekLLM</text>
+
+  <rect x="1020" y="350" width="360" height="45" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1200" y="370" text-anchor="middle" class="label">📄 PDF 管理逻辑 <tspan class="badge">新增</tspan></text>
+  <text x="1200" y="386" text-anchor="middle" class="small">set_active · rebuild · get_all_pdfs_info</text>
+
+  <!-- ==================== 分支4: 处理层 (右侧中部) ==================== -->
+  <path d="M870,490 C940,500 1000,480 1020,460" class="edge" marker-end="url(#arrow)"/>
+  <path d="M870,500 C940,520 1000,540 1020,540" class="edge" marker-end="url(#arrow)"/>
+  <path d="M870,510 C940,550 1000,610 1020,630" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1000" y="430" width="420" height="270" class="zone"/>
+  <text x="1020" y="455" class="label" fill="var(--fg)">⚙️ 处理层</text>
+
+  <rect x="1020" y="470" width="380" height="60" fill="var(--process)" class="node"/>
+  <text x="1210" y="492" text-anchor="middle" class="label">🧠 Query 理解模块</text>
+  <text x="1210" y="510" text-anchor="middle" class="small">意图识别 · 问题分解 · 实体抽取 · 消歧</text>
+
+  <rect x="1020" y="545" width="380" height="60" fill="var(--process)" class="node"/>
+  <text x="1210" y="567" text-anchor="middle" class="label">🔍 向量检索模块</text>
+  <text x="1210" y="585" text-anchor="middle" class="small">SentenceTransformer → FAISS · Top-K · 相似度阈值</text>
+
+  <rect x="1020" y="620" width="380" height="60" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1210" y="642" text-anchor="middle" class="label">📄 多PDF文档处理 <tspan class="badge">新增</tspan></text>
+  <text x="1210" y="660" text-anchor="middle" class="small">批量加载 · 来源标记 · 动态分块 · get_pdf_list</text>
+
+  <!-- ==================== 分支5: 数据层 (右侧下方) ==================== -->
+  <path d="M870,520 C940,560 1000,680 1020,730" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1000" y="720" width="420" height="140" class="zone"/>
+  <text x="1020" y="745" class="label" fill="var(--fg)">💾 数据层</text>
+
+  <rect x="1020" y="760" width="180" height="45" fill="var(--storage)" class="node"/>
+  <text x="1110" y="780" text-anchor="middle" class="label">📄 多PDF文件</text>
+  <text x="1110" y="796" text-anchor="middle" class="small">招股说明书1.pdf, 2.pdf...</text>
+
+  <rect x="1220" y="760" width="180" height="45" fill="var(--storage)" class="node"/>
+  <text x="1310" y="780" text-anchor="middle" class="label">🗂️ FAISS 索引</text>
+  <text x="1310" y="796" text-anchor="middle" class="small">faiss.index + chunks.pkl</text>
+
+  <rect x="1020" y="815" width="180" height="35" fill="var(--storage)" class="node"/>
+  <text x="1110" y="837" text-anchor="middle" class="label">⚙️ 配置</text>
+
+  <rect x="1220" y="815" width="180" height="35" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="1310" y="837" text-anchor="middle" class="label">📊 激活状态 <tspan class="badge">新</tspan></text>
+
+  <!-- ==================== 分支6: 外部依赖 (下方) ==================== -->
+  <path d="M730,515 C730,580 730,640 730,700" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="520" y="690" width="420" height="90" class="zone"/>
+  <text x="540" y="715" class="label" fill="var(--fg)">🌐 外部依赖</text>
+
+  <rect x="540" y="730" width="180" height="35" fill="var(--external)" class="node"/>
+  <text x="630" y="752" text-anchor="middle" class="label">DeepSeek API</text>
+
+  <rect x="740" y="730" width="180" height="35" fill="var(--external)" class="node"/>
+  <text x="830" y="752" text-anchor="middle" class="label">Sentence-Transformers</text>
+
+  <!-- ==================== 分支7: 部署架构 (左侧下方) ==================== -->
+  <path d="M590,510 C500,540 400,620 350,690" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="680" width="350" height="180" class="zone"/>
+  <text x="70" y="705" class="label" fill="var(--fg)">🚀 部署架构</text>
+
+  <rect x="70" y="720" width="155" height="45" fill="var(--neutral)" class="node"/>
+  <text x="147" y="740" text-anchor="middle" class="label" style="font-size:11px">FastAPI (Uvicorn)</text>
+  <text x="147" y="756" text-anchor="middle" class="small">端口 8080 · 2 workers</text>
+
+  <rect x="240" y="720" width="145" height="45" fill="var(--neutral)" class="node"/>
+  <text x="312" y="740" text-anchor="middle" class="label" style="font-size:11px">Streamlit</text>
+  <text x="312" y="756" text-anchor="middle" class="small">端口 8501</text>
+
+  <rect x="70" y="780" width="155" height="45" fill="var(--risk)" class="node"/>
+  <text x="147" y="800" text-anchor="middle" class="label" style="font-size:11px">Systemd 服务</text>
+  <text x="147" y="816" text-anchor="middle" class="small">安全加固 · 资源限制</text>
+
+  <rect x="240" y="780" width="145" height="45" fill="var(--risk)" class="node"/>
+  <text x="312" y="800" text-anchor="middle" class="label" style="font-size:11px">Nginx 代理</text>
+  <text x="312" y="816" text-anchor="middle" class="small">反向代理 · SSL</text>
+
+  <!-- ==================== 分支8: 与工单1的差异 (左下角) ==================== -->
+  <rect x="50" y="900" width="440" height="100" fill="var(--newfeat)" stroke="#16a34a" stroke-width="2" rx="10" ry="10"/>
+  <text x="270" y="925" text-anchor="middle" class="label" fill="#166534">🆕 相比工单1的核心升级</text>
+  <text x="270" y="945" text-anchor="middle" class="small" fill="#166534">✅ 多PDF文档管理（上传/删除/激活/停用）</text>
+  <text x="270" y="962" text-anchor="middle" class="small" fill="#166534">✅ 动态索引重建 · 文档来源追踪 · PDF管理API</text>
+  <text x="270" y="979" text-anchor="middle" class="small" fill="#166534">✅ 侧边栏对话历史 · PDF管理弹窗 · 全新前端</text>
+
+  <!-- ==================== 技术栈 (底部) ==================== -->
+  <rect x="520" y="830" width="900" height="100" fill="var(--neutral)" stroke="var(--line)" stroke-width="1" rx="10" ry="10" opacity="0.5"/>
+  <text x="970" y="855" text-anchor="middle" class="label" fill="var(--fg)">🛠️ 技术栈</text>
+
+  <rect x="540" y="870" width="100" height="30" fill="var(--input)" class="node"/>
+  <text x="590" y="890" text-anchor="middle" class="small" style="font-weight:600">Python</text>
+
+  <rect x="650" y="870" width="100" height="30" fill="var(--process)" class="node"/>
+  <text x="700" y="890" text-anchor="middle" class="small" style="font-weight:600">FastAPI</text>
+
+  <rect x="760" y="870" width="100" height="30" fill="var(--process)" class="node"/>
+  <text x="810" y="890" text-anchor="middle" class="small" style="font-weight:600">Streamlit</text>
+
+  <rect x="870" y="870" width="100" height="30" fill="var(--storage)" class="node"/>
+  <text x="920" y="890" text-anchor="middle" class="small" style="font-weight:600">FAISS</text>
+
+  <rect x="980" y="870" width="120" height="30" fill="var(--storage)" class="node"/>
+  <text x="1040" y="890" text-anchor="middle" class="small" style="font-weight:600">S-Transformers</text>
+
+  <rect x="1110" y="870" width="110" height="30" fill="var(--external)" class="node"/>
+  <text x="1165" y="890" text-anchor="middle" class="small" style="font-weight:600">DeepSeek</text>
+
+  <rect x="1230" y="870" width="100" height="30" fill="var(--external)" class="node"/>
+  <text x="1280" y="890" text-anchor="middle" class="small" style="font-weight:600">pdfplumber</text>
+
+  <rect x="1340" y="870" width="70" height="30" fill="var(--risk)" class="node"/>
+  <text x="1375" y="890" text-anchor="middle" class="small" style="font-weight:600">pdf.js</text>
+
+</svg>
+</main>

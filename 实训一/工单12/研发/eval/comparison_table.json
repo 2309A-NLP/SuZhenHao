@@ -1,0 +1,41 @@
+{
+  "metrics": [
+    {
+      "name": "Faithfulness",
+      "name_cn": "忠实度",
+      "rag_score": 0.5,
+      "lightrag_score": 0.5,
+      "winner": "tie",
+      "description": "生成的回答是否忠实于检索到的上下文，不编造信息"
+    },
+    {
+      "name": "Answer Relevancy",
+      "name_cn": "答案相关性",
+      "rag_score": 0.5,
+      "lightrag_score": 0.5,
+      "winner": "tie",
+      "description": "回答与问题的相关程度"
+    },
+    {
+      "name": "Context Precision",
+      "name_cn": "上下文精确度",
+      "rag_score": 0.5,
+      "lightrag_score": 0.5,
+      "winner": "tie",
+      "description": "检索到的上下文中，相关内容的比例"
+    },
+    {
+      "name": "Context Recall",
+      "name_cn": "上下文召回率",
+      "rag_score": 0.5,
+      "lightrag_score": 0.5,
+      "winner": "tie",
+      "description": "标准答案中的关键信息是否被检索到的上下文覆盖"
+    }
+  ],
+  "summary": {
+    "rag_wins": 0,
+    "lightrag_wins": 0,
+    "ties": 4
+  }
+}

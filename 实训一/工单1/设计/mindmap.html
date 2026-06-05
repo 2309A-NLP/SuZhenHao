@@ -1,0 +1,232 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>招股说明书智能问答系统 - 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+    --accent: #818cf8;
+    --success: #6ee7b7;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, sans-serif;
+    overflow-x: auto;
+  }
+  main {
+    max-width: 1400px;
+    margin: 24px auto;
+    padding: 0 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 16px; font-weight: 700; }
+  .label { font-size: 13px; font-weight: 600; }
+  .small { font-size: 11px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 8; ry: 8; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.6; rx: 12; ry: 12; }
+  .legend-box { fill: var(--neutral); stroke: var(--line); stroke-width: 1; rx: 6; ry: 6; }
+</style>
+<main>
+<h1>📚 招股说明书智能问答系统 - 思维导图</h1>
+<p class="subtitle">基于 RAG 的大语言模型文档问答系统全景图</p>
+
+<svg viewBox="0 0 1360 920" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="var(--line)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== 中心节点 ==================== -->
+  <rect x="555" y="410" width="250" height="60" fill="#6366f1" stroke="#4f46e5" stroke-width="2" rx="12" ry="12"/>
+  <text x="680" y="437" text-anchor="middle" class="title" fill="white">📚 RAG 问答系统</text>
+  <text x="680" y="455" text-anchor="middle" class="small" fill="#e0e7ff">招股说明书智能问答</text>
+
+  <!-- ==================== 分支1: 用户层 (左侧上方) ==================== -->
+  <!-- 分支线: 中心 → 用户层 -->
+  <path d="M555,430 C480,430 430,380 380,300" class="edge" marker-end="url(#arrow)"/>
+  <path d="M555,430 C480,430 430,430 380,400" class="edge" marker-end="url(#arrow)"/>
+  <path d="M555,430 C480,430 430,480 380,500" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- 用户层区域 -->
+  <rect x="60" y="240" width="340" height="310" class="zone"/>
+  <text x="80" y="265" class="label" fill="var(--fg)">🖥️ 用户交互层</text>
+
+  <!-- CLI -->
+  <rect x="80" y="280" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="230" y="300" text-anchor="middle" class="label">⌨️ 命令行模式</text>
+  <text x="230" y="318" text-anchor="middle" class="small">1.py - 交互式 / 单查询 / 批量</text>
+
+  <!-- Web Chat -->
+  <rect x="80" y="345" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="230" y="365" text-anchor="middle" class="label">💬 Web 聊天界面</text>
+  <text x="230" y="383" text-anchor="middle" class="small">FastAPI + 前端 (index.html)</text>
+
+  <!-- Streamlit -->
+  <rect x="80" y="410" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="230" y="430" text-anchor="middle" class="label">🎨 Streamlit 界面</text>
+  <text x="230" y="448" text-anchor="middle" class="small">ui_app.py - 演示/监控</text>
+
+  <!-- 语音输入 -->
+  <rect x="80" y="475" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="230" y="495" text-anchor="middle" class="label">🎤 语音输入 (STT)</text>
+  <text x="230" y="513" text-anchor="middle" class="small">SpeechRecognition + Google API</text>
+
+  <!-- ==================== 分支2: 业务逻辑层 (上方) ==================== -->
+  <path d="M680,410 C680,350 680,280 680,180" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="530" y="50" width="300" height="140" class="zone"/>
+  <text x="550" y="75" class="label" fill="var(--fg)">🤖 业务逻辑层</text>
+
+  <rect x="550" y="90" width="260" height="40" fill="var(--process)" class="node"/>
+  <text x="680" y="115" text-anchor="middle" class="label">QASystem 问答系统</text>
+
+  <rect x="550" y="140" width="125" height="35" fill="var(--external)" class="node"/>
+  <text x="612" y="162" text-anchor="middle" class="label" style="font-size:11px">RAGGenerator</text>
+
+  <rect x="685" y="140" width="125" height="35" fill="var(--external)" class="node"/>
+  <text x="747" y="162" text-anchor="middle" class="label" style="font-size:11px">DeepSeekLLM</text>
+
+  <!-- ==================== 分支3: 处理层 (右侧上方) ==================== -->
+  <path d="M805,430 C860,430 920,350 960,280" class="edge" marker-end="url(#arrow)"/>
+  <path d="M805,430 C860,430 920,430 960,420" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="940" y="180" width="380" height="280" class="zone"/>
+  <text x="960" y="205" class="label" fill="var(--fg)">⚙️ 处理层</text>
+
+  <!-- Query 理解 -->
+  <rect x="960" y="220" width="340" height="70" fill="var(--process)" class="node"/>
+  <text x="1130" y="242" text-anchor="middle" class="label">🧠 Query 理解模块</text>
+  <text x="1130" y="260" text-anchor="middle" class="small">意图识别 · 问题分解 · 实体抽取</text>
+  <text x="1130" y="278" text-anchor="middle" class="small">财务/产品/风险/战略/市场/一般</text>
+
+  <!-- 向量检索 -->
+  <rect x="960" y="305" width="340" height="70" fill="var(--process)" class="node"/>
+  <text x="1130" y="327" text-anchor="middle" class="label">🔍 向量检索模块</text>
+  <text x="1130" y="345" text-anchor="middle" class="small">SentenceTransformer → FAISS 索引</text>
+  <text x="1130" y="363" text-anchor="middle" class="small">Top-K 相似度检索 + 阈值过滤</text>
+
+  <!-- 文档处理 -->
+  <rect x="960" y="390" width="340" height="55" fill="var(--process)" class="node"/>
+  <text x="1130" y="412" text-anchor="middle" class="label">📄 文档处理模块</text>
+  <text x="1130" y="430" text-anchor="middle" class="small">PDF 加载 (pdfplumber/PyPDF2) → 分块</text>
+
+  <!-- ==================== 分支4: 数据层 (右侧下方) ==================== -->
+  <path d="M805,450 C880,470 940,520 960,560" class="edge" marker-end="url(#arrow)"/>
+  <path d="M805,460 C880,490 940,560 960,610" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="940" y="490" width="380" height="180" class="zone"/>
+  <text x="960" y="515" class="label" fill="var(--fg)">💾 数据层</text>
+
+  <rect x="960" y="530" width="160" height="50" fill="var(--storage)" class="node"/>
+  <text x="1040" y="550" text-anchor="middle" class="label">📄 PDF 文档</text>
+  <text x="1040" y="568" text-anchor="middle" class="small">招股说明书</text>
+
+  <rect x="1140" y="530" width="160" height="50" fill="var(--storage)" class="node"/>
+  <text x="1220" y="550" text-anchor="middle" class="label">🗂️ FAISS 索引</text>
+  <text x="1220" y="568" text-anchor="middle" class="small">faiss.index + chunks.pkl</text>
+
+  <rect x="960" y="595" width="160" height="50" fill="var(--storage)" class="node"/>
+  <text x="1040" y="615" text-anchor="middle" class="label">⚙️ 配置文件</text>
+  <text x="1040" y="633" text-anchor="middle" class="small">config.py + .env</text>
+
+  <rect x="1140" y="595" width="160" height="50" fill="var(--storage)" class="node"/>
+  <text x="1220" y="615" text-anchor="middle" class="label">📊 向量缓存</text>
+  <text x="1220" y="633" text-anchor="middle" class="small">embeddings.npy</text>
+
+  <!-- ==================== 分支5: 外部服务 (下方) ==================== -->
+  <path d="M680,470 C680,540 680,600 680,670" class="edge" marker-end="url(#arrow)"/>
+  <path d="M555,450 C480,500 400,600 350,670" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="480" y="660" width="400" height="90" class="zone"/>
+  <text x="500" y="685" class="label" fill="var(--fg)">🌐 外部依赖</text>
+
+  <rect x="500" y="700" width="170" height="35" fill="var(--external)" class="node"/>
+  <text x="585" y="722" text-anchor="middle" class="label">DeepSeek API</text>
+
+  <rect x="690" y="700" width="170" height="35" fill="var(--external)" class="node"/>
+  <text x="775" y="722" text-anchor="middle" class="label">Sentence-Transformers</text>
+
+  <!-- ==================== 分支6: 部署层 (左侧下方) ==================== -->
+  <rect x="60" y="590" width="340" height="160" class="zone"/>
+  <text x="80" y="615" class="label" fill="var(--fg)">🚀 部署架构</text>
+
+  <rect x="80" y="630" width="150" height="45" fill="var(--neutral)" class="node"/>
+  <text x="155" y="650" text-anchor="middle" class="label" style="font-size:11px">FastAPI (Uvicorn)</text>
+  <text x="155" y="666" text-anchor="middle" class="small">端口 8080</text>
+
+  <rect x="245" y="630" width="140" height="45" fill="var(--neutral)" class="node"/>
+  <text x="315" y="650" text-anchor="middle" class="label" style="font-size:11px">Streamlit</text>
+  <text x="315" y="666" text-anchor="middle" class="small">端口 8501</text>
+
+  <rect x="80" y="690" width="150" height="45" fill="var(--risk)" class="node"/>
+  <text x="155" y="710" text-anchor="middle" class="label" style="font-size:11px">Systemd 服务</text>
+  <text x="155" y="726" text-anchor="middle" class="small">自动重启/日志</text>
+
+  <rect x="245" y="690" width="140" height="45" fill="var(--risk)" class="node"/>
+  <text x="315" y="710" text-anchor="middle" class="label" style="font-size:11px">Nginx 代理</text>
+  <text x="315" y="726" text-anchor="middle" class="small">反向代理/SSL</text>
+
+  <!-- ==================== 分支7: 技术栈标签 (底部) ==================== -->
+  <rect x="60" y="800" width="1280" height="100" fill="var(--neutral)" stroke="var(--line)" stroke-width="1" rx="10" ry="10" opacity="0.5"/>
+  <text x="700" y="825" text-anchor="middle" class="label" fill="var(--fg)">🛠️ 技术栈</text>
+
+  <rect x="80" y="840" width="110" height="30" fill="var(--input)" class="node"/>
+  <text x="135" y="860" text-anchor="middle" class="small" style="font-weight:600">Python 3.10</text>
+
+  <rect x="200" y="840" width="110" height="30" fill="var(--process)" class="node"/>
+  <text x="255" y="860" text-anchor="middle" class="small" style="font-weight:600">FastAPI</text>
+
+  <rect x="320" y="840" width="110" height="30" fill="var(--process)" class="node"/>
+  <text x="375" y="860" text-anchor="middle" class="small" style="font-weight:600">Streamlit</text>
+
+  <rect x="440" y="840" width="140" height="30" fill="var(--storage)" class="node"/>
+  <text x="510" y="860" text-anchor="middle" class="small" style="font-weight:600">FAISS (faiss-cpu)</text>
+
+  <rect x="590" y="840" width="180" height="30" fill="var(--storage)" class="node"/>
+  <text x="680" y="860" text-anchor="middle" class="small" style="font-weight:600">Sentence-Transformers</text>
+
+  <rect x="780" y="840" width="130" height="30" fill="var(--external)" class="node"/>
+  <text x="845" y="860" text-anchor="middle" class="small" style="font-weight:600">DeepSeek API</text>
+
+  <rect x="920" y="840" width="110" height="30" fill="var(--external)" class="node"/>
+  <text x="975" y="860" text-anchor="middle" class="small" style="font-weight:600">PyPDF2</text>
+
+  <rect x="1040" y="840" width="110" height="30" fill="var(--external)" class="node"/>
+  <text x="1095" y="860" text-anchor="middle" class="small" style="font-weight:600">pdfplumber</text>
+
+  <rect x="1160" y="840" width="130" height="30" fill="var(--risk)" class="node"/>
+  <text x="1225" y="860" text-anchor="middle" class="small" style="font-weight:600">NumPy / Pandas</text>
+
+  <!-- ==================== 流程箭头标注 ==================== -->
+  <text x="470" y="370" class="small" fill="var(--muted)" transform="rotate(-25 470 370)">问题</text>
+  <text x="730" y="300" class="small" fill="var(--muted)" transform="rotate(25 730 300)">检索</text>
+  <text x="880" y="490" class="small" fill="var(--muted)" transform="rotate(30 880 490)">存储</text>
+  <text x="680" y="560" class="small" fill="var(--muted)">API 调用</text>
+
+</svg>
+</main>

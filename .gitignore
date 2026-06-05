@@ -1,0 +1,2 @@
+*.safetensors 
+finetuned_model/ 

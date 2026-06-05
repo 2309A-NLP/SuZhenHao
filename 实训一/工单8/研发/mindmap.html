@@ -1,0 +1,240 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>智能文档问答系统（RAG + 知识图谱 + 语音识别） - 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc; --fg: #172033; --muted: #5b6475; --line: #64748b;
+    --neutral: #e2e8f0; --input: #bfdbfe; --process: #c7d2fe;
+    --storage: #99f6e4; --external: #fde68a; --risk: #fecaca;
+    --kg: #f9a8d4; --speech: #a5b4fc; --rag: #86efac;
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.4 ui-sans-serif, system-ui, sans-serif; overflow-x: auto; }
+  main { max-width: 1460px; margin: 24px auto; padding: 0 20px; }
+  h1 { text-align: center; font-size: 22px; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .badge { display: inline-block; background: var(--kg); color: #831843; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; margin-left: 3px; }
+  .badge-kg { display: inline-block; background: var(--kg); color: #831843; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-speech { display: inline-block; background: var(--speech); color: #3730a3; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-rag { display: inline-block; background: var(--rag); color: #14532d; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 16px; font-weight: 700; }
+  .label { font-size: 13px; font-weight: 600; }
+  .small { font-size: 11px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 8; ry: 8; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.6; rx: 12; ry: 12; }
+</style>
+<main>
+<h1>📚 智能文档问答系统 — 思维导图</h1>
+<p class="subtitle">
+  <span class="badge-rag">🔍 RAG</span>
+  <span class="badge-kg">🕸️ 知识图谱</span>
+  <span class="badge-speech">🎤 语音识别</span>
+  <span class="badge">📄 PDF解析</span>
+  <span class="badge">🌐 中英文</span>
+</p>
+
+<svg viewBox="0 0 1420 980" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="var(--line)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== 中心节点 ==================== -->
+  <rect x="530" y="420" width="340" height="80" fill="#6366f1" stroke="#4f46e5" stroke-width="2" rx="14" ry="14"/>
+  <text x="700" y="450" text-anchor="middle" class="title" fill="white">🦞 智能文档问答系统</text>
+  <text x="700" y="472" text-anchor="middle" class="small" fill="#e0e7ff">RAG · 知识图谱 · 语音识别</text>
+  <text x="700" y="490" text-anchor="middle" class="small" fill="#c7d2fe">MiMo + FAISS + NetworkX + Whisper</text>
+
+  <!-- ==================== 分支1: 用户交互层 (左侧) ==================== -->
+  <path d="M530,450 C450,440 380,360 340,280" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,455 C450,450 380,420 340,370" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,460 C450,465 380,500 340,470" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,470 C450,480 380,560 340,570" class="edge" marker-end="url(#arrow)"/>
+  <path d="M530,480 C450,500 380,630 340,660" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="20" y="210" width="340" height="500" class="zone"/>
+  <text x="40" y="235" class="label" fill="var(--fg)">🖥️ 用户交互层</text>
+
+  <rect x="40" y="250" width="300" height="50" fill="var(--input)" class="node"/>
+  <text x="190" y="270" text-anchor="middle" class="label">💬 对话问答</text>
+  <text x="190" y="288" text-anchor="middle" class="small">Streamlit · 多轮对话 · 来源追溯</text>
+
+  <rect x="40" y="310" width="300" height="50" fill="var(--rag)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="190" y="330" text-anchor="middle" class="label">📄 PDF 上传</text>
+  <text x="190" y="348" text-anchor="middle" class="small">拖拽上传 · 文本提取 · 自动分块 · 向量化</text>
+
+  <rect x="40" y="370" width="300" height="50" fill="var(--kg)" class="node" stroke="#db2777" stroke-width="2"/>
+  <text x="190" y="390" text-anchor="middle" class="label">🕸️ 知识图谱 <tspan class="badge-kg">核心</tspan></text>
+  <text x="190" y="408" text-anchor="middle" class="small">构建图谱 · 交互式可视化 · 三元组查看</text>
+
+  <rect x="40" y="430" width="300" height="50" fill="var(--speech)" class="node" stroke="#4f46e5" stroke-width="2"/>
+  <text x="190" y="450" text-anchor="middle" class="label">🎤 语音输入 <tspan class="badge-speech">语音</tspan></text>
+  <text x="190" y="468" text-anchor="middle" class="small">Whisper 本地模型 · 自动语言检测</text>
+
+  <rect x="40" y="500" width="300" height="50" fill="var(--neutral)" class="node"/>
+  <text x="190" y="520" text-anchor="middle" class="label">🎨 主题切换</text>
+  <text x="190" y="538" text-anchor="middle" class="small">深色/浅色模式 · 全组件适配 · 一键切换</text>
+
+  <rect x="40" y="560" width="300" height="50" fill="var(--rag)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="190" y="580" text-anchor="middle" class="label">📊 统计面板</text>
+  <text x="190" y="598" text-anchor="middle" class="small">节点数 · 边数 · 三元组数 · 处理状态</text>
+
+  <rect x="40" y="630" width="300" height="40" fill="var(--input)" class="node"/>
+  <text x="190" y="655" text-anchor="middle" class="label">📚 来源追溯 · 检索分数展示</text>
+
+  <!-- ==================== 分支2: 业务逻辑层 (上方) ==================== -->
+  <path d="M700,420 C700,360 700,280 700,200" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="420" y="30" width="560" height="180" class="zone"/>
+  <text x="440" y="55" class="label" fill="var(--fg)">🤖 业务逻辑层</text>
+
+  <rect x="440" y="70" width="250" height="50" fill="var(--rag)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="565" y="90" text-anchor="middle" class="label">🔍 RAGChain</text>
+  <text x="565" y="108" text-anchor="middle" class="small">检索 + 生成 · 多轮历史 · 来源提取</text>
+
+  <rect x="710" y="70" width="250" height="50" fill="var(--kg)" class="node" stroke="#db2777" stroke-width="2"/>
+  <text x="835" y="90" text-anchor="middle" class="label">🕸️ KnowledgeGraph</text>
+  <text x="835" y="108" text-anchor="middle" class="small">三元组抽取 · NetworkX · Pyvis</text>
+
+  <rect x="440" y="130" width="250" height="50" fill="var(--rag)" class="node"/>
+  <text x="565" y="150" text-anchor="middle" class="label">📄 PDFProcessor</text>
+  <text x="565" y="168" text-anchor="middle" class="small">pdfplumber · 递归分块 · FAISS 索引</text>
+
+  <rect x="710" y="130" width="250" height="50" fill="var(--speech)" class="node" stroke="#4f46e5" stroke-width="2"/>
+  <text x="835" y="150" text-anchor="middle" class="label">🎤 SpeechRecognizer</text>
+  <text x="835" y="168" text-anchor="middle" class="small">Whisper 本地 · API 兜底 · 自动语言</text>
+
+  <!-- ==================== 分支3: 外部服务 (右侧上方) ==================== -->
+  <path d="M870,440 C930,430 980,360 1020,280" class="edge" marker-end="url(#arrow)"/>
+  <path d="M870,445 C930,440 980,400 1020,370" class="edge" marker-end="url(#arrow)"/>
+  <path d="M870,450 C930,450 980,440 1020,430" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1000" y="180" width="400" height="290" class="zone"/>
+  <text x="1020" y="205" class="label" fill="var(--fg)">🌐 外部服务与模型</text>
+
+  <rect x="1020" y="220" width="360" height="50" fill="var(--external)" class="node"/>
+  <text x="1200" y="240" text-anchor="middle" class="label">🤖 小米 MiMo-v2.5-pro</text>
+  <text x="1200" y="258" text-anchor="middle" class="small">答案生成 · 知识图谱三元组抽取</text>
+
+  <rect x="1020" y="280" width="175" height="50" fill="var(--rag)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1107" y="300" text-anchor="middle" class="label">🔍 bge-base-zh</text>
+  <text x="1107" y="318" text-anchor="middle" class="small">中文向量化</text>
+
+  <rect x="1210" y="280" width="170" height="50" fill="var(--speech)" class="node" stroke="#4f46e5" stroke-width="2"/>
+  <text x="1295" y="300" text-anchor="middle" class="label">🎤 Whisper</text>
+  <text x="1295" y="318" text-anchor="middle" class="small">语音转文字</text>
+
+  <rect x="1020" y="340" width="175" height="50" fill="var(--storage)" class="node"/>
+  <text x="1107" y="360" text-anchor="middle" class="label">🗂️ FAISS</text>
+  <text x="1107" y="378" text-anchor="middle" class="small">向量检索</text>
+
+  <rect x="1210" y="340" width="170" height="50" fill="var(--kg)" class="node" stroke="#db2777" stroke-width="1"/>
+  <text x="1295" y="360" text-anchor="middle" class="label">🕸️ Pyvis</text>
+  <text x="1295" y="378" text-anchor="middle" class="small">图谱可视化</text>
+
+  <rect x="1020" y="400" width="360" height="40" fill="var(--neutral)" class="node"/>
+  <text x="1200" y="425" text-anchor="middle" class="label">📡 OpenAI 兼容 API (MiMo / Whisper)</text>
+
+  <!-- ==================== 分支4: 知识图谱流水线 (右侧中部) ==================== -->
+  <path d="M870,470 C940,490 990,510 1020,510" class="edge" marker-end="url(#arrow)"/>
+  <path d="M870,480 C940,520 990,580 1020,600" class="edge" marker-end="url(#arrow)"/>
+  <path d="M870,490 C940,550 990,660 1020,690" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1000" y="490" width="420" height="250" fill="var(--kg)" stroke="#db2777" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="1000" y="490" width="420" height="250" class="zone" stroke="#db2777" stroke-width="2"/>
+  <text x="1020" y="515" class="label" fill="#831843">🕸️ 知识图谱流水线（核心亮点）</text>
+
+  <!-- 步骤 -->
+  <rect x="1020" y="530" width="185" height="55" fill="var(--process)" class="node"/>
+  <text x="1112" y="550" text-anchor="middle" class="label">📝 文本分块</text>
+  <text x="1112" y="568" text-anchor="middle" class="small">PDF → Chunks</text>
+
+  <rect x="1220" y="530" width="185" height="55" fill="var(--external)" class="node"/>
+  <text x="1312" y="550" text-anchor="middle" class="label">🤖 LLM 抽取</text>
+  <text x="1312" y="568" text-anchor="middle" class="small">MiMo 三元组抽取</text>
+
+  <rect x="1020" y="595" width="185" height="55" fill="var(--rag)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1112" y="615" text-anchor="middle" class="label">⚡ 批量 + 并发</text>
+  <text x="1112" y="633" text-anchor="middle" class="small">ThreadPoolExecutor ×3</text>
+
+  <rect x="1220" y="595" width="185" height="55" fill="var(--kg)" class="node" stroke="#db2777" stroke-width="2"/>
+  <text x="1312" y="615" text-anchor="middle" class="label">🕸️ NetworkX 构图</text>
+  <text x="1312" y="633" text-anchor="middle" class="small">有向图 · 节点+边</text>
+
+  <rect x="1020" y="660" width="385" height="45" fill="var(--process)" class="node"/>
+  <text x="1212" y="680" text-anchor="middle" class="label">🎨 Pyvis 交互式可视化</text>
+  <text x="1212" y="698" text-anchor="middle" class="small">forceAtlas2 物理引擎 · 拖拽缩放 · 嵌入 Streamlit</text>
+
+  <!-- ==================== 分支5: RAG 流水线 (下方) ==================== -->
+  <path d="M700,500 C700,570 700,640 700,720" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="350" y="710" width="700" height="120" class="zone"/>
+  <text x="370" y="735" class="label" fill="var(--fg)">🔍 RAG 流水线</text>
+
+  <rect x="370" y="750" width="130" height="40" fill="var(--rag)" class="node"/>
+  <text x="435" y="775" text-anchor="middle" class="label" style="font-size:11px">📄 PDF 提取</text>
+
+  <rect x="515" y="750" width="130" height="40" fill="var(--process)" class="node"/>
+  <text x="580" y="775" text-anchor="middle" class="label" style="font-size:11px">✂️ 递归分块</text>
+
+  <rect x="660" y="750" width="130" height="40" fill="var(--input)" class="node"/>
+  <text x="725" y="775" text-anchor="middle" class="label" style="font-size:11px">🔍 bge 向量化</text>
+
+  <rect x="805" y="750" width="130" height="40" fill="var(--storage)" class="node"/>
+  <text x="870" y="775" text-anchor="middle" class="label" style="font-size:11px">🗂️ FAISS 索引</text>
+
+  <!-- 连接箭头 -->
+  <path d="M500,770 L515,770" class="edge" marker-end="url(#arrow)"/>
+  <path d="M645,770 L660,770" class="edge" marker-end="url(#arrow)"/>
+  <path d="M790,770 L805,770" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- 检索+生成 -->
+  <rect x="370" y="800" width="280" height="30" fill="var(--rag)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="510" y="820" text-anchor="middle" class="small" style="font-weight:600">🔍 相似度检索 → 🤖 MiMo 生成 → 📚 来源追溯</text>
+
+  <!-- ==================== 分支6: 语音流水线 (左侧下方) ==================== -->
+  <path d="M530,490 C450,530 380,660 340,720" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="20" y="710" width="340" height="120" class="zone"/>
+  <text x="40" y="735" class="label" fill="var(--fg)">🎤 语音识别流水线</text>
+
+  <rect x="40" y="750" width="145" height="40" fill="var(--speech)" class="node"/>
+  <text x="112" y="775" text-anchor="middle" class="label" style="font-size:11px">🎤 音频输入</text>
+
+  <rect x="200" y="750" width="145" height="40" fill="var(--speech)" class="node" stroke="#4f46e5" stroke-width="2"/>
+  <text x="272" y="775" text-anchor="middle" class="label" style="font-size:11px">🤖 Whisper 识别</text>
+
+  <rect x="40" y="800" width="305" height="30" fill="var(--input)" class="node"/>
+  <text x="192" y="820" text-anchor="middle" class="small" style="font-weight:600">📝 文字 → 🔍 RAG 检索 → 🤖 生成回答</text>
+
+  <!-- ==================== 技术栈 ==================== -->
+  <rect x="350" y="870" width="700" height="70" fill="var(--neutral)" stroke="var(--line)" stroke-width="1" rx="10" ry="10" opacity="0.5"/>
+  <text x="700" y="895" text-anchor="middle" class="label" fill="var(--fg)">🛠️ 技术栈</text>
+
+  <rect x="370" y="910" width="80" height="25" fill="var(--input)" class="node"/>
+  <text x="410" y="927" text-anchor="middle" class="small" style="font-weight:600">Python</text>
+
+  <rect x="460" y="910" width="80" height="25" fill="var(--rag)" class="node"/>
+  <text x="500" y="927" text-anchor="middle" class="small" style="font-weight:600">LangChain</text>
+
+  <rect x="550" y="910" width="80" height="25" fill="var(--storage)" class="node"/>
+  <text x="590" y="927" text-anchor="middle" class="small" style="font-weight:600">FAISS</text>
+
+  <rect x="640" y="910" width="80" height="25" fill="var(--kg)" class="node" stroke="#db2777" stroke-width="1"/>
+  <text x="680" y="927" text-anchor="middle" class="small" style="font-weight:600">NetworkX</text>
+
+  <rect x="730" y="910" width="80" height="25" fill="var(--external)" class="node"/>
+  <text x="770" y="927" text-anchor="middle" class="small" style="font-weight:600">MiMo</text>
+
+  <rect x="820" y="910" width="80" height="25" fill="var(--speech)" class="node" stroke="#4f46e5" stroke-width="1"/>
+  <text x="860" y="927" text-anchor="middle" class="small" style="font-weight:600">Whisper</text>
+
+  <rect x="910" y="910" width="60" height="25" fill="var(--process)" class="node"/>
+  <text x="940" y="927" text-anchor="middle" class="small" style="font-weight:600">Pyvis</text>
+
+</svg>
+</main>

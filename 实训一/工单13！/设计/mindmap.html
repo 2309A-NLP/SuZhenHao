@@ -1,0 +1,220 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>招股说明书智能问答系统（Redis + Milvus + LightRAG） - 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc; --fg: #172033; --muted: #5b6475; --line: #64748b;
+    --neutral: #e2e8f0; --input: #bfdbfe; --process: #c7d2fe;
+    --storage: #99f6e4; --external: #fde68a; --risk: #fecaca;
+    --newfeat: #bbf7d0; --imagefeat: #fde68a; --streamfeat: #e9d5ff;
+    --retrieval: #fcd34d; --lightrag: #f9a8d4; --graph: #c4b5fd;
+    --redis: #fca5a5; --milvus: #93c5fd;
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.4 ui-sans-serif, system-ui, sans-serif; overflow-x: auto; }
+  main { max-width: 1540px; margin: 24px auto; padding: 0 20px; }
+  h1 { text-align: center; font-size: 22px; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .badge { display: inline-block; background: var(--newfeat); color: #166534; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-redis { display: inline-block; background: var(--redis); color: #991b1b; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-milvus { display: inline-block; background: var(--milvus); color: #1e3a5f; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-lr { display: inline-block; background: var(--lightrag); color: #831843; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-graph { display: inline-block; background: var(--graph); color: #4c1d95; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-retrieval { display: inline-block; background: var(--retrieval); color: #78350f; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 16px; font-weight: 700; }
+  .label { font-size: 13px; font-weight: 600; }
+  .small { font-size: 11px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 8; ry: 8; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.6; rx: 12; ry: 12; }
+</style>
+<main>
+<h1>📚 招股说明书智能问答系统 — 思维导图</h1>
+<p class="subtitle">
+  <span class="badge-redis">📦 Redis 缓存</span>
+  <span class="badge-milvus">🗄️ Milvus 向量库</span>
+  <span class="badge-lr">🧠 LightRAG</span>
+  <span class="badge-graph">🕸️ 知识图谱</span>
+  <span class="badge-retrieval">🔍 四种检索</span>
+  <span class="badge">💬 对话记忆</span>
+</p>
+
+<svg viewBox="0 0 1500 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="var(--line)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== 中心节点 ==================== -->
+  <rect x="510" y="440" width="460" height="80" fill="#6366f1" stroke="#4f46e5" stroke-width="2" rx="14" ry="14"/>
+  <text x="740" y="470" text-anchor="middle" class="title" fill="white">📚 RAG 智能问答系统</text>
+  <text x="740" y="490" text-anchor="middle" class="small" fill="#e0e7ff">Redis · Milvus · LightRAG · 四模式检索</text>
+  <text x="740" y="508" text-anchor="middle" class="small" fill="#c7d2fe">查询缓存 + Embedding 缓存 + 对话记忆 + 任务队列</text>
+
+  <!-- ==================== 分支1: Redis 缓存 (上方 - 核心亮点) ==================== -->
+  <path d="M740,440 C740,380 740,290 740,210" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="240" y="10" width="1000" height="210" fill="var(--redis)" stroke="#dc2626" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="240" y="10" width="1000" height="210" class="zone" stroke="#dc2626" stroke-width="2"/>
+  <text x="260" y="35" class="label" fill="#991b1b">📦 Redis 多层缓存体系（核心亮点）</text>
+
+  <!-- 四层缓存 -->
+  <rect x="260" y="50" width="230" height="60" fill="var(--redis)" class="node" stroke="#dc2626" stroke-width="2"/>
+  <text x="375" y="70" text-anchor="middle" class="label">🔍 查询缓存</text>
+  <text x="375" y="88" text-anchor="middle" class="small">cache:{md5(query+mode)}</text>
+  <text x="375" y="103" text-anchor="middle" class="small">TTL 3600s · 秒级响应</text>
+
+  <rect x="505" y="50" width="230" height="60" fill="var(--redis)" class="node" stroke="#dc2626" stroke-width="2"/>
+  <text x="620" y="70" text-anchor="middle" class="label">🧠 Embedding 缓存</text>
+  <text x="620" y="88" text-anchor="middle" class="small">emb:{md5(text)}</text>
+  <text x="620" y="103" text-anchor="middle" class="small">永不过期 · 批量 mget/pipeline</text>
+
+  <rect x="750" y="50" width="230" height="60" fill="var(--redis)" class="node" stroke="#dc2626" stroke-width="2"/>
+  <text x="865" y="70" text-anchor="middle" class="label">💬 会话存储</text>
+  <text x="865" y="88" text-anchor="middle" class="small">session:{chat_id}</text>
+  <text x="865" y="103" text-anchor="middle" class="small">MAX_HISTORY=20 · Sorted Set 索引</text>
+
+  <rect x="995" y="50" width="230" height="60" fill="var(--redis)" class="node" stroke="#dc2626" stroke-width="2"/>
+  <text x="1110" y="70" text-anchor="middle" class="label">📋 任务队列</text>
+  <text x="1110" y="88" text-anchor="middle" class="small">task:{id} · pending/processing</text>
+  <text x="1110" y="103" text-anchor="middle" class="small">异步处理 · 进度追踪</text>
+
+  <!-- 缓存效果 -->
+  <rect x="260" y="120" width="965" height="40" fill="var(--neutral)" class="node"/>
+  <text x="742" y="140" text-anchor="middle" class="label">⚡ 缓存效果</text>
+  <text x="742" y="155" text-anchor="middle" class="small">查询缓存: 相同查询从秒级降到毫秒级 · Embedding 缓存: 首次计算后后续零计算 · 会话: 重启不丢失 · 任务: 异步可追踪</text>
+
+  <!-- Redis 架构说明 -->
+  <rect x="260" y="170" width="965" height="35" fill="var(--redis)" class="node" stroke="#dc2626" stroke-width="1"/>
+  <text x="742" y="192" text-anchor="middle" class="small" style="font-weight:600">🔄 Redis 不可用时自动降级（跳过缓存直接计算） · Pipeline 批量操作减少网络开销 · Sorted Set 管理会话索引</text>
+
+  <!-- ==================== 分支2: Milvus 向量库 (右侧上方) ==================== -->
+  <path d="M970,460 C1030,450 1080,370 1120,300" class="edge" marker-end="url(#arrow)"/>
+  <path d="M970,465 C1030,460 1080,420 1120,380" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1100" y="230" width="380" height="190" fill="var(--milvus)" stroke="#2563eb" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="1100" y="230" width="380" height="190" class="zone" stroke="#2563eb" stroke-width="2"/>
+  <text x="1120" y="255" class="label" fill="#1e3a5f">🗄️ Milvus 向量数据库</text>
+
+  <rect x="1120" y="270" width="340" height="45" fill="var(--milvus)" class="node" stroke="#2563eb" stroke-width="2"/>
+  <text x="1290" y="290" text-anchor="middle" class="label">🗄️ MilvusRetriever</text>
+  <text x="1290" y="308" text-anchor="middle" class="small">IVF_FLAT 索引 · IP 内积/L2 欧氏距离</text>
+
+  <rect x="1120" y="325" width="165" height="40" fill="var(--input)" class="node"/>
+  <text x="1202" y="350" text-anchor="middle" class="label" style="font-size:11px">📊 文档向量存储</text>
+
+  <rect x="1300" y="325" width="160" height="40" fill="var(--graph)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="1380" y="350" text-anchor="middle" class="label" style="font-size:11px">💬 对话记忆存储</text>
+
+  <rect x="1120" y="375" width="340" height="30" fill="var(--milvus)" class="node" stroke="#2563eb" stroke-width="1"/>
+  <text x="1290" y="395" text-anchor="middle" class="small" style="font-weight:600">Milvus 不可用时自动回退到 FAISS · 支持亿级向量 · 高并发</text>
+
+  <!-- ==================== 分支3: 用户交互层 (左侧) ==================== -->
+  <path d="M510,470 C430,460 360,380 320,300" class="edge" marker-end="url(#arrow)"/>
+  <path d="M510,475 C430,470 360,430 320,400" class="edge" marker-end="url(#arrow)"/>
+  <path d="M510,480 C430,480 360,490 320,490" class="edge" marker-end="url(#arrow)"/>
+  <path d="M510,485 C430,490 360,550 320,570" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="20" y="230" width="320" height="390" class="zone"/>
+  <text x="40" y="255" class="label" fill="var(--fg)">🖥️ 用户交互层</text>
+
+  <rect x="40" y="270" width="280" height="50" fill="var(--input)" class="node"/>
+  <text x="180" y="290" text-anchor="middle" class="label">💬 Web 聊天界面</text>
+  <text x="180" y="308" text-anchor="middle" class="small">侧边栏 · PDF管理 · 流式渲染 · 评估页面</text>
+
+  <rect x="40" y="330" width="280" height="50" fill="var(--input)" class="node"/>
+  <text x="180" y="350" text-anchor="middle" class="label">🎨 Streamlit 界面</text>
+  <text x="180" y="368" text-anchor="middle" class="small">问答 · 演示 · 系统状态</text>
+
+  <rect x="40" y="400" width="280" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="180" y="420" text-anchor="middle" class="label">📄 PDF 管理 · 图片上传</text>
+  <text x="180" y="438" text-anchor="middle" class="small">多PDF · 上传 · 删除 · Qwen-VL 分析</text>
+
+  <rect x="40" y="460" width="280" height="50" fill="var(--streamfeat)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="180" y="480" text-anchor="middle" class="label">💬 多轮对话 · 流式输出 (SSE)</text>
+  <text x="180" y="498" text-anchor="middle" class="small">Redis 会话持久化 · 逐字渲染 · 来源追溯</text>
+
+  <rect x="40" y="530" width="280" height="50" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="180" y="550" text-anchor="middle" class="label">🔍 四种检索模式一键切换</text>
+  <text x="180" y="568" text-anchor="middle" class="small">vector / bm25 / hybrid / lightrag</text>
+
+  <!-- ==================== 分支4: 检索引擎 (右侧中部) ==================== -->
+  <path d="M970,480 C1030,500 1080,520 1120,520" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1100" y="430" width="380" height="140" fill="var(--retrieval)" stroke="#d97706" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="1100" y="430" width="380" height="140" class="zone" stroke="#d97706" stroke-width="2"/>
+  <text x="1120" y="455" class="label" fill="#78350f">🔍 检索引擎</text>
+
+  <rect x="1120" y="470" width="170" height="40" fill="var(--input)" class="node"/>
+  <text x="1205" y="495" text-anchor="middle" class="label" style="font-size:11px">🔵 向量 · 🟢 BM25</text>
+
+  <rect x="1305" y="470" width="160" height="40" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="1385" y="495" text-anchor="middle" class="label" style="font-size:11px">🟡 Hybrid · RRF</text>
+
+  <rect x="1120" y="520" width="340" height="35" fill="var(--lightrag)" class="node" stroke="#db2777" stroke-width="2"/>
+  <text x="1290" y="542" text-anchor="middle" class="label">🟣 LightRAG 双层检索（向量+知识图谱+RRF）</text>
+
+  <!-- ==================== 分支5: 对话记忆 (下方) ==================== -->
+  <path d="M740,520 C740,590 740,660 740,730" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="350" y="720" width="780" height="120" class="zone"/>
+  <text x="370" y="745" class="label" fill="var(--fg)">💬 对话记忆系统</text>
+
+  <rect x="370" y="760" width="240" height="50" fill="var(--graph)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="490" y="780" text-anchor="middle" class="label">💬 ConversationMemory</text>
+  <text x="490" y="798" text-anchor="middle" class="small">Milvus 存储 · 语义检索</text>
+
+  <rect x="630" y="760" width="240" height="50" fill="var(--milvus)" class="node" stroke="#2563eb" stroke-width="2"/>
+  <text x="750" y="780" text-anchor="middle" class="label">🗄️ 历史 Embedding 存储</text>
+  <text x="750" y="798" text-anchor="middle" class="small">相似问答检索 · 跨会话复用</text>
+
+  <rect x="890" y="760" width="220" height="50" fill="var(--redis)" class="node" stroke="#dc2626" stroke-width="1"/>
+  <text x="1000" y="780" text-anchor="middle" class="label">📦 Redis 会话缓存</text>
+  <text x="1000" y="798" text-anchor="middle" class="small">消息列表 · 会话索引</text>
+
+  <rect x="370" y="820" width="740" height="20" fill="var(--neutral)" class="node" opacity="0.5"/>
+  <text x="740" y="835" text-anchor="middle" class="small" style="font-weight:600">用户提问 → 检索相似历史问答 → 注入上下文 → LLM 生成更精准的答案</text>
+
+  <!-- ==================== 技术栈 ==================== -->
+  <rect x="300" y="890" width="880" height="110" fill="var(--neutral)" stroke="var(--line)" stroke-width="1" rx="10" ry="10" opacity="0.5"/>
+  <text x="740" y="915" text-anchor="middle" class="label" fill="var(--fg)">🛠️ 技术栈</text>
+
+  <rect x="320" y="930" width="80" height="25" fill="var(--input)" class="node"/>
+  <text x="360" y="947" text-anchor="middle" class="small" style="font-weight:600">Python</text>
+
+  <rect x="410" y="930" width="80" height="25" fill="var(--process)" class="node"/>
+  <text x="450" y="947" text-anchor="middle" class="small" style="font-weight:600">FastAPI</text>
+
+  <rect x="500" y="930" width="80" height="25" fill="var(--redis)" class="node" stroke="#dc2626" stroke-width="1"/>
+  <text x="540" y="947" text-anchor="middle" class="small" style="font-weight:600">Redis</text>
+
+  <rect x="590" y="930" width="80" height="25" fill="var(--milvus)" class="node" stroke="#2563eb" stroke-width="1"/>
+  <text x="630" y="947" text-anchor="middle" class="small" style="font-weight:600">Milvus</text>
+
+  <rect x="680" y="930" width="80" height="25" fill="var(--graph)" class="node" stroke="#7c3aed" stroke-width="1"/>
+  <text x="720" y="947" text-anchor="middle" class="small" style="font-weight:600">NetworkX</text>
+
+  <rect x="770" y="930" width="80" height="25" fill="var(--newfeat)" class="node"/>
+  <text x="810" y="947" text-anchor="middle" class="small" style="font-weight:600">jieba</text>
+
+  <rect x="860" y="930" width="80" height="25" fill="var(--external)" class="node"/>
+  <text x="900" y="947" text-anchor="middle" class="small" style="font-weight:600">MiMo</text>
+
+  <rect x="950" y="930" width="80" height="25" fill="var(--imagefeat)" class="node"/>
+  <text x="990" y="947" text-anchor="middle" class="small" style="font-weight:600">Qwen-VL</text>
+
+  <rect x="1040" y="930" width="60" height="25" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="1"/>
+  <text x="1070" y="947" text-anchor="middle" class="small" style="font-weight:600">RRF</text>
+
+  <rect x="1110" y="930" width="50" height="25" fill="var(--lightrag)" class="node" stroke="#db2777" stroke-width="1"/>
+  <text x="1135" y="947" text-anchor="middle" class="small" style="font-weight:600">LRAG</text>
+
+  <!-- 说明 -->
+  <rect x="320" y="970" width="840" height="25" fill="var(--redis)" stroke="#dc2626" stroke-width="1" rx="6" ry="6" opacity="0.4"/>
+  <text x="740" y="988" text-anchor="middle" class="small" style="font-weight:600; fill:#991b1b">📦 Redis 四层缓存（查询/Embedding/会话/任务） · 🗄️ Milvus 双引擎（Milvus+FAISS） · 💬 对话记忆语义检索</text>
+
+</svg>
+</main>

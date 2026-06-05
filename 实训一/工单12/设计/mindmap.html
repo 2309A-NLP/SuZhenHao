@@ -1,0 +1,238 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>招股说明书智能问答系统（LightRAG 双层检索版） - 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc; --fg: #172033; --muted: #5b6475; --line: #64748b;
+    --neutral: #e2e8f0; --input: #bfdbfe; --process: #c7d2fe;
+    --storage: #99f6e4; --external: #fde68a; --risk: #fecaca;
+    --newfeat: #bbf7d0; --imagefeat: #fde68a; --streamfeat: #e9d5ff;
+    --retrieval: #fcd34d; --lightrag: #f9a8d4; --graph: #c4b5fd;
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.4 ui-sans-serif, system-ui, sans-serif; overflow-x: auto; }
+  main { max-width: 1520px; margin: 24px auto; padding: 0 20px; }
+  h1 { text-align: center; font-size: 22px; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .badge { display: inline-block; background: var(--newfeat); color: #166534; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-lr { display: inline-block; background: var(--lightrag); color: #831843; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-graph { display: inline-block; background: var(--graph); color: #4c1d95; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  .badge-retrieval { display: inline-block; background: var(--retrieval); color: #78350f; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 16px; font-weight: 700; }
+  .label { font-size: 13px; font-weight: 600; }
+  .small { font-size: 11px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 8; ry: 8; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.6; rx: 12; ry: 12; }
+</style>
+<main>
+<h1>📚 招股说明书智能问答系统（LightRAG 双层检索版） - 思维导图</h1>
+<p class="subtitle">
+  <span class="badge-lr">🧠 LightRAG 双层检索</span>
+  <span class="badge-graph">🕸️ 知识图谱</span>
+  <span class="badge-retrieval">🔍 四种检索模式</span>
+  <span class="badge">多PDF</span>
+  <span class="badge">🖼️ 图片理解</span>
+</p>
+
+<svg viewBox="0 0 1480 1060" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="var(--line)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== 中心节点 ==================== -->
+  <rect x="520" y="430" width="420" height="80" fill="#6366f1" stroke="#4f46e5" stroke-width="2" rx="14" ry="14"/>
+  <text x="730" y="460" text-anchor="middle" class="title" fill="white">📚 RAG 智能问答系统</text>
+  <text x="730" y="480" text-anchor="middle" class="small" fill="#e0e7ff">LightRAG · 双层检索 · 知识图谱 · 四模式</text>
+  <text x="730" y="498" text-anchor="middle" class="small" fill="#c7d2fe">向量 + 知识图谱 → RRF 融合</text>
+
+  <!-- ==================== 分支1: LightRAG 双层检索 (上方 - 核心亮点) ==================== -->
+  <path d="M730,430 C730,370 730,280 730,200" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="260" y="10" width="940" height="200" fill="var(--lightrag)" stroke="#db2777" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="260" y="10" width="940" height="200" class="zone" stroke="#db2777" stroke-width="2"/>
+  <text x="280" y="35" class="label" fill="#831843">🧠 LightRAG 双层检索（核心亮点）</text>
+
+  <!-- 双层架构 -->
+  <rect x="280" y="50" width="220" height="55" fill="var(--input)" class="node"/>
+  <text x="390" y="70" text-anchor="middle" class="label">🔵 低层: 向量检索</text>
+  <text x="390" y="88" text-anchor="middle" class="small">FAISS + Embedding</text>
+  <text x="390" y="100" text-anchor="middle" class="small">精确语义匹配</text>
+
+  <rect x="515" y="50" width="220" height="55" fill="var(--graph)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="625" y="70" text-anchor="middle" class="label">🕸️ 高层: 图谱检索</text>
+  <text x="625" y="88" text-anchor="middle" class="small">NetworkX + LLM 抽取</text>
+  <text x="625" y="100" text-anchor="middle" class="small">实体关系推理</text>
+
+  <rect x="750" y="50" width="140" height="55" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="820" y="70" text-anchor="middle" class="label">📊 RRF 融合</text>
+  <text x="820" y="88" text-anchor="middle" class="small">排名融合</text>
+  <text x="820" y="100" text-anchor="middle" class="small">取两者之长</text>
+
+  <rect x="905" y="50" width="140" height="55" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="975" y="70" text-anchor="middle" class="label">🎯 最终结果</text>
+  <text x="975" y="88" text-anchor="middle" class="small">Top-K 高质量</text>
+  <text x="975" y="100" text-anchor="middle" class="small">语义+关系双覆盖</text>
+
+  <rect x="1060" y="50" width="125" height="55" fill="var(--process)" class="node"/>
+  <text x="1122" y="70" text-anchor="middle" class="label">🤖 查询分析</text>
+  <text x="1122" y="88" text-anchor="middle" class="small">concrete/abstract</text>
+  <text x="1122" y="100" text-anchor="middle" class="small">自适应策略</text>
+
+  <!-- 连接箭头 -->
+  <path d="M500,77 L515,77" class="edge" marker-end="url(#arrow)"/>
+  <path d="M735,77 L750,77" class="edge" marker-end="url(#arrow)"/>
+  <path d="M890,77 L905,77" class="edge" marker-end="url(#arrow)"/>
+  <path d="M1045,77 L1060,77" class="edge" marker-end="url(#arrow)"/>
+
+  <!-- 查询策略 -->
+  <rect x="280" y="115" width="440" height="45" fill="var(--process)" class="node"/>
+  <text x="500" y="135" text-anchor="middle" class="label">🎯 具体查询: 精确匹配节点 → 1-2 跳邻居遍历</text>
+  <text x="500" y="153" text-anchor="middle" class="small">问"XX公司的供应商" → 匹配公司节点 → 遍历"属于"关系</text>
+
+  <rect x="740" y="115" width="445" height="45" fill="var(--graph)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="962" y="135" text-anchor="middle" class="label">🌐 抽象查询: 匹配关键词 → 子图摘要</text>
+  <text x="962" y="153" text-anchor="middle" class="small">问"行业竞争格局" → 匹配相关实体 → 生成关系摘要</text>
+
+  <!-- 融合说明 -->
+  <rect x="280" y="170" width="905" height="30" fill="var(--lightrag)" class="node" stroke="#db2777" stroke-width="1"/>
+  <text x="732" y="190" text-anchor="middle" class="small" style="font-weight:600">🔄 RRF 公式: score = Σ 1/(k + rank_i) · 向量结果+图谱结果按排名融合 · 双 API Key 分流（问答 Key + 图构建 Key）</text>
+
+  <!-- ==================== 分支2: 知识图谱构建 (右侧) ==================== -->
+  <path d="M940,450 C1000,440 1050,360 1100,300" class="edge" marker-end="url(#arrow)"/>
+  <path d="M940,460 C1000,460 1060,420 1100,400" class="edge" marker-end="url(#arrow)"/>
+  <path d="M940,470 C1000,480 1060,480 1100,480" class="edge" marker-end="url(#arrow)"/>
+  <path d="M940,480 C1000,500 1060,540 1100,560" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1080" y="220" width="400" height="390" fill="var(--graph)" stroke="#7c3aed" stroke-width="2" rx="12" ry="12" opacity="0.15"/>
+  <rect x="1080" y="220" width="400" height="390" class="zone" stroke="#7c3aed" stroke-width="2"/>
+  <text x="1100" y="245" class="label" fill="#4c1d95">🕸️ 知识图谱构建</text>
+
+  <rect x="1100" y="260" width="360" height="45" fill="var(--process)" class="node"/>
+  <text x="1280" y="280" text-anchor="middle" class="label">📝 GraphBuilder</text>
+  <text x="1280" y="298" text-anchor="middle" class="small">LLM 实体抽取 · 8 种实体类型 · 10 种关系类型</text>
+
+  <rect x="1100" y="315" width="175" height="45" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1187" y="335" text-anchor="middle" class="label">🔍 智能过滤</text>
+  <text x="1187" y="353" text-anchor="middle" class="small">跳过低价值块</text>
+
+  <rect x="1290" y="315" width="170" height="45" fill="var(--external)" class="node"/>
+  <text x="1375" y="335" text-anchor="middle" class="label">⚡ 批量并发</text>
+  <text x="1375" y="353" text-anchor="middle" class="small">batch=10 · workers=4</text>
+
+  <rect x="1100" y="370" width="360" height="45" fill="var(--process)" class="node"/>
+  <text x="1280" y="390" text-anchor="middle" class="label">🔄 重试 + 限流</text>
+  <text x="1280" y="408" text-anchor="middle" class="small">429 指数退避 · 超时重试 · 空响应重试 · 最多 3 次</text>
+
+  <rect x="1100" y="425" width="360" height="45" fill="var(--graph)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="1280" y="445" text-anchor="middle" class="label">🤖 GraphRetriever</text>
+  <text x="1280" y="463" text-anchor="middle" class="small">查询分析 · 具体/抽象策略 · 多跳遍历</text>
+
+  <rect x="1100" y="480" width="175" height="40" fill="var(--input)" class="node"/>
+  <text x="1187" y="505" text-anchor="middle" class="label" style="font-size:11px">🔗 1-hop 邻居</text>
+
+  <rect x="1290" y="480" width="170" height="40" fill="var(--input)" class="node"/>
+  <text x="1375" y="505" text-anchor="middle" class="label" style="font-size:11px">🔗🔗 2-hop 路径</text>
+
+  <rect x="1100" y="530" width="360" height="40" fill="var(--storage)" class="node"/>
+  <text x="1280" y="555" text-anchor="middle" class="label">💾 NetworkX 图 · JSON 持久化 · 实体合并去重</text>
+
+  <!-- ==================== 分支3: 用户交互层 (左侧) ==================== -->
+  <path d="M520,460 C440,450 370,370 330,290" class="edge" marker-end="url(#arrow)"/>
+  <path d="M520,465 C440,460 370,420 330,380" class="edge" marker-end="url(#arrow)"/>
+  <path d="M520,470 C440,470 370,480 330,470" class="edge" marker-end="url(#arrow)"/>
+  <path d="M520,475 C440,480 370,540 330,560" class="edge" marker-end="url(#arrow)"/>
+  <path d="M520,480 C440,500 370,640 330,680" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="20" y="220" width="330" height="510" class="zone"/>
+  <text x="40" y="245" class="label" fill="var(--fg)">🖥️ 用户交互层</text>
+
+  <rect x="40" y="260" width="290" height="50" fill="var(--input)" class="node"/>
+  <text x="185" y="280" text-anchor="middle" class="label">💬 Web 聊天界面</text>
+  <text x="185" y="298" text-anchor="middle" class="small">侧边栏 · PDF管理 · 流式渲染 · 评估页面</text>
+
+  <rect x="40" y="320" width="290" height="50" fill="var(--input)" class="node"/>
+  <text x="185" y="340" text-anchor="middle" class="label">🎨 Streamlit 界面</text>
+  <text x="185" y="358" text-anchor="middle" class="small">问答 · 演示 · 系统状态</text>
+
+  <rect x="40" y="380" width="290" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="185" y="400" text-anchor="middle" class="label">📄 PDF 管理</text>
+  <text x="185" y="418" text-anchor="middle" class="small">多PDF · 上传 · 删除 · 激活/停用</text>
+
+  <rect x="40" y="440" width="290" height="50" fill="var(--imagefeat)" class="node"/>
+  <text x="185" y="460" text-anchor="middle" class="label">🖼️ 图片上传 · Qwen-VL 分析</text>
+  <text x="185" y="478" text-anchor="middle" class="small">联合问答 · 输出清理</text>
+
+  <rect x="40" y="510" width="290" height="50" fill="var(--streamfeat)" class="node" stroke="#7c3aed" stroke-width="2"/>
+  <text x="185" y="530" text-anchor="middle" class="label">💬 多轮对话 · 流式输出 (SSE)</text>
+  <text x="185" y="548" text-anchor="middle" class="small">上下文消歧 · 逐字渲染 · 来源追溯</text>
+
+  <rect x="40" y="580" width="290" height="50" fill="var(--input)" class="node"/>
+  <text x="185" y="600" text-anchor="middle" class="label">🎤 语音输入 · 置信度评估</text>
+  <text x="185" y="618" text-anchor="middle" class="small">STT · 0-100% 置信度</text>
+
+  <rect x="40" y="650" width="290" height="40" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="185" y="675" text-anchor="middle" class="label">🔍 四种检索模式一键切换</text>
+
+  <!-- ==================== 分支4: 四种检索模式 (下方) ==================== -->
+  <path d="M730,510 C730,580 730,660 730,740" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="730" width="1060" height="130" class="zone"/>
+  <text x="220" y="755" class="label" fill="var(--fg)">🔍 四种检索模式</text>
+
+  <rect x="220" y="770" width="240" height="55" fill="var(--input)" class="node"/>
+  <text x="340" y="790" text-anchor="middle" class="label">🔵 vector 向量检索</text>
+  <text x="340" y="808" text-anchor="middle" class="small">FAISS + Embedding</text>
+
+  <rect x="480" y="770" width="240" height="55" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="600" y="790" text-anchor="middle" class="label">🟢 bm25 全文检索</text>
+  <text x="600" y="808" text-anchor="middle" class="small">jieba + rank_bm25</text>
+
+  <rect x="740" y="770" width="240" height="55" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="860" y="790" text-anchor="middle" class="label">🟡 hybrid 混合检索</text>
+  <text x="860" y="808" text-anchor="middle" class="small">向量+BM25+RRF+Reranker</text>
+
+  <rect x="1000" y="770" width="240" height="55" fill="var(--lightrag)" class="node" stroke="#db2777" stroke-width="2"/>
+  <text x="1120" y="790" text-anchor="middle" class="label">🟣 lightrag 双层检索</text>
+  <text x="1120" y="808" text-anchor="middle" class="small">向量+知识图谱+RRF</text>
+
+  <rect x="220" y="835" width="1020" height="25" fill="var(--neutral)" class="node" opacity="0.5"/>
+  <text x="730" y="852" text-anchor="middle" class="small" style="font-weight:600">通过 API 或环境变量 RETRIEVAL_MODE 动态切换 · 索引缓存秒切 · 按模式自动构建/加载索引</text>
+
+  <!-- ==================== 技术栈 ==================== -->
+  <rect x="320" y="910" width="820" height="90" fill="var(--neutral)" stroke="var(--line)" stroke-width="1" rx="10" ry="10" opacity="0.5"/>
+  <text x="730" y="935" text-anchor="middle" class="label" fill="var(--fg)">🛠️ 技术栈</text>
+
+  <rect x="340" y="950" width="80" height="25" fill="var(--input)" class="node"/>
+  <text x="380" y="967" text-anchor="middle" class="small" style="font-weight:600">Python</text>
+
+  <rect x="430" y="950" width="80" height="25" fill="var(--process)" class="node"/>
+  <text x="470" y="967" text-anchor="middle" class="small" style="font-weight:600">FastAPI</text>
+
+  <rect x="520" y="950" width="80" height="25" fill="var(--storage)" class="node"/>
+  <text x="560" y="967" text-anchor="middle" class="small" style="font-weight:600">FAISS</text>
+
+  <rect x="610" y="950" width="80" height="25" fill="var(--graph)" class="node" stroke="#7c3aed" stroke-width="1"/>
+  <text x="650" y="967" text-anchor="middle" class="small" style="font-weight:600">NetworkX</text>
+
+  <rect x="700" y="950" width="80" height="25" fill="var(--newfeat)" class="node"/>
+  <text x="740" y="967" text-anchor="middle" class="small" style="font-weight:600">jieba</text>
+
+  <rect x="790" y="950" width="80" height="25" fill="var(--external)" class="node"/>
+  <text x="830" y="967" text-anchor="middle" class="small" style="font-weight:600">MiMo</text>
+
+  <rect x="880" y="950" width="80" height="25" fill="var(--imagefeat)" class="node"/>
+  <text x="920" y="967" text-anchor="middle" class="small" style="font-weight:600">Qwen-VL</text>
+
+  <rect x="970" y="950" width="60" height="25" fill="var(--retrieval)" class="node" stroke="#d97706" stroke-width="1"/>
+  <text x="1000" y="967" text-anchor="middle" class="small" style="font-weight:600">RRF</text>
+
+  <rect x="1040" y="950" width="80" height="25" fill="var(--lightrag)" class="node" stroke="#db2777" stroke-width="1"/>
+  <text x="1080" y="967" text-anchor="middle" class="small" style="font-weight:600">LightRAG</text>
+
+</svg>
+</main>

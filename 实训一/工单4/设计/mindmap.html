@@ -1,0 +1,265 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>招股说明书智能问答系统（多PDF+图片理解版） - 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+    --newfeat: #bbf7d0;
+    --imagefeat: #fde68a;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, sans-serif;
+    overflow-x: auto;
+  }
+  main { max-width: 1500px; margin: 24px auto; padding: 0 20px; }
+  h1 { text-align: center; font-size: 22px; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .badge { display: inline-block; background: var(--newfeat); color: #166534; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-left: 4px; }
+  .badge-img { display: inline-block; background: var(--imagefeat); color: #92400e; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-left: 4px; }
+  svg { width: 100%; height: auto; display: block; }
+  .title { font-size: 16px; font-weight: 700; }
+  .label { font-size: 13px; font-weight: 600; }
+  .small { font-size: 11px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 8; ry: 8; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .zone { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 6 5; opacity: 0.6; rx: 12; ry: 12; }
+</style>
+<main>
+<h1>📚 招股说明书智能问答系统（多PDF+图片理解版） - 思维导图</h1>
+<p class="subtitle">
+  <span class="badge">多PDF管理</span>
+  <span class="badge-img">🖼️ 图片理解</span>
+  基于 RAG + Qwen-VL 的多模态文档问答系统
+</p>
+
+<svg viewBox="0 0 1460 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="var(--line)"/>
+    </marker>
+  </defs>
+
+  <!-- ==================== 中心节点 ==================== -->
+  <rect x="575" y="470" width="310" height="70" fill="#6366f1" stroke="#4f46e5" stroke-width="2" rx="14" ry="14"/>
+  <text x="730" y="498" text-anchor="middle" class="title" fill="white">📚 RAG 多模态问答系统</text>
+  <text x="730" y="520" text-anchor="middle" class="small" fill="#e0e7ff">多PDF · 图片理解 · 语音 · 智能检索</text>
+
+  <!-- ==================== 分支1: 用户交互层 (左侧) ==================== -->
+  <path d="M575,495 C490,480 420,400 370,320" class="edge" marker-end="url(#arrow)"/>
+  <path d="M575,500 C490,490 420,450 370,410" class="edge" marker-end="url(#arrow)"/>
+  <path d="M575,505 C490,510 420,530 370,530" class="edge" marker-end="url(#arrow)"/>
+  <path d="M575,510 C490,530 420,600 370,620" class="edge" marker-end="url(#arrow)"/>
+  <path d="M575,515 C490,550 420,670 370,700" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="260" width="350" height="490" class="zone"/>
+  <text x="60" y="285" class="label" fill="var(--fg)">🖥️ 用户交互层</text>
+
+  <rect x="60" y="300" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="215" y="320" text-anchor="middle" class="label">💬 Web 聊天界面</text>
+  <text x="215" y="338" text-anchor="middle" class="small">FastAPI + 侧边栏 + PDF管理 + 图片上传</text>
+
+  <rect x="60" y="365" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="215" y="385" text-anchor="middle" class="label">🎨 Streamlit 界面</text>
+  <text x="215" y="403" text-anchor="middle" class="small">问答 / 演示 / 状态 / 语音输入</text>
+
+  <rect x="60" y="430" width="310" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="215" y="450" text-anchor="middle" class="label">📄 PDF 管理面板 <tspan class="badge">多PDF</tspan></text>
+  <text x="215" y="468" text-anchor="middle" class="small">上传 · 删除 · 激活/停用 · 重建索引</text>
+
+  <rect x="60" y="495" width="310" height="50" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="215" y="515" text-anchor="middle" class="label">🖼️ 图片上传与分析 <tspan class="badge-img">新增</tspan></text>
+  <text x="215" y="533" text-anchor="middle" class="small">图片选择 · 预览 · 提问 · 分析结果</text>
+
+  <rect x="60" y="560" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="215" y="580" text-anchor="middle" class="label">🎤 语音输入 (STT)</text>
+  <text x="215" y="598" text-anchor="middle" class="small">SpeechRecognition + Google API</text>
+
+  <rect x="60" y="625" width="310" height="50" fill="var(--input)" class="node"/>
+  <text x="215" y="645" text-anchor="middle" class="label">📜 对话历史管理</text>
+  <text x="215" y="663" text-anchor="middle" class="small">侧边栏 · 新对话 · 清空 · 语言切换</text>
+
+  <!-- ==================== 分支2: API 接口层 (上方) ==================== -->
+  <path d="M730,470 C730,400 730,310 730,220" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="500" y="40" width="460" height="190" class="zone"/>
+  <text x="520" y="65" class="label" fill="var(--fg)">🔌 API 接口层</text>
+
+  <!-- 文本问答 -->
+  <rect x="520" y="80" width="200" height="35" fill="var(--process)" class="node"/>
+  <text x="620" y="102" text-anchor="middle" class="label">POST /api/chat</text>
+
+  <!-- PDF 管理 -->
+  <rect x="740" y="80" width="100" height="35" fill="var(--process)" class="node"/>
+  <text x="790" y="102" text-anchor="middle" class="label">GET /api/pdfs</text>
+
+  <rect x="855" y="80" width="90" height="35" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="1"/>
+  <text x="900" y="102" text-anchor="middle" class="label" style="font-size:10px">上传PDF</text>
+
+  <!-- 图片接口 -->
+  <rect x="520" y="125" width="200" height="40" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="620" y="143" text-anchor="middle" class="label">🖼️ POST /api/analyze-image</text>
+  <text x="620" y="158" text-anchor="middle" class="small">上传图片 → Qwen-VL 分析</text>
+
+  <rect x="740" y="125" width="205" height="40" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="842" y="143" text-anchor="middle" class="label">🖼️ POST /api/image-chat</text>
+  <text x="842" y="158" text-anchor="middle" class="small">图片分析 + 文档 RAG 联合问答</text>
+
+  <rect x="520" y="175" width="200" height="30" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="1"/>
+  <text x="620" y="195" text-anchor="middle" class="small" style="font-weight:600">GET /api/image-status</text>
+
+  <rect x="740" y="175" width="205" height="30" fill="var(--process)" class="node"/>
+  <text x="842" y="195" text-anchor="middle" class="small" style="font-weight:600">POST /api/set-active-pdfs</text>
+
+  <!-- ==================== 分支3: 业务逻辑层 (右侧上方) ==================== -->
+  <path d="M885,490 C940,470 1000,390 1040,310" class="edge" marker-end="url(#arrow)"/>
+  <path d="M885,495 C940,480 1000,430 1040,380" class="edge" marker-end="url(#arrow)"/>
+  <path d="M885,500 C940,500 1000,470 1040,440" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1020" y="200" width="400" height="280" class="zone"/>
+  <text x="1040" y="225" class="label" fill="var(--fg)">🤖 业务逻辑层</text>
+
+  <rect x="1040" y="240" width="360" height="50" fill="var(--process)" class="node"/>
+  <text x="1220" y="260" text-anchor="middle" class="label">QASystem 问答系统</text>
+  <text x="1220" y="278" text-anchor="middle" class="small">检索 + 生成 + 多PDF源追踪</text>
+
+  <rect x="1040" y="300" width="170" height="40" fill="var(--external)" class="node"/>
+  <text x="1125" y="325" text-anchor="middle" class="label">RAGGenerator</text>
+
+  <rect x="1230" y="300" width="170" height="40" fill="var(--external)" class="node"/>
+  <text x="1315" y="325" text-anchor="middle" class="label">DeepSeekLLM</text>
+
+  <rect x="1040" y="350" width="360" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1220" y="370" text-anchor="middle" class="label">📄 PDF 管理逻辑 <tspan class="badge">多PDF</tspan></text>
+  <text x="1220" y="388" text-anchor="middle" class="small">set_active · rebuild · get_all_pdfs_info</text>
+
+  <rect x="1040" y="410" width="360" height="50" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="1220" y="430" text-anchor="middle" class="label">🖼️ ImageProcessor 图片处理 <tspan class="badge-img">新增</tspan></text>
+  <text x="1220" y="448" text-anchor="middle" class="small">Qwen-VL · base64编码 · 图片分析 · 输出清理</text>
+
+  <!-- ==================== 分支4: 处理层 (右侧中部) ==================== -->
+  <path d="M885,510 C950,530 1000,520 1040,510" class="edge" marker-end="url(#arrow)"/>
+  <path d="M885,520 C950,550 1000,580 1040,580" class="edge" marker-end="url(#arrow)"/>
+  <path d="M885,530 C950,580 1000,640 1040,660" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1020" y="490" width="420" height="240" class="zone"/>
+  <text x="1040" y="515" class="label" fill="var(--fg)">⚙️ 处理层</text>
+
+  <rect x="1040" y="530" width="380" height="50" fill="var(--process)" class="node"/>
+  <text x="1230" y="550" text-anchor="middle" class="label">🧠 Query 理解模块</text>
+  <text x="1230" y="568" text-anchor="middle" class="small">意图识别 · 问题分解 · 实体抽取 · 消歧</text>
+
+  <rect x="1040" y="590" width="380" height="50" fill="var(--process)" class="node"/>
+  <text x="1230" y="610" text-anchor="middle" class="label">🔍 向量检索模块</text>
+  <text x="1230" y="628" text-anchor="middle" class="small">SentenceTransformer → FAISS · Top-K · 相似度</text>
+
+  <rect x="1040" y="650" width="380" height="50" fill="var(--newfeat)" class="node" stroke="#16a34a" stroke-width="2"/>
+  <text x="1230" y="670" text-anchor="middle" class="label">📄 多PDF文档处理 <tspan class="badge">多PDF</tspan></text>
+  <text x="1230" y="688" text-anchor="middle" class="small">批量加载 · 来源标记 · 动态分块 · PDF管理</text>
+
+  <!-- ==================== 分支5: 外部服务 (右侧下方) ==================== -->
+  <path d="M885,540 C950,600 1000,720 1040,760" class="edge" marker-end="url(#arrow)"/>
+  <path d="M885,545 C950,620 1000,770 1040,830" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="1020" y="750" width="420" height="140" class="zone"/>
+  <text x="1040" y="775" class="label" fill="var(--fg)">🌐 外部服务</text>
+
+  <rect x="1040" y="790" width="180" height="40" fill="var(--external)" class="node"/>
+  <text x="1130" y="815" text-anchor="middle" class="label">DeepSeek API</text>
+
+  <rect x="1240" y="790" width="180" height="40" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="1330" y="810" text-anchor="middle" class="label">Qwen-VL API</text>
+  <text x="1330" y="824" text-anchor="middle" class="small">阿里云百炼</text>
+
+  <rect x="1040" y="840" width="180" height="35" fill="var(--external)" class="node"/>
+  <text x="1130" y="862" text-anchor="middle" class="label">Sentence-Transformers</text>
+
+  <rect x="1240" y="840" width="180" height="35" fill="var(--external)" class="node"/>
+  <text x="1330" y="862" text-anchor="middle" class="label">Google STT API</text>
+
+  <!-- ==================== 分支6: 数据层 (下方) ==================== -->
+  <path d="M730,540 C730,610 730,680 730,740" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="500" y="730" width="460" height="110" class="zone"/>
+  <text x="520" y="755" class="label" fill="var(--fg)">💾 数据层</text>
+
+  <rect x="520" y="770" width="130" height="45" fill="var(--storage)" class="node"/>
+  <text x="585" y="790" text-anchor="middle" class="label">📄 多PDF</text>
+  <text x="585" y="806" text-anchor="middle" class="small">data/*.pdf</text>
+
+  <rect x="665" y="770" width="130" height="45" fill="var(--storage)" class="node"/>
+  <text x="730" y="790" text-anchor="middle" class="label">🗂️ FAISS</text>
+  <text x="730" y="806" text-anchor="middle" class="small">索引+chunks</text>
+
+  <rect x="810" y="770" width="130" height="45" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="2"/>
+  <text x="875" y="790" text-anchor="middle" class="label">🖼️ 图片</text>
+  <text x="875" y="806" text-anchor="middle" class="small">data/images/</text>
+
+  <!-- ==================== 分支7: 部署 (左侧下方) ==================== -->
+  <path d="M575,530 C490,560 400,640 350,730" class="edge" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="790" width="350" height="140" class="zone"/>
+  <text x="60" y="815" class="label" fill="var(--fg)">🚀 部署架构</text>
+
+  <rect x="60" y="830" width="155" height="40" fill="var(--neutral)" class="node"/>
+  <text x="137" y="855" text-anchor="middle" class="label" style="font-size:11px">FastAPI (Uvicorn)</text>
+
+  <rect x="230" y="830" width="145" height="40" fill="var(--neutral)" class="node"/>
+  <text x="302" y="855" text-anchor="middle" class="label" style="font-size:11px">Streamlit</text>
+
+  <rect x="60" y="885" width="155" height="40" fill="var(--risk)" class="node"/>
+  <text x="137" y="910" text-anchor="middle" class="label" style="font-size:11px">Systemd 服务</text>
+
+  <rect x="230" y="885" width="145" height="40" fill="var(--risk)" class="node"/>
+  <text x="302" y="910" text-anchor="middle" class="label" style="font-size:11px">Nginx 代理</text>
+
+  <!-- ==================== 工单4新增说明 ==================== -->
+  <rect x="40" y="970" width="520" height="90" fill="var(--imagefeat)" stroke="#d97706" stroke-width="2" rx="10" ry="10"/>
+  <text x="300" y="995" text-anchor="middle" class="label" fill="#92400e">🆕 相比工单3的核心升级 — 图片理解</text>
+  <text x="300" y="1015" text-anchor="middle" class="small" fill="#92400e">✅ 阿里云百炼 Qwen-VL 多模态模型接入（图片描述/OCR/图表分析/数据提取）</text>
+  <text x="300" y="1032" text-anchor="middle" class="small" fill="#92400e">✅ 新增 ImageProcessor 模块 · 3个图片API · 前端图片上传预览 · 多模态联合问答</text>
+  <text x="300" y="1049" text-anchor="middle" class="small" fill="#92400e">✅ 支持 JPG/PNG/BMP/GIF/WebP · 最大10MB · 图片+文档 RAG 融合推理</text>
+
+  <!-- ==================== 技术栈 ==================== -->
+  <rect x="580" y="920" width="860" height="80" fill="var(--neutral)" stroke="var(--line)" stroke-width="1" rx="10" ry="10" opacity="0.5"/>
+  <text x="1010" y="945" text-anchor="middle" class="label" fill="var(--fg)">🛠️ 技术栈</text>
+
+  <rect x="600" y="960" width="90" height="25" fill="var(--input)" class="node"/>
+  <text x="645" y="977" text-anchor="middle" class="small" style="font-weight:600">Python</text>
+
+  <rect x="700" y="960" width="90" height="25" fill="var(--process)" class="node"/>
+  <text x="745" y="977" text-anchor="middle" class="small" style="font-weight:600">FastAPI</text>
+
+  <rect x="800" y="960" width="90" height="25" fill="var(--process)" class="node"/>
+  <text x="845" y="977" text-anchor="middle" class="small" style="font-weight:600">Streamlit</text>
+
+  <rect x="900" y="960" width="80" height="25" fill="var(--storage)" class="node"/>
+  <text x="940" y="977" text-anchor="middle" class="small" style="font-weight:600">FAISS</text>
+
+  <rect x="990" y="960" width="110" height="25" fill="var(--external)" class="node"/>
+  <text x="1045" y="977" text-anchor="middle" class="small" style="font-weight:600">DeepSeek</text>
+
+  <rect x="1110" y="960" width="100" height="25" fill="var(--imagefeat)" class="node" stroke="#d97706" stroke-width="1"/>
+  <text x="1160" y="977" text-anchor="middle" class="small" style="font-weight:600">Qwen-VL</text>
+
+  <rect x="1220" y="960" width="80" height="25" fill="var(--external)" class="node"/>
+  <text x="1260" y="977" text-anchor="middle" class="small" style="font-weight:600">Pillow</text>
+
+  <rect x="1310" y="960" width="100" height="25" fill="var(--process)" class="node"/>
+  <text x="1360" y="977" text-anchor="middle" class="small" style="font-weight:600">pdfplumber</text>
+
+</svg>
+</main>
