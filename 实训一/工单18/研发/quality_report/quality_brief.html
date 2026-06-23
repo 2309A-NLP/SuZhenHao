@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文档质量评估简报</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 2rem; color: #1a1a2e; background: #f8f9fc; }
+  h1 { color: #16213e; border-bottom: 3px solid #0f3460; padding-bottom: 0.5rem; }
+  h2 { color: #0f3460; margin-top: 2rem; }
+  .meta { background: #e8eaf6; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
+  .cards { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
+  .card { background: white; border-radius: 8px; padding: 1rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); min-width: 120px; }
+  .card .value { font-size: 1.5rem; font-weight: bold; color: #0f3460; }
+  .card .label { font-size: 0.85rem; color: #666; }
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 1rem 0; }
+  th { background: #0f3460; color: white; padding: 0.6rem 1rem; text-align: left; }
+  td { padding: 0.5rem 1rem; border-bottom: 1px solid #eee; }
+  tr:hover td { background: #f0f4ff; }
+  .bar-row { display: flex; align-items: center; gap: 0.5rem; margin: 0.4rem 0; }
+  .bar-row .label { width: 100px; font-size: 0.9rem; }
+  .bar { height: 20px; background: linear-gradient(90deg, #0f3460, #533483); border-radius: 4px; min-width: 2px; }
+  .bar-row .count { font-weight: bold; min-width: 30px; }
+  code { font-size: 0.8rem; background: #f0f0f0; padding: 2px 4px; border-radius: 3px; }
+  .warn { color: #e94560; font-weight: bold; }
+</style>
+</head>
+<body>
+<h1>DocumentQualityAssessmentSkill — 文档质量评估简报</h1>
+<div class="meta">
+  <strong>扫描目录：</strong>C:\Users\23672\Desktop\RAG 新工单\14-17附件\original_problems\documents<br>
+  <strong>扫描时间：</strong>2026-06-15T06:50:50.558134+00:00<br>
+  <strong>文件总数：</strong>1700 &nbsp;|&nbsp;
+  <strong>总大小：</strong>725,765,601 bytes &nbsp;|&nbsp;
+  <strong>耗时：</strong>117.5s
+</div>
+
+<h2>1. 格式分布统计</h2>
+<p>最常见格式：<strong>.pdf</strong>（共 1 种扩展名）</p>
+<table>
+  <tr><th>扩展名</th><th>数量</th><th>占比</th><th>总大小(bytes)</th></tr>
+  <tr><td>.pdf</td><td>1700</td><td>100.0%</td><td>725,765,601</td></tr>
+</table>
+
+<h2>2. PDF 页面类型识别</h2>
+<div class="cards">
+  <div class="card"><div class="value">1700</div><div class="label">PDF 总数</div></div>
+  <div class="card"><div class="value">0</div><div class="label">文字型</div></div>
+  <div class="card"><div class="value">623</div><div class="label">扫描型</div></div>
+  <div class="card"><div class="value">1077</div><div class="label">混合型</div></div>
+</div>
+<table>
+  <tr><th>文件</th><th>文档类型</th><th>总页数</th><th>文字页</th><th>扫描页</th><th>混合页</th></tr>
+  <tr><td>CN100342976C.pdf</td><td>scanned</td><td>8</td><td>0</td><td>8</td><td>0</td></tr><tr><td>CN100347506C.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN100364694C.pdf</td><td>scanned</td><td>19</td><td>0</td><td>19</td><td>0</td></tr><tr><td>CN100391686C.pdf</td><td>scanned</td><td>8</td><td>0</td><td>8</td><td>0</td></tr><tr><td>CN100398667C.pdf</td><td>scanned</td><td>23</td><td>0</td><td>23</td><td>0</td></tr><tr><td>CN100408139C.pdf</td><td>scanned</td><td>7</td><td>0</td><td>7</td><td>0</td></tr><tr><td>CN100408987C.pdf</td><td>scanned</td><td>10</td><td>0</td><td>10</td><td>0</td></tr><tr><td>CN100457304C.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN100469721C.pdf</td><td>scanned</td><td>12</td><td>0</td><td>12</td><td>0</td></tr><tr><td>CN100475718C.pdf</td><td>scanned</td><td>20</td><td>0</td><td>20</td><td>0</td></tr><tr><td>CN100484837C.pdf</td><td>scanned</td><td>10</td><td>0</td><td>10</td><td>0</td></tr><tr><td>CN100519503C.pdf</td><td>scanned</td><td>26</td><td>0</td><td>26</td><td>0</td></tr><tr><td>CN100531869C.pdf</td><td>scanned</td><td>17</td><td>0</td><td>17</td><td>0</td></tr><tr><td>CN100532294C.pdf</td><td>scanned</td><td>21</td><td>0</td><td>21</td><td>0</td></tr><tr><td>CN100532581C.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN100542713C.pdf</td><td>scanned</td><td>12</td><td>0</td><td>12</td><td>0</td></tr><tr><td>CN100577326C.pdf</td><td>scanned</td><td>21</td><td>0</td><td>21</td><td>0</td></tr><tr><td>CN100581923C.pdf</td><td>scanned</td><td>15</td><td>0</td><td>15</td><td>0</td></tr><tr><td>CN100582067C.pdf</td><td>scanned</td><td>28</td><td>0</td><td>28</td><td>0</td></tr><tr><td>CN100587559C.pdf</td><td>scanned</td><td>13</td><td>0</td><td>13</td><td>0</td></tr><tr><td>CN1006163B.pdf</td><td>scanned</td><td>5</td><td>0</td><td>5</td><td>0</td></tr><tr><td>CN1007281B.pdf</td><td>scanned</td><td>9</td><td>0</td><td>9</td><td>0</td></tr><tr><td>CN101014519A.pdf</td><td>scanned</td><td>10</td><td>0</td><td>10</td><td>0</td></tr><tr><td>CN101015855A.pdf</td><td>scanned</td><td>16</td><td>0</td><td>16</td><td>0</td></tr><tr><td>CN101024828B.pdf</td><td>scanned</td><td>18</td><td>0</td><td>18</td><td>0</td></tr><tr><td>CN101029671A.pdf</td><td>scanned</td><td>17</td><td>0</td><td>17</td><td>0</td></tr><tr><td>CN101032731A.pdf</td><td>scanned</td><td>7</td><td>0</td><td>7</td><td>0</td></tr><tr><td>CN101042144A.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN101069989B.pdf</td><td>scanned</td><td>8</td><td>0</td><td>8</td><td>0</td></tr><tr><td>CN101073748A.pdf</td><td>scanned</td><td>13</td><td>0</td><td>13</td><td>0</td></tr><tr><td>CN101096413B.pdf</td><td>scanned</td><td>14</td><td>0</td><td>14</td><td>0</td></tr><tr><td>CN101105190A.pdf</td><td>scanned</td><td>13</td><td>0</td><td>13</td><td>0</td></tr><tr><td>CN101112759B.pdf</td><td>scanned</td><td>10</td><td>0</td><td>10</td><td>0</td></tr><tr><td>CN101134389B.pdf</td><td>scanned</td><td>10</td><td>0</td><td>10</td><td>0</td></tr><tr><td>CN101148689A.pdf</td><td>scanned</td><td>7</td><td>0</td><td>7</td><td>0</td></tr><tr><td>CN101161570A.pdf</td><td>scanned</td><td>17</td><td>0</td><td>17</td><td>0</td></tr><tr><td>CN101172343A.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN101178500B.pdf</td><td>scanned</td><td>12</td><td>0</td><td>12</td><td>0</td></tr><tr><td>CN101181964A.pdf</td><td>scanned</td><td>9</td><td>0</td><td>9</td><td>0</td></tr><tr><td>CN101200113B.pdf</td><td>scanned</td><td>9</td><td>0</td><td>9</td><td>0</td></tr><tr><td>CN101206065B.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN101207523A.pdf</td><td>scanned</td><td>15</td><td>0</td><td>15</td><td>0</td></tr><tr><td>CN101216629B.pdf</td><td>scanned</td><td>12</td><td>0</td><td>12</td><td>0</td></tr><tr><td>CN101219352B.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN101220141B.pdf</td><td>scanned</td><td>18</td><td>0</td><td>18</td><td>0</td></tr><tr><td>CN101224511A.pdf</td><td>scanned</td><td>11</td><td>0</td><td>11</td><td>0</td></tr><tr><td>CN101235824B.pdf</td><td>scanned</td><td>10</td><td>0</td><td>10</td><td>0</td></tr><tr><td>CN101274145B.pdf</td><td>scanned</td><td>13</td><td>0</td><td>13</td><td>0</td></tr><tr><td>CN101275580B.pdf</td><td>scanned</td><td>12</td><td>0</td><td>12</td><td>0</td></tr><tr><td>CN101347682A.pdf</td><td>scanned</td><td>13</td><td>0</td><td>13</td><td>0</td></tr>
+</table>
+
+<h2>3. 文档长度分布</h2>
+<div class="cards">
+  <div class="card"><div class="value">4,122</div><div class="label">中位数(P50)</div></div>
+  <div class="card"><div class="value">8</div><div class="label">P25</div></div>
+  <div class="card"><div class="value">5,506</div><div class="label">P75</div></div>
+  <div class="card"><div class="value">8,052</div><div class="label">P95</div></div>
+  <div class="card"><div class="value">3,477.77</div><div class="label">均值</div></div>
+</div>
+<div class="bar-row"><span class="label">极短(&lt;500字)</span><div class="bar" style="width:59%"></div><span class="count">622</span></div><div class="bar-row"><span class="label">短(500-2000字)</span><div class="bar" style="width:0%"></div><span class="count">2</span></div><div class="bar-row"><span class="label">中等(2000-10000字)</span><div class="bar" style="width:100%"></div><span class="count">1049</span></div><div class="bar-row"><span class="label">长(1万-5万字)</span><div class="bar" style="width:2%"></div><span class="count">27</span></div><div class="bar-row"><span class="label">超长(&gt;5万字)</span><div class="bar" style="width:0%"></div><span class="count">0</span></div>
+
+<h2>4. 重复检测</h2>
+<div class="cards">
+  <div class="card"><div class="value">0</div><div class="label">MD5 精确重复组</div></div>
+  <div class="card"><div class="value">0</div><div class="label">涉及文件数</div></div>
+  <div class="card"><div class="value">1</div><div class="label">SimHash 近似对</div></div>
+</div>
+
+<h2>5. 敏感信息检测</h2>
+<div class="cards">
+  <div class="card"><div class="value warn">0</div><div class="label">总命中</div></div>
+  <div class="card"><div class="value">0</div><div class="label">涉及文件</div></div>
+  <div class="card"><div class="value">0</div><div class="label">手机号</div></div>
+  <div class="card"><div class="value">0</div><div class="label">邮箱</div></div>
+  <div class="card"><div class="value">0</div><div class="label">身份证</div></div>
+</div>
+<table>
+  <tr><th>文件</th><th>类型</th><th>脱敏值</th><th>上下文</th></tr>
+  
+</table>
+
+
+<h2>6. 文档分类标签</h2>
+<p>共分类 1700 个文件</p>
+<div class="cards"><div class="card"><div class="value">1700</div><div class="label">Needs_OCR</div></div><div class="card"><div class="value">1077</div><div class="label">Mixed_PDF</div></div><div class="card"><div class="value">623</div><div class="label">Scan_PDF</div></div><div class="card"><div class="value">622</div><div class="label">Short_Doc</div></div><div class="card"><div class="value">2</div><div class="label">Duplicate</div></div></div>
+
+
+<footer style="margin-top:3rem;color:#999;font-size:0.8rem;">
+  Generated by DocumentQualityAssessmentSkill
+</footer>
+</body>
+</html>

@@ -1,0 +1,222 @@
+{
+  "title": "document_ingestion_workflow",
+  "description": "文档入库质检工作流：触发质检 → 调用DocumentQualityAssessmentSkill → 根据分类标签路由到不同解析器",
+  "dsl": {
+    "graph": {
+      "nodes": [
+        {
+          "id": "begin",
+          "type": "begin",
+          "data": {
+            "query": {
+              "type": "line",
+              "name": "文档目录路径",
+              "value": ""
+            }
+          },
+          "position": { "x": 80, "y": 300 },
+          "width": 240,
+          "height": 90
+        },
+        {
+          "id": "quality_assessment",
+          "type": "quality_assessment",
+          "data": {
+            "description": "执行文档质量评估，获取分类标签",
+            "folder_path": "{begin.query}",
+            "output_dir": "./quality_report"
+          },
+          "position": { "x": 400, "y": 300 },
+          "width": 280,
+          "height": 90
+        },
+        {
+          "id": "categorize",
+          "type": "categorize",
+          "data": {
+            "description": "根据质检结果分类路由",
+            "query": "{quality_assessment.output}",
+            "category_description": {
+              "Text_PDF": {
+                "description": "纯文字型PDF，可直接提取文本，无需OCR",
+                "to": "text_pdf_parser"
+              },
+              "Scan_PDF": {
+                "description": "扫描型PDF，需要OCR才能提取文本",
+                "to": "ocr_parser"
+              },
+              "Mixed_PDF": {
+                "description": "混合型PDF，部分页面需要OCR",
+                "to": "mixed_parser"
+              },
+              "DOCX": {
+                "description": "Word文档，直接解析",
+                "to": "docx_parser"
+              },
+              "Markdown": {
+                "description": "Markdown文档，直接解析",
+                "to": "markdown_parser"
+              },
+              "Short_Doc": {
+                "description": "极短文档，可能信息不足",
+                "to": "skip_warning"
+              },
+              "Unsupported": {
+                "description": "不支持的文件格式，跳过",
+                "to": "skip_warning"
+              }
+            }
+          },
+          "position": { "x": 760, "y": 300 },
+          "width": 280,
+          "height": 90
+        },
+        {
+          "id": "text_pdf_parser",
+          "type": "message",
+          "data": {
+            "text": "📄 [文字型PDF] 直接文本提取: {begin.query}\n\n该文件夹中的文字型PDF将使用直接文本提取方式解析，无需OCR处理。",
+            "files": []
+          },
+          "position": { "x": 1120, "y": 100 },
+          "width": 280,
+          "height": 80
+        },
+        {
+          "id": "ocr_parser",
+          "type": "message",
+          "data": {
+            "text": "🔍 [扫描型PDF] OCR解析: {begin.query}\n\n该文件夹中的扫描型PDF将路由至OCR解析器（deepdoc）进行文字识别。",
+            "files": []
+          },
+          "position": { "x": 1120, "y": 220 },
+          "width": 280,
+          "height": 80
+        },
+        {
+          "id": "mixed_parser",
+          "type": "message",
+          "data": {
+            "text": "🔀 [混合型PDF] 混合解析: {begin.query}\n\n该文件夹中的混合型PDF将逐页判断，文字页直接提取，扫描页走OCR。",
+            "files": []
+          },
+          "position": { "x": 1120, "y": 340 },
+          "width": 280,
+          "height": 80
+        },
+        {
+          "id": "docx_parser",
+          "type": "message",
+          "data": {
+            "text": "📝 [DOCX] Word解析: {begin.query}\n\nWord文档将使用python-docx直接提取文本和结构。",
+            "files": []
+          },
+          "position": { "x": 1120, "y": 460 },
+          "width": 280,
+          "height": 80
+        },
+        {
+          "id": "markdown_parser",
+          "type": "message",
+          "data": {
+            "text": "📋 [Markdown] 直接解析: {begin.query}\n\nMarkdown文档将直接读取并保留格式信息。",
+            "files": []
+          },
+          "position": { "x": 1120, "y": 580 },
+          "width": 280,
+          "height": 80
+        },
+        {
+          "id": "skip_warning",
+          "type": "message",
+          "data": {
+            "text": "⚠️ [跳过] 不支持或过短的文件: {begin.query}\n\n部分文件因格式不支持或内容过短已被跳过，请检查质检报告中的详细信息。",
+            "files": []
+          },
+          "position": { "x": 1120, "y": 700 },
+          "width": 280,
+          "height": 80
+        },
+        {
+          "id": "exit",
+          "type": "exit",
+          "data": {
+            "content": ""
+          },
+          "position": { "x": 1480, "y": 400 },
+          "width": 160,
+          "height": 80
+        }
+      ],
+      "edges": [
+        {
+          "source": "begin",
+          "target": "quality_assessment"
+        },
+        {
+          "source": "quality_assessment",
+          "target": "categorize"
+        },
+        {
+          "source": "categorize",
+          "target": "text_pdf_parser",
+          "sourceHandle": "Text_PDF"
+        },
+        {
+          "source": "categorize",
+          "target": "ocr_parser",
+          "sourceHandle": "Scan_PDF"
+        },
+        {
+          "source": "categorize",
+          "target": "mixed_parser",
+          "sourceHandle": "Mixed_PDF"
+        },
+        {
+          "source": "categorize",
+          "target": "docx_parser",
+          "sourceHandle": "DOCX"
+        },
+        {
+          "source": "categorize",
+          "target": "markdown_parser",
+          "sourceHandle": "Markdown"
+        },
+        {
+          "source": "categorize",
+          "target": "skip_warning",
+          "sourceHandle": "Short_Doc"
+        },
+        {
+          "source": "categorize",
+          "target": "skip_warning",
+          "sourceHandle": "Unsupported"
+        },
+        {
+          "source": "text_pdf_parser",
+          "target": "exit"
+        },
+        {
+          "source": "ocr_parser",
+          "target": "exit"
+        },
+        {
+          "source": "mixed_parser",
+          "target": "exit"
+        },
+        {
+          "source": "docx_parser",
+          "target": "exit"
+        },
+        {
+          "source": "markdown_parser",
+          "target": "exit"
+        },
+        {
+          "source": "skip_warning",
+          "target": "exit"
+        }
+      ]
+    }
+  }
+}

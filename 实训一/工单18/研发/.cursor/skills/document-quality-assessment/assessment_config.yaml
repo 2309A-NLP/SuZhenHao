@@ -1,0 +1,74 @@
+# ============================================================
+# DocumentQualityAssessmentSkill — 配置文件
+# 所有阈值均可调整，修改后无需改代码
+# ============================================================
+
+# ---------- 1. 格式分布统计 ----------
+format:
+  supported_extensions:
+    - ".pdf"
+    - ".docx"
+    - ".md"
+    - ".txt"
+    - ".html"
+    - ".htm"
+    - ".pptx"
+    - ".xlsx"
+    - ".csv"
+    - ".xml"
+    - ".json"
+
+# ---------- 2. PDF 页面类型识别 ----------
+pdf_type:
+  # 单页可提取字符数低于此值 → 视为扫描页
+  text_page_min_chars: 50
+  # 扫描页占比超过此值 → 整个文件标记为扫描型
+  scan_ratio_threshold: 0.70
+  # 文字页占比超过此值 → 整个文件标记为文字型
+  text_ratio_threshold: 0.70
+  # 其余情况 → 混合型
+
+# ---------- 3. 文档长度分布 ----------
+length:
+  # 分位数列表
+  quantiles: [25, 50, 75, 90, 95]
+  # 长度区间（字符数）
+  buckets:
+    - { min: 0, max: 500, label: "极短(<500字)" }
+    - { min: 500, max: 2000, label: "短(500-2000字)" }
+    - { min: 2000, max: 10000, label: "中等(2000-10000字)" }
+    - { min: 10000, max: 50000, label: "长(1万-5万字)" }
+    - { min: 50000, max: 999999999, label: "超长(>5万字)" }
+
+# ---------- 4. 重复检测 ----------
+duplicate:
+  md5_check: true
+  simhash_check: true
+  # SimHash 汉明距离阈值：<= 此值视为近似重复
+  simhash_threshold: 3
+  # SimHash 优化：跳过文件大小差异过大的文件对（倍数阈值）
+  size_ratio_skip: 3.0
+
+# ---------- 5. 敏感信息检测 ----------
+sensitive:
+  phone: true
+  email: true
+  id_card: true
+  bank_card: false          # 默认关闭，误报率高
+  # 敏感信息前后展示的字符数
+  context_chars: 50
+
+# ---------- 6. 文档分类标签体系 ----------
+classification:
+  tags:
+    Text_PDF:       "纯文字型PDF，可直接提取文本"
+    Scan_PDF:       "扫描型PDF，需要OCR解析"
+    Mixed_PDF:      "混合型PDF，部分页面需OCR"
+    Needs_OCR:      "需要OCR处理的文档"
+    DOCX:           "Word文档"
+    Markdown:       "Markdown文档"
+    Short_Doc:      "极短文档(<500字)"
+    Long_Doc:       "超长文档(>5万字)"
+    Duplicate:      "存在完全重复的文件"
+    Sensitive:      "包含敏感信息的文件"
+    Unsupported:    "不支持的文件格式"

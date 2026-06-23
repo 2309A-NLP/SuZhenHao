@@ -1,0 +1,48 @@
+### 工单16 - QLoRA 微调（简化版）
+### RTX 4060 8GB 适配
+
+### model
+model_name_or_path: /home/su/llamafactory_env/models/Qwen2-VL-2B-Instruct
+
+### dataset
+dataset_dir: /home/su/ragflow_vlm_data/dataset
+dataset: vlm_industrial_qa_train
+eval_dataset: vlm_industrial_qa_val
+template: qwen2_vl
+cutoff_len: 600
+max_samples: 2000
+overwrite_cache: true
+
+### finetuning
+finetuning_type: lora
+quantization_bit: 4
+quantization_method: bitsandbytes
+lora_rank: 16
+lora_alpha: 32
+lora_target: all
+lora_dropout: 0.05
+
+### training
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-4
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_steps: 10
+weight_decay: 0.01
+bf16: true
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+
+### output
+output_dir: /home/su/ragflow_vlm_data/saves_v2
+logging_steps: 5
+save_steps: 500
+save_total_limit: 2
+eval_strategy: "no"
+
+### stability
+preprocessing_num_workers: 4
+dataloader_num_workers: 2
+seed: 42

@@ -1,0 +1,146 @@
+{
+  "base_errors": [
+    {
+      "question": "<image>在文件中第11页的除尘流程图中，'再次过滤'位于最近的哪个步骤的上方？\n\n选项：\nA. 初次过滤\nB. 滤袋清灰\nC. 粉尘汇集\nD. 再次预净化",
+      "predicted": null,
+      "ground_truth": "C",
+      "group": "0",
+      "response": "答案是D. 再次预净化"
+    },
+    {
+      "question": "<image>在文件中第7页的图1中，调整第一支撑板（2）和第二支撑板（3）之间的距离，会直接影响哪个部件的位置变化？\n\n选项：\nA. 挡板\nB. 第一滑块\nC. 齿轮\nD. 弹簧",
+      "predicted": null,
+      "ground_truth": "B",
+      "group": "0",
+      "response": "答案是B. 第一滑块"
+    },
+    {
+      "question": "<image>在文件中第6页的叉条立体结构示意图中，减振防滑护垫(10)位于三角形钢折板(11)的哪个位置？\n\n选项：\nA. 底部\nB. 侧面\nC. 上部接触面\nD. 内部",
+      "predicted": null,
+      "ground_truth": "C",
+      "group": "0",
+      "response": "答案是C. 上部接触面。"
+    },
+    {
+      "question": "<image>参考文件中第6页的示意图，如果需要提升吊杆(10)，卷扬机(4)动作后，钢丝绳(7)经过的第一个部件是什么？\n\n选项：\nA. 动滑轮(8)\nB. 固定定滑轮(5)\nC. 转动定滑轮(3)",
+      "predicted": null,
+      "ground_truth": "C",
+      "group": "0",
+      "response": "答案是D. 导向轮(9)"
+    },
+    {
+      "question": "<image>根据文件中第6页图1示，如果需要调整水平支架（3）的高度，可以通过调整哪个部件来实现？\n\n选项：\nA. 底座支架（1）\nB. 防护支架（2）\nC. 支持杆件（5）\nD. 三角定位块（6）",
+      "predicted": null,
+      "ground_truth": "C",
+      "group": "0",
+      "response": "根据文件中第6页图1示，如果需要调整水平支架（3）的高度，可以通过调整哪个部件来实现？\n\n答案是：C. 支持杆件（5）"
+    },
+    {
+      "question": "<image>根据文件中第6页的示意图，驱动电机（8）直接连接并驱动哪个部件进行旋转？\n\n选项：\nA. 定位辊轴（6）\nB. 皮带（5）\nC. 移动辊轴（7）\nD. 升降杆（3）",
+      "predicted": null,
+      "ground_truth": "B",
+      "group": "0",
+      "response": "根据文件中第6页的示意图，驱动电机（8）直接连接并驱动移动辊轴（7）进行旋转。因此，正确答案是：\n\nC. 移动辊轴（7）"
+    },
+    {
+      "question": "<image>在文件中第5页的示意图中，编号8的部件相对于编号7的部件位置是什么？\n\n选项：\nA. 位于上方\nB. 位于下方\nC. 位于左侧\nD. 位于右侧",
+      "predicted": null,
+      "ground_truth": "C",
+      "group": "0",
+      "response": "答案是C. 位于左侧。"
+    },
+    {
+      "question": "<image>观察文件中第7页的图片，如果平移电机（9）工作，直接影响哪个部件的运动？该部件运动后会直接影响哪个部件？\n\n选项：\nA. 纵向移动支架（4），龙门架（5）\nB. 平移滑座（7），量测仪安",
+      "predicted": null,
+      "ground_truth": "B",
+      "group": "0",
+      "response": "答案是B。平移电机（9）工作后，直接影响的是平移滑座（7），量测仪安装孔（8）的运动。"
+    },
+    {
+      "question": "<image>根据文件中第6页的图片，编号为6的部件相对于编号为7的部件的位置关系是？\n\n选项：\nA. 在上方\nB. 在下方\nC. 在左侧\nD. 在右侧",
+      "predicted": null,
+      "ground_truth": "A",
+      "group": "0",
+      "response": "根据文件中的第6页的图片，编号为6的部件相对于编号为7的部件的位置关系是：\n\nC. 在左侧"
+    },
+    {
+      "question": "<image>根据文件中第8页的示意图，如果需要调节锁紧滑块6的位置，需要操作哪个部件？\n\n选项：\nA. 直接操作锁紧滑块6\nB. 操作螺纹旋杆一10，通过抗拉绳9间接调节\nC. 操作定位盘4\nD. ",
+      "predicted": null,
+      "ground_truth": "B",
+      "group": "0",
+      "response": "根据文件中第8页的示意图，如果需要调节锁紧滑块6的位置，需要操作的是螺纹旋杆10，通过抗拉绳9间接调节。因此，正确答案是：\n\nB. 操作螺纹"
+    }
+  ],
+  "ft_errors": [
+    {
+      "question": "<image>在文件中第11页的除尘流程图中，'再次过滤'位于最近的哪个步骤的上方？\n\n选项：\nA. 初次过滤\nB. 滤袋清灰\nC. 粉尘汇集\nD. 再次预净化",
+      "predicted": "A",
+      "ground_truth": "C",
+      "group": "0",
+      "response": "A\nA. 初次过滤"
+    },
+    {
+      "question": "<image>根据文件中第6页的示意图，驱动电机（8）直接连接并驱动哪个部件进行旋转？\n\n选项：\nA. 定位辊轴（6）\nB. 皮带（5）\nC. 移动辊轴（7）\nD. 升降杆（3）",
+      "predicted": "C",
+      "ground_truth": "B",
+      "group": "0",
+      "response": "C\nC. 移动辊轴（7）"
+    },
+    {
+      "question": "<image>在文件中第5页的示意图中，编号8的部件相对于编号7的部件位置是什么？\n\n选项：\nA. 位于上方\nB. 位于下方\nC. 位于左侧\nD. 位于右侧",
+      "predicted": "A",
+      "ground_truth": "C",
+      "group": "0",
+      "response": "A\nA. 位于上方"
+    },
+    {
+      "question": "<image>在文件中第6页的示意图中，第一管道(6)连接的两个部件分别是什么？\n\n选项：\nA. 安装座(1)和基础阀门(4)\nB. 控制箱(3)和电动阀门机构(5)\nC. 高压分离器（未标出）和基础",
+      "predicted": "B",
+      "ground_truth": "C",
+      "group": "0",
+      "response": "B\nB. 控制箱(3)和电动阀门机构(5)"
+    },
+    {
+      "question": "<image>在文件中第9页提供的图片中，编号312的部件相对于编号33的部件的位置是什么？\n\n选项：\nA. 位于正上方\nB. 位于正下方\nC. 位于右侧\nD. 位于左侧",
+      "predicted": "B",
+      "ground_truth": "C",
+      "group": "0",
+      "response": "B\nB. 位于正下方"
+    },
+    {
+      "question": "<image>在文件中第5页的图中，部件1相对于部件8的位置是什么？\n\n选项：\nA. 在部件8的上方\nB. 在部件8的下方\nC. 在部件8的左侧\nD. 在部件8的右侧",
+      "predicted": "B",
+      "ground_truth": "C",
+      "group": "0",
+      "response": "B\nB. 在部件8的下方"
+    },
+    {
+      "question": "<image>在文件中第5页的图2中，部件3相对于部件5的位置是什么？\n\n选项：\nA. 在部件5的上方\nB. 在部件5的下方\nC. 在部件5的左侧\nD. 在部件5的右侧",
+      "predicted": "B",
+      "ground_truth": "C",
+      "group": "0",
+      "response": "B\nB. 在部件5的下方"
+    },
+    {
+      "question": "<image>根据文件中第5页的示意图，若要实现气体从进气孔(51)到出气孔(52)的流通，控制阀芯(3)的下挡板(62)需要如何运动？\n\n选项：\nA. 向下运动，打开通道\nB. 向上运动，打开通道\n",
+      "predicted": "A",
+      "ground_truth": "B",
+      "group": "0",
+      "response": "A\nA. 向下运动，打开通道"
+    },
+    {
+      "question": "<image>在文件中第4页提供的冷却塔结构图中，进风顶盖相对于风机的位置是？\n\n选项：\nA. 位于风机的正上方。\nB. 位于风机的左侧。\nC. 位于风机的右侧。\nD. 位于风机的下方。",
+      "predicted": "A",
+      "ground_truth": "B",
+      "group": "0",
+      "response": "A\nA. 位于风机的正上方。"
+    },
+    {
+      "question": "<image>根据专利文本，以下哪个部件不包含在自动水平除尘机中？\n\n选项：\nA. 机架\nB. 辊轴\nC. 传送带\nD. 马达",
+      "predicted": "D",
+      "ground_truth": "C",
+      "group": "0",
+      "response": "D\nD. 马达"
+    }
+  ]
+}

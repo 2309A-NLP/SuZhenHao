@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAGFlow DeepDoc 项目思维导图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f1923;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    overflow: auto;
+    min-height: 100vh;
+  }
+  .header {
+    text-align: center;
+    padding: 30px 20px 10px;
+    color: #e0e8f0;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .header p {
+    font-size: 13px;
+    color: #6b8299;
+  }
+  svg { display: block; margin: 0 auto; }
+  .node-group { cursor: default; }
+  .node-group:hover .node-bg { filter: brightness(1.15); }
+  .node-bg {
+    rx: 10; ry: 10;
+    transition: filter 0.2s;
+  }
+  .center-bg { rx: 20; ry: 20; }
+  text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    fill: #e8edf3;
+  }
+  .center-text { font-size: 16px; font-weight: 700; fill: #fff; }
+  .l1-text { font-size: 13px; font-weight: 600; fill: #fff; }
+  .l2-text { font-size: 11.5px; font-weight: 500; fill: #e2e8f0; }
+  .l3-text { font-size: 10.5px; font-weight: 400; fill: #cbd5e1; }
+  .conn { fill: none; stroke-width: 2; opacity: 0.5; }
+  .conn-l1 { stroke-width: 3; opacity: 0.6; }
+  .marker { fill: none; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🧠 RAGFlow DeepDoc 项目全景思维导图</h1>
+  <p>v0.23.1 · 深度文档解析系统 · 2026年6月23日</p>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="2200" viewBox="0 0 2400 2200">
+<defs>
+  <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+    <path d="M0,0 L8,3 L0,6" fill="none" stroke="#64748b" stroke-width="1.2"/>
+  </marker>
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="3" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <linearGradient id="grad-center" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#3b82f6"/>
+    <stop offset="50%" style="stop-color:#8b5cf6"/>
+    <stop offset="100%" style="stop-color:#ec4899"/>
+  </linearGradient>
+  <linearGradient id="grad-arch" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#1e40af"/><stop offset="100%" style="stop-color:#3b82f6"/>
+  </linearGradient>
+  <linearGradient id="grad-doc" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#065f46"/><stop offset="100%" style="stop-color:#10b981"/>
+  </linearGradient>
+  <linearGradient id="grad-chunk" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#92400e"/><stop offset="100%" style="stop-color:#f59e0b"/>
+  </linearGradient>
+  <linearGradient id="grad-retrieval" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#7c3aed"/><stop offset="100%" style="stop-color:#a78bfa"/>
+  </linearGradient>
+  <linearGradient id="grad-engine" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#be185d"/><stop offset="100%" style="stop-color:#f472b6"/>
+  </linearGradient>
+  <linearGradient id="grad-deploy" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#0e7490"/><stop offset="100%" style="stop-color:#22d3ee"/>
+  </linearGradient>
+  <linearGradient id="grad-innov" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#b45309"/><stop offset="100%" style="stop-color:#fbbf24"/>
+  </linearGradient>
+</defs>
+
+<!-- ========== 连接线（先画，放在底层） ========== -->
+
+<!-- 中心 → L1 连线 -->
+<path class="conn conn-l1" d="M1200,1100 C1000,1100 780,420 680,420" stroke="url(#grad-arch)" marker-end="url(#arrow)"/>
+<path class="conn conn-l1" d="M1200,1100 C1000,1100 780,720 660,720" stroke="url(#grad-doc)" marker-end="url(#arrow)"/>
+<path class="conn conn-l1" d="M1200,1100 C1050,1100 850,1020 720,1020" stroke="url(#grad-chunk)" marker-end="url(#arrow)"/>
+<path class="conn conn-l1" d="M1200,1100 C1050,1150 900,1320 740,1320" stroke="url(#grad-retrieval)" marker-end="url(#arrow)"/>
+<path class="conn conn-l1" d="M1200,1100 C1350,1100 1600,420 1700,420" stroke="url(#grad-engine)" marker-end="url(#arrow)"/>
+<path class="conn conn-l1" d="M1200,1100 C1350,1100 1600,720 1720,720" stroke="url(#grad-deploy)" marker-end="url(#arrow)"/>
+<path class="conn conn-l1" d="M1200,1100 C1350,1150 1550,1020 1680,1020" stroke="url(#grad-innov)" marker-end="url(#arrow)"/>
+
+<!-- L1 → L2 连线: 架构设计 -->
+<path class="conn" d="M580,420 C500,420 420,310 350,310" stroke="#3b82f6" marker-end="url(#arrow)"/>
+<path class="conn" d="M580,420 C500,420 420,420 350,420" stroke="#3b82f6" marker-end="url(#arrow)"/>
+<path class="conn" d="M580,420 C500,420 420,530 350,530" stroke="#3b82f6" marker-end="url(#arrow)"/>
+
+<!-- L1 → L2 连线: 文档解析 -->
+<path class="conn" d="M560,720 C480,720 400,650 330,650" stroke="#10b981" marker-end="url(#arrow)"/>
+<path class="conn" d="M560,720 C480,720 400,720 330,720" stroke="#10b981" marker-end="url(#arrow)"/>
+<path class="conn" d="M560,720 C480,720 400,790 330,790" stroke="#10b981" marker-end="url(#arrow)"/>
+
+<!-- L1 → L2 连线: 分块策略 -->
+<path class="conn" d="M620,1020 C540,1020 460,950 370,950" stroke="#f59e0b" marker-end="url(#arrow)"/>
+<path class="conn" d="M620,1020 C540,1020 460,1020 370,1020" stroke="#f59e0b" marker-end="url(#arrow)"/>
+<path class="conn" d="M620,1020 C540,1020 460,1090 370,1090" stroke="#f59e0b" marker-end="url(#arrow)"/>
+
+<!-- L1 → L2 连线: 向量与检索 -->
+<path class="conn" d="M640,1320 C560,1320 470,1240 380,1240" stroke="#a78bfa" marker-end="url(#arrow)"/>
+<path class="conn" d="M640,1320 C560,1320 470,1320 380,1320" stroke="#a78bfa" marker-end="url(#arrow)"/>
+<path class="conn" d="M640,1320 C560,1320 470,1400 380,1400" stroke="#a78bfa" marker-end="url(#arrow)"/>
+<path class="conn" d="M640,1320 C560,1320 470,1480 380,1480" stroke="#a78bfa" marker-end="url(#arrow)"/>
+
+<!-- L1 → L2 连线: 工程实现 -->
+<path class="conn" d="M1800,420 C1880,420 1960,310 2050,310" stroke="#f472b6" marker-end="url(#arrow)"/>
+<path class="conn" d="M1800,420 C1880,420 1960,380 2050,380" stroke="#f472b6" marker-end="url(#arrow)"/>
+<path class="conn" d="M1800,420 C1880,420 1960,450 2050,450" stroke="#f472b6" marker-end="url(#arrow)"/>
+<path class="conn" d="M1800,420 C1880,420 1960,520 2050,520" stroke="#f472b6" marker-end="url(#arrow)"/>
+<path class="conn" d="M1800,420 C1880,420 1960,590 2050,590" stroke="#f472b6" marker-end="url(#arrow)"/>
+
+<!-- L1 → L2 连线: 部署运维 -->
+<path class="conn" d="M1820,720 C1900,720 1980,650 2070,650" stroke="#22d3ee" marker-end="url(#arrow)"/>
+<path class="conn" d="M1820,720 C1900,720 1980,720 2070,720" stroke="#22d3ee" marker-end="url(#arrow)"/>
+<path class="conn" d="M1820,720 C1900,720 1980,790 2070,790" stroke="#22d3ee" marker-end="url(#arrow)"/>
+
+<!-- L1 → L2 连线: 技术创新 -->
+<path class="conn" d="M1780,1020 C1860,1020 1950,950 2050,950" stroke="#fbbf24" marker-end="url(#arrow)"/>
+<path class="conn" d="M1780,1020 C1860,1020 1950,1020 2050,1020" stroke="#fbbf24" marker-end="url(#arrow)"/>
+<path class="conn" d="M1780,1020 C1860,1020 1950,1090 2050,1090" stroke="#fbbf24" marker-end="url(#arrow)"/>
+<path class="conn" d="M1780,1020 C1860,1020 1950,1160 2050,1160" stroke="#fbbf24" marker-end="url(#arrow)"/>
+
+<!-- L2 → L3 连线: 架构设计 -->
+<path class="conn" d="M250,310 C210,310 170,280 130,280" stroke="#1e40af" marker-end="url(#arrow)"/>
+<path class="conn" d="M250,310 C210,310 170,310 130,310" stroke="#1e40af" marker-end="url(#arrow)"/>
+<path class="conn" d="M250,310 C210,310 170,340 130,340" stroke="#1e40af" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M250,420 C210,420 170,400 130,400" stroke="#1e40af" marker-end="url(#arrow)"/>
+<path class="conn" d="M250,420 C210,420 170,440 130,440" stroke="#1e40af" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M250,530 C210,530 170,510 130,510" stroke="#1e40af" marker-end="url(#arrow)"/>
+<path class="conn" d="M250,530 C210,530 170,550 130,550" stroke="#1e40af" marker-end="url(#arrow)"/>
+
+<!-- L2 → L3 连线: 文档解析 -->
+<path class="conn" d="M230,650 C190,650 150,630 100,630" stroke="#065f46" marker-end="url(#arrow)"/>
+<path class="conn" d="M230,650 C190,650 150,660 100,660" stroke="#065f46" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M230,720 C190,720 150,710 100,710" stroke="#065f46" marker-end="url(#arrow)"/>
+<path class="conn" d="M230,720 C190,720 150,730 100,730" stroke="#065f46" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M230,790 C190,790 150,780 100,780" stroke="#065f46" marker-end="url(#arrow)"/>
+<path class="conn" d="M230,790 C190,790 150,800 100,800" stroke="#065f46" marker-end="url(#arrow)"/>
+
+<!-- L2 → L3 连线: 分块策略 -->
+<path class="conn" d="M270,950 C230,950 190,930 140,930" stroke="#92400e" marker-end="url(#arrow)"/>
+<path class="conn" d="M270,950 C230,950 190,960 140,960" stroke="#92400e" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M270,1020 C230,1020 190,1010 140,1010" stroke="#92400e" marker-end="url(#arrow)"/>
+<path class="conn" d="M270,1020 C230,1020 190,1030 140,1030" stroke="#92400e" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M270,1090 C230,1090 190,1080 140,1080" stroke="#92400e" marker-end="url(#arrow)"/>
+<path class="conn" d="M270,1090 C230,1090 190,1100 140,1100" stroke="#92400e" marker-end="url(#arrow)"/>
+
+<!-- L2 → L3 连线: 向量与检索 -->
+<path class="conn" d="M280,1240 C240,1240 200,1220 150,1220" stroke="#7c3aed" marker-end="url(#arrow)"/>
+<path class="conn" d="M280,1240 C240,1240 200,1250 150,1250" stroke="#7c3aed" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M280,1320 C240,1320 200,1310 150,1310" stroke="#7c3aed" marker-end="url(#arrow)"/>
+<path class="conn" d="M280,1320 C240,1320 200,1330 150,1330" stroke="#7c3aed" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M280,1400 C240,1400 200,1390 150,1390" stroke="#7c3aed" marker-end="url(#arrow)"/>
+<path class="conn" d="M280,1400 C240,1400 200,1410 150,1410" stroke="#7c3aed" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M280,1480 C240,1480 200,1470 150,1470" stroke="#7c3aed" marker-end="url(#arrow)"/>
+<path class="conn" d="M280,1480 C240,1480 200,1490 150,1490" stroke="#7c3aed" marker-end="url(#arrow)"/>
+
+<!-- L2 → L3 连线: 工程实现 -->
+<path class="conn" d="M2150,310 C2190,310 2230,290 2280,290" stroke="#be185d" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,310 C2190,310 2230,320 2280,320" stroke="#be185d" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2150,380 C2190,380 2230,370 2280,370" stroke="#be185d" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,380 C2190,380 2230,390 2280,390" stroke="#be185d" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2150,450 C2190,450 2230,440 2280,440" stroke="#be185d" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,450 C2190,450 2230,460 2280,460" stroke="#be185d" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2150,520 C2190,520 2230,510 2280,510" stroke="#be185d" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,520 C2190,520 2230,530 2280,530" stroke="#be185d" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2150,590 C2190,590 2230,580 2280,580" stroke="#be185d" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,590 C2190,590 2230,600 2280,600" stroke="#be185d" marker-end="url(#arrow)"/>
+
+<!-- L2 → L3 连线: 部署运维 -->
+<path class="conn" d="M2170,650 C2210,650 2250,640 2300,640" stroke="#0e7490" marker-end="url(#arrow)"/>
+<path class="conn" d="M2170,650 C2210,650 2250,660 2300,660" stroke="#0e7490" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2170,720 C2210,720 2250,710 2300,710" stroke="#0e7490" marker-end="url(#arrow)"/>
+<path class="conn" d="M2170,720 C2210,720 2250,730 2300,730" stroke="#0e7490" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2170,790 C2210,790 2250,780 2300,780" stroke="#0e7490" marker-end="url(#arrow)"/>
+<path class="conn" d="M2170,790 C2210,790 2250,800 2300,800" stroke="#0e7490" marker-end="url(#arrow)"/>
+
+<!-- L2 → L3 连线: 技术创新 -->
+<path class="conn" d="M2150,950 C2190,950 2230,940 2280,940" stroke="#b45309" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,950 C2190,950 2230,960 2280,960" stroke="#b45309" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2150,1020 C2190,1020 2230,1010 2280,1010" stroke="#b45309" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,1020 C2190,1020 2230,1030 2280,1030" stroke="#b45309" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2150,1090 C2190,1090 2230,1080 2280,1080" stroke="#b45309" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,1090 C2190,1090 2230,1100 2280,1100" stroke="#b45309" marker-end="url(#arrow)"/>
+
+<path class="conn" d="M2150,1160 C2190,1160 2230,1150 2280,1150" stroke="#b45309" marker-end="url(#arrow)"/>
+<path class="conn" d="M2150,1160 C2190,1160 2230,1170 2280,1170" stroke="#b45309" marker-end="url(#arrow)"/>
+
+
+<!-- ========== 节点 ========== -->
+
+<!-- ====== 中心节点 ====== -->
+<g class="node-group" filter="url(#glow)">
+  <rect class="node-bg center-bg" x="1080" y="1060" width="240" height="80" fill="url(#grad-center)"/>
+  <text class="center-text" x="1200" y="1095" text-anchor="middle">RAGFlow DeepDoc</text>
+  <text class="center-text" x="1200" y="1120" text-anchor="middle" font-size="12" font-weight="500" fill="#e0e0e0">深度文档解析系统 v0.23.1</text>
+</g>
+
+<!-- ====== 左侧 L1: 架构设计 ====== -->
+<g class="node-group">
+  <rect class="node-bg" x="580" y="390" width="120" height="60" fill="url(#grad-arch)"/>
+  <text class="l1-text" x="640" y="416" text-anchor="middle">🏗️ 架构设计</text>
+  <text class="l1-text" x="640" y="434" text-anchor="middle" font-size="10" font-weight="400" fill="#93c5fd">Architecture</text>
+</g>
+
+<!-- L2: 微服务架构 -->
+<g class="node-group">
+  <rect class="node-bg" x="280" y="290" width="120" height="40" fill="#1e3a5f"/>
+  <text class="l2-text" x="340" y="315" text-anchor="middle">微服务分层</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="10" y="265" width="120" height="25" fill="#172554"/>
+  <text class="l3-text" x="70" y="282" text-anchor="middle">API Server 接入层</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="10" y="295" width="120" height="25" fill="#172554"/>
+  <text class="l3-text" x="70" y="312" text-anchor="middle">Task Executor 执行层</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="10" y="325" width="120" height="25" fill="#172554"/>
+  <text class="l3-text" x="70" y="342" text-anchor="middle">ES/MySQL/Redis/MinIO</text>
+</g>
+
+<!-- L2: 消息队列 -->
+<g class="node-group">
+  <rect class="node-bg" x="280" y="400" width="120" height="40" fill="#1e3a5f"/>
+  <text class="l2-text" x="340" y="425" text-anchor="middle">Redis Stream 队列</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="10" y="390" width="120" height="25" fill="#172554"/>
+  <text class="l3-text" x="70" y="407" text-anchor="middle">XADD/XREADGROUP/XACK</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="10" y="420" width="120" height="25" fill="#172554"/>
+  <text class="l3-text" x="70" y="437" text-anchor="middle">优先级队列 0/1</text>
+</g>
+
+<!-- L2: 并发控制 -->
+<g class="node-group">
+  <rect class="node-bg" x="280" y="510" width="120" height="40" fill="#1e3a5f"/>
+  <text class="l2-text" x="340" y="535" text-anchor="middle">五级并发控制</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="10" y="500" width="120" height="25" fill="#172554"/>
+  <text class="l3-text" x="70" y="517" text-anchor="middle">任务=5 分块=1 嵌入=1</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="10" y="530" width="120" height="25" fill="#172554"/>
+  <text class="l3-text" x="70" y="547" text-anchor="middle">MinIO=10 KG=2</text>
+</g>
+
+<!-- ====== 左侧 L1: 文档解析 ====== -->
+<g class="node-group">
+  <rect class="node-bg" x="560" y="690" width="120" height="60" fill="url(#grad-doc)"/>
+  <text class="l1-text" x="620" y="716" text-anchor="middle">📄 文档解析</text>
+  <text class="l1-text" x="620" y="734" text-anchor="middle" font-size="10" font-weight="400" fill="#6ee7b7">DeepDoc Engine</text>
+</g>
+
+<!-- L2: PDF 核心管线 -->
+<g class="node-group">
+  <rect class="node-bg" x="260" y="630" width="120" height="40" fill="#064e3b"/>
+  <text class="l2-text" x="320" y="655" text-anchor="middle">PDF 核心管线</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="10" y="618" width="120" height="25" fill="#022c22"/>
+  <text class="l3-text" x="70" y="635" text-anchor="middle">OCR 检测+识别 ONNX</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="10" y="648" width="120" height="25" fill="#022c22"/>
+  <text class="l3-text" x="70" y="665" text-anchor="middle">布局分析 YOLOv10</text>
+</g>
+
+<!-- L2: 7种解析后端 -->
+<g class="node-group">
+  <rect class="node-bg" x="260" y="700" width="120" height="40" fill="#064e3b"/>
+  <text class="l2-text" x="320" y="725" text-anchor="middle">7 种解析后端</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="10" y="693" width="120" height="25" fill="#022c22"/>
+  <text class="l3-text" x="70" y="710" text-anchor="middle">DeepDOC / PlainParser</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="10" y="723" width="120" height="25" fill="#022c22"/>
+  <text class="l3-text" x="70" y="740" text-anchor="middle">Vision/Docling/MinerU等</text>
+</g>
+
+<!-- L2: 13种文件格式 -->
+<g class="node-group">
+  <rect class="node-bg" x="260" y="770" width="120" height="40" fill="#064e3b"/>
+  <text class="l2-text" x="320" y="795" text-anchor="middle">13+ 文件格式</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="10" y="768" width="120" height="25" fill="#022c22"/>
+  <text class="l3-text" x="70" y="785" text-anchor="middle">PDF/DOCX/PPTX/XLSX</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="10" y="798" width="120" height="25" fill="#022c22"/>
+  <text class="l3-text" x="70" y="815" text-anchor="middle">HTML/TXT/MD/图片/音频</text>
+</g>
+
+<!-- ====== 左侧 L1: 分块策略 ====== -->
+<g class="node-group">
+  <rect class="node-bg" x="620" y="990" width="120" height="60" fill="url(#grad-chunk)"/>
+  <text class="l1-text" x="680" y="1016" text-anchor="middle">✂️ 分块策略</text>
+  <text class="l1-text" x="680" y="1034" text-anchor="middle" font-size="10" font-weight="400" fill="#fcd34d">Chunk Strategy</text>
+</g>
+
+<!-- L2: 15种分块方法 -->
+<g class="node-group">
+  <rect class="node-bg" x="300" y="930" width="120" height="40" fill="#78350f"/>
+  <text class="l2-text" x="360" y="955" text-anchor="middle">15 种分块方法</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="30" y="918" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="90" y="935" text-anchor="middle">naive/paper/table/one</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="30" y="948" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="90" y="965" text-anchor="middle">laws/manual/book/qa等</text>
+</g>
+
+<!-- L2: 智能分片 -->
+<g class="node-group">
+  <rect class="node-bg" x="300" y="1000" width="120" height="40" fill="#78350f"/>
+  <text class="l2-text" x="360" y="1025" text-anchor="middle">智能任务分片</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="30" y="993" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="90" y="1010" text-anchor="middle">paper=22页 默认=12页</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="30" y="1023" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="90" y="1040" text-anchor="middle">one=整文档 table=3000行</text>
+</g>
+
+<!-- L2: LLM 增强 -->
+<g class="node-group">
+  <rect class="node-bg" x="300" y="1070" width="120" height="40" fill="#78350f"/>
+  <text class="l2-text" x="360" y="1095" text-anchor="middle">4 种 LLM 增强</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="30" y="1063" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="90" y="1080" text-anchor="middle">关键词提取 + 问题生成</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="30" y="1093" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="90" y="1110" text-anchor="middle">元数据提取 + 内容标签</text>
+</g>
+
+<!-- ====== 左侧 L1: 向量与检索 ====== -->
+<g class="node-group">
+  <rect class="node-bg" x="640" y="1290" width="120" height="60" fill="url(#grad-retrieval)"/>
+  <text class="l1-text" x="700" y="1316" text-anchor="middle">🔍 向量与检索</text>
+  <text class="l1-text" x="700" y="1334" text-anchor="middle" font-size="10" font-weight="400" fill="#c4b5fd">Retrieval</text>
+</g>
+
+<!-- L2: 向量加权混合 -->
+<g class="node-group">
+  <rect class="node-bg" x="310" y="1220" width="120" height="40" fill="#4c1d95"/>
+  <text class="l2-text" x="370" y="1245" text-anchor="middle">标题-内容加权</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1213" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1230" text-anchor="middle">0.1×标题 + 0.9×内容</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1243" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1260" text-anchor="middle">np.tile 平铺避免重复</text>
+</g>
+
+<!-- L2: 混合检索 -->
+<g class="node-group">
+  <rect class="node-bg" x="310" y="1300" width="120" height="40" fill="#4c1d95"/>
+  <text class="l2-text" x="370" y="1325" text-anchor="middle">混合检索机制</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1298" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1315" text-anchor="middle">向量语义 + 关键词精确</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1328" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1345" text-anchor="middle">权重可调 自适应场景</text>
+</g>
+
+<!-- L2: 母子检索 -->
+<g class="node-group">
+  <rect class="node-bg" x="310" y="1380" width="120" height="40" fill="#4c1d95"/>
+  <text class="l2-text" x="370" y="1405" text-anchor="middle">母子检索</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1378" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1395" text-anchor="middle">子块匹配 母块返回</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1408" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1425" text-anchor="middle">上下文更完整</text>
+</g>
+
+<!-- L2: RAPTOR + GraphRAG -->
+<g class="node-group">
+  <rect class="node-bg" x="310" y="1460" width="120" height="40" fill="#4c1d95"/>
+  <text class="l2-text" x="370" y="1485" text-anchor="middle">RAPTOR+GraphRAG</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1453" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1470" text-anchor="middle">递归层级摘要</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="40" y="1483" width="120" height="25" fill="#2e1065"/>
+  <text class="l3-text" x="100" y="1500" text-anchor="middle">知识图谱多跳推理</text>
+</g>
+
+
+<!-- ====== 右侧 L1: 工程实现 ====== -->
+<g class="node-group">
+  <rect class="node-bg" x="1700" y="390" width="120" height="60" fill="url(#grad-engine)"/>
+  <text class="l1-text" x="1760" y="416" text-anchor="middle">⚙️ 工程实现</text>
+  <text class="l1-text" x="1760" y="434" text-anchor="middle" font-size="10" font-weight="400" fill="#fda4af">Engineering</text>
+</g>
+
+<!-- L2: 全异步架构 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="290" width="120" height="40" fill="#831843"/>
+  <text class="l2-text" x="2110" y="315" text-anchor="middle">全异步架构</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="278" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="295" text-anchor="middle">asyncio + 线程池</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="308" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="325" text-anchor="middle">gather 并行增强任务</text>
+</g>
+
+<!-- L2: 多层超时 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="360" width="120" height="40" fill="#831843"/>
+  <text class="l2-text" x="2110" y="385" text-anchor="middle">多层超时保护</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="358" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="375" text-anchor="middle">整体3h 分块80min</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="388" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="405" text-anchor="middle">Embedding 60s/批</text>
+</g>
+
+<!-- L2: 容错回滚 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="430" width="120" height="40" fill="#831843"/>
+  <text class="l2-text" x="2110" y="455" text-anchor="middle">容错与回滚</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="428" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="445" text-anchor="middle">finally 清理已写入</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="458" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="475" text-anchor="middle">XACK 确认+重试</text>
+</g>
+
+<!-- L2: 多 GPU 并行 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="500" width="120" height="40" fill="#831843"/>
+  <text class="l2-text" x="2110" y="525" text-anchor="middle">多 GPU 并行推理</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="498" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="515" text-anchor="middle">PARALLEL_DEVICES</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="528" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="545" text-anchor="middle">独立信号量控制</text>
+</g>
+
+<!-- L2: 进度追踪 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="570" width="120" height="40" fill="#831843"/>
+  <text class="l2-text" x="2110" y="595" text-anchor="middle">进度实时追踪</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="568" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="585" text-anchor="middle">分块0-70% 向量70-90%</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="598" width="120" height="25" fill="#500724"/>
+  <text class="l3-text" x="2260" y="615" text-anchor="middle">索引90-100% 实时回调</text>
+</g>
+
+<!-- ====== 右侧 L1: 部署运维 ====== -->
+<g class="node-group">
+  <rect class="node-bg" x="1720" y="690" width="120" height="60" fill="url(#grad-deploy)"/>
+  <text class="l1-text" x="1780" y="716" text-anchor="middle">🚀 部署运维</text>
+  <text class="l1-text" x="1780" y="734" text-anchor="middle" font-size="10" font-weight="400" fill="#a5f3fc">Deployment</text>
+</g>
+
+<!-- L2: Docker Compose -->
+<g class="node-group">
+  <rect class="node-bg" x="2070" y="630" width="120" height="40" fill="#155e75"/>
+  <text class="l2-text" x="2130" y="655" text-anchor="middle">Docker Compose</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2220" y="628" width="120" height="25" fill="#083344"/>
+  <text class="l3-text" x="2280" y="645" text-anchor="middle">CPU/GPU Profile 切换</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2220" y="658" width="120" height="25" fill="#083344"/>
+  <text class="l3-text" x="2280" y="675" text-anchor="middle">.env 集中管理配置</text>
+</g>
+
+<!-- L2: 多存储引擎 -->
+<g class="node-group">
+  <rect class="node-bg" x="2070" y="700" width="120" height="40" fill="#155e75"/>
+  <text class="l2-text" x="2130" y="725" text-anchor="middle">多存储引擎</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2220" y="698" width="120" height="25" fill="#083344"/>
+  <text class="l3-text" x="2280" y="715" text-anchor="middle">ES/Infinity/OpenSearch</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2220" y="728" width="120" height="25" fill="#083344"/>
+  <text class="l3-text" x="2280" y="745" text-anchor="middle">OceanBase/SeekDB</text>
+</g>
+
+<!-- L2: 30+ LLM 厂商 -->
+<g class="node-group">
+  <rect class="node-bg" x="2070" y="770" width="120" height="40" fill="#155e75"/>
+  <text class="l2-text" x="2130" y="795" text-anchor="middle">30+ LLM 厂商</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2220" y="768" width="120" height="25" fill="#083344"/>
+  <text class="l3-text" x="2280" y="785" text-anchor="middle">OpenAI/DeepSeek/通义等</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2220" y="798" width="120" height="25" fill="#083344"/>
+  <text class="l3-text" x="2280" y="815" text-anchor="middle">Ollama/vLLM 本地部署</text>
+</g>
+
+<!-- ====== 右侧 L1: 技术创新 ====== -->
+<g class="node-group">
+  <rect class="node-bg" x="1680" y="990" width="120" height="60" fill="url(#grad-innov)"/>
+  <text class="l1-text" x="1740" y="1016" text-anchor="middle">💡 技术创新</text>
+  <text class="l1-text" x="1740" y="1034" text-anchor="middle" font-size="10" font-weight="400" fill="#fde68a">Innovation</text>
+</g>
+
+<!-- L2: 自研 OCR -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="930" width="120" height="40" fill="#78350f"/>
+  <text class="l2-text" x="2110" y="955" text-anchor="middle">自研 OCR 管线</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="928" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="945" text-anchor="middle">PaddleOCR ONNX 导出</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="958" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="975" text-anchor="middle">pdfplumber 融合</text>
+</g>
+
+<!-- L2: XGBoost 合并 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="1000" width="120" height="40" fill="#78350f"/>
+  <text class="l2-text" x="2110" y="1025" text-anchor="middle">XGBoost 智能合并</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="998" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="1015" text-anchor="middle">31 维特征工程</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="1028" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="1045" text-anchor="middle">KMeans 列检测</text>
+</g>
+
+<!-- L2: 标题向量混合 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="1070" width="120" height="40" fill="#78350f"/>
+  <text class="l2-text" x="2110" y="1095" text-anchor="middle">向量加权混合</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="1068" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="1085" text-anchor="middle">标题语义+内容细节</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="1098" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="1115" text-anchor="middle">LLM 缓存降低成本</text>
+</g>
+
+<!-- L2: 五级信号量 -->
+<g class="node-group">
+  <rect class="node-bg" x="2050" y="1140" width="120" height="40" fill="#78350f"/>
+  <text class="l2-text" x="2110" y="1165" text-anchor="middle">五级并发信号量</text>
+</g>
+<!-- L3 -->
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="1138" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="1155" text-anchor="middle">稳定性+利用率兼顾</text>
+</g>
+<g class="node-group">
+  <rect class="node-bg" x="2200" y="1168" width="120" height="25" fill="#451a03"/>
+  <text class="l3-text" x="2260" y="1185" text-anchor="middle">xxhash 高性能哈希</text>
+</g>
+
+
+<!-- ====== 底部: DeepDoc 核心管线流程 ====== -->
+<g class="node-group">
+  <rect x="500" y="1640" width="1400" height="100" rx="16" ry="16" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <text x="1200" y="1665" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="600">🔬 DeepDoc 核心解析管线流程</text>
+  
+  <!-- 流程节点 -->
+  <rect x="530" y="1685" width="100" height="35" rx="8" ry="8" fill="#1e40af"/>
+  <text x="580" y="1707" text-anchor="middle" fill="#e0e7ff" font-size="10">PDF 渲染</text>
+  
+  <text x="640" y="1707" text-anchor="middle" fill="#64748b" font-size="14">→</text>
+  
+  <rect x="650" y="1685" width="100" height="35" rx="8" ry="8" fill="#166534"/>
+  <text x="700" y="1707" text-anchor="middle" fill="#dcfce7" font-size="10">OCR 识别</text>
+  
+  <text x="760" y="1707" text-anchor="middle" fill="#64748b" font-size="14">→</text>
+  
+  <rect x="770" y="1685" width="100" height="35" rx="8" ry="8" fill="#7c2d12"/>
+  <text x="820" y="1707" text-anchor="middle" fill="#fed7aa" font-size="10">布局分析</text>
+  
+  <text x="880" y="1707" text-anchor="middle" fill="#64748b" font-size="14">→</text>
+  
+  <rect x="890" y="1685" width="100" height="35" rx="8" ry="8" fill="#581c87"/>
+  <text x="940" y="1707" text-anchor="middle" fill="#e9d5ff" font-size="10">表格结构识别</text>
+  
+  <text x="1000" y="1707" text-anchor="middle" fill="#64748b" font-size="14">→</text>
+  
+  <rect x="1010" y="1685" width="110" height="35" rx="8" ry="8" fill="#854d0e"/>
+  <text x="1065" y="1707" text-anchor="middle" fill="#fef3c7" font-size="10">XGBoost 文本合并</text>
+  
+  <text x="1130" y="1707" text-anchor="middle" fill="#64748b" font-size="14">→</text>
+  
+  <rect x="1140" y="1685" width="100" height="35" rx="8" ry="8" fill="#0e7490"/>
+  <text x="1190" y="1707" text-anchor="middle" fill="#cffafe" font-size="10">KMeans 列检测</text>
+  
+  <text x="1250" y="1707" text-anchor="middle" fill="#64748b" font-size="14">→</text>
+  
+  <rect x="1260" y="1685" width="110" height="35" rx="8" ry="8" fill="#9f1239"/>
+  <text x="1315" y="1707" text-anchor="middle" fill="#ffe4e6" font-size="10">阅读顺序排列</text>
+  
+  <text x="1380" y="1707" text-anchor="middle" fill="#64748b" font-size="14">→</text>
+  
+  <rect x="1390" y="1685" width="100" height="35" rx="8" ry="8" fill="#1d4ed8"/>
+  <text x="1440" y="1707" text-anchor="middle" fill="#dbeafe" font-size="10">表格图表提取</text>
+</g>
+
+<!-- ====== 底部: 15种分块策略详情 ====== -->
+<g class="node-group">
+  <rect x="180" y="1790" width="1040" height="120" rx="14" ry="14" fill="#1a1a2e" stroke="#334155" stroke-width="1.5"/>
+  <text x="700" y="1815" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">✂️ 15 种分块策略详情</text>
+
+  <!-- 第一行 -->
+  <rect x="200" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="240" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">naive 通用</text>
+  <rect x="290" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="330" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">paper 论文</text>
+  <rect x="380" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="420" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">table 表格</text>
+  <rect x="470" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="510" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">one 整文档</text>
+  <rect x="560" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="600" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">qa 问答对</text>
+  <rect x="650" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="690" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">laws 法规</text>
+  <rect x="740" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="780" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">manual 手册</text>
+  <rect x="830" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="870" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">book 书籍</text>
+  <rect x="920" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="960" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">presentation</text>
+  <rect x="1010" y="1830" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="1050" y="1849" text-anchor="middle" fill="#fef3c7" font-size="9.5">resume 简历</text>
+  
+  <!-- 第二行 -->
+  <rect x="200" y="1868" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="240" y="1887" text-anchor="middle" fill="#fef3c7" font-size="9.5">email 邮件</text>
+  <rect x="290" y="1868" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="330" y="1887" text-anchor="middle" fill="#fef3c7" font-size="9.5">picture 图片</text>
+  <rect x="380" y="1868" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="420" y="1887" text-anchor="middle" fill="#fef3c7" font-size="9.5">audio 音频</text>
+  <rect x="470" y="1868" width="100" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="520" y="1887" text-anchor="middle" fill="#fef3c7" font-size="9.5">knowledge_graph</text>
+  <rect x="580" y="1868" width="80" height="28" rx="6" ry="6" fill="#78350f"/>
+  <text x="620" y="1887" text-anchor="middle" fill="#fef3c7" font-size="9.5">tag 标签</text>
+
+  <text x="700" y="1905" text-anchor="middle" fill="#64748b" font-size="10">每种策略针对特定文档类型深度优化 · 支持知识库级/文档级参数覆盖</text>
+</g>
+
+<!-- ====== 底部: 7种PDF后端 ====== -->
+<g class="node-group">
+  <rect x="1280" y="1790" width="440" height="120" rx="14" ry="14" fill="#1a2e1a" stroke="#334155" stroke-width="1.5"/>
+  <text x="1500" y="1815" text-anchor="middle" fill="#4ade80" font-size="12" font-weight="600">📄 7 种 PDF 解析后端</text>
+
+  <rect x="1300" y="1830" width="120" height="28" rx="6" ry="6" fill="#065f46"/>
+  <text x="1360" y="1849" text-anchor="middle" fill="#d1fae5" font-size="9.5">DeepDOC (默认)</text>
+  <rect x="1430" y="1830" width="120" height="28" rx="6" ry="6" fill="#065f46"/>
+  <text x="1490" y="1849" text-anchor="middle" fill="#d1fae5" font-size="9.5">PlainParser</text>
+  <rect x="1560" y="1830" width="120" height="28" rx="6" ry="6" fill="#065f46"/>
+  <text x="1620" y="1849" text-anchor="middle" fill="#d1fae5" font-size="9.5">VisionParser</text>
+
+  <rect x="1300" y="1868" width="120" height="28" rx="6" ry="6" fill="#065f46"/>
+  <text x="1360" y="1887" text-anchor="middle" fill="#d1fae5" font-size="9.5">DoclingParser</text>
+  <rect x="1430" y="1868" width="120" height="28" rx="6" ry="6" fill="#065f46"/>
+  <text x="1490" y="1887" text-anchor="middle" fill="#d1fae5" font-size="9.5">MinerUParser</text>
+  <rect x="1560" y="1868" width="120" height="28" rx="6" ry="6" fill="#065f46"/>
+  <text x="1620" y="1887" text-anchor="middle" fill="#d1fae5" font-size="9.5">PaddleOCRParser</text>
+
+  <text x="1500" y="1905" text-anchor="middle" fill="#64748b" font-size="10">同一知识库可对不同文档使用不同后端</text>
+</g>
+
+<!-- ====== 底部: ONNX 模型 ====== -->
+<g class="node-group">
+  <rect x="500" y="1950" width="700" height="80" rx="14" ry="14" fill="#1e1e2e" stroke="#4c1d95" stroke-width="1.5"/>
+  <text x="850" y="1975" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="600">🧠 4 个核心 ONNX 模型</text>
+  
+  <rect x="530" y="1990" width="140" height="28" rx="6" ry="6" fill="#4c1d95"/>
+  <text x="600" y="2009" text-anchor="middle" fill="#e9d5ff" font-size="9.5">det.onnx 文字检测(DB)</text>
+  <rect x="680" y="1990" width="140" height="28" rx="6" ry="6" fill="#4c1d95"/>
+  <text x="750" y="2009" text-anchor="middle" fill="#e9d5ff" font-size="9.5">rec.onnx 文字识别(CTC)</text>
+  <rect x="830" y="1990" width="150" height="28" rx="6" ry="6" fill="#4c1d95"/>
+  <text x="905" y="2009" text-anchor="middle" fill="#e9d5ff" font-size="9.5">布局分类 (YOLOv10)</text>
+  <rect x="990" y="1990" width="170" height="28" rx="6" ry="6" fill="#4c1d95"/>
+  <text x="1075" y="2009" text-anchor="middle" fill="#e9d5ff" font-size="9.5">表格结构 (TableTransformer)</text>
+</g>
+
+<!-- ====== 底部: XGBoost 特征工程 ====== -->
+<g class="node-group">
+  <rect x="1260" y="1950" width="460" height="80" rx="14" ry="14" fill="#2e1a0a" stroke="#92400e" stroke-width="1.5"/>
+  <text x="1490" y="1975" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">📊 XGBoost 31 维特征工程</text>
+  
+  <rect x="1280" y="1990" width="100" height="28" rx="6" ry="6" fill="#92400e"/>
+  <text x="1330" y="2009" text-anchor="middle" fill="#fef3c7" font-size="9.5">空间特征</text>
+  <rect x="1390" y="1990" width="100" height="28" rx="6" ry="6" fill="#92400e"/>
+  <text x="1440" y="2009" text-anchor="middle" fill="#fef3c7" font-size="9.5">布局特征</text>
+  <rect x="1500" y="1990" width="100" height="28" rx="6" ry="6" fill="#92400e"/>
+  <text x="1550" y="2009" text-anchor="middle" fill="#fef3c7" font-size="9.5">文本特征</text>
+  <rect x="1610" y="1990" width="100" height="28" rx="6" ry="6" fill="#92400e"/>
+  <text x="1660" y="2009" text-anchor="middle" fill="#fef3c7" font-size="9.5">语义+结构</text>
+</g>
+
+</svg>
+</body>
+</html>

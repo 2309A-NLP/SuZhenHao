@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocumentQualityAssessmentSkill — 项目思维导图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #00d2ff, #3a7bd5, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8888aa;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .mindmap {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .branch {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .branch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .branch-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .branch-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .branch-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .branch-subtitle {
+    font-size: 0.8rem;
+    color: #8888aa;
+    margin-top: 2px;
+  }
+  .leaf {
+    margin: 0.5rem 0;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid;
+    transition: background 0.2s;
+  }
+  .leaf:hover {
+    background: rgba(255,255,255,0.06);
+  }
+  .leaf-title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 0.25rem;
+  }
+  .leaf-desc {
+    font-size: 0.82rem;
+    color: #9999bb;
+    line-height: 1.5;
+  }
+  .leaf-tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+  }
+
+  /* 颜色主题 */
+  .t1 .branch-icon { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .t1 .branch-title { color: #a78bfa; }
+  .t1 .leaf { border-left-color: #7c3aed; }
+  .t1 .leaf-title { color: #c4b5fd; }
+  .t1 .leaf-tag { background: rgba(124,58,237,0.2); color: #a78bfa; }
+
+  .t2 .branch-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .t2 .branch-title { color: #f472b6; }
+  .t2 .leaf { border-left-color: #ec4899; }
+  .t2 .leaf-title { color: #f9a8d4; }
+  .t2 .leaf-tag { background: rgba(236,72,153,0.2); color: #f472b6; }
+
+  .t3 .branch-icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+  .t3 .branch-title { color: #38bdf8; }
+  .t3 .leaf { border-left-color: #0ea5e9; }
+  .t3 .leaf-title { color: #7dd3fc; }
+  .t3 .leaf-tag { background: rgba(14,165,233,0.2); color: #38bdf8; }
+
+  .t4 .branch-icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+  .t4 .branch-title { color: #34d399; }
+  .t4 .leaf { border-left-color: #10b981; }
+  .t4 .leaf-title { color: #6ee7b7; }
+  .t4 .leaf-tag { background: rgba(16,185,129,0.2); color: #34d399; }
+
+  .t5 .branch-icon { background: linear-gradient(135deg, #fa709a, #fee140); }
+  .t5 .branch-title { color: #fb923c; }
+  .t5 .leaf { border-left-color: #f97316; }
+  .t5 .leaf-title { color: #fdba74; }
+  .t5 .leaf-tag { background: rgba(249,115,22,0.2); color: #fb923c; }
+
+  .t6 .branch-icon { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+  .t6 .branch-title { color: #d8b4fe; }
+  .t6 .leaf { border-left-color: #a855f7; }
+  .t6 .leaf-title { color: #d8b4fe; }
+  .t6 .leaf-tag { background: rgba(168,85,247,0.2); color: #d8b4fe; }
+
+  .t7 .branch-icon { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+  .t7 .branch-title { color: #fbbf24; }
+  .t7 .leaf { border-left-color: #eab308; }
+  .t7 .leaf-title { color: #fde68a; }
+  .t7 .leaf-tag { background: rgba(234,179,8,0.2); color: #fbbf24; }
+
+  .t8 {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.15));
+    border: 1px solid rgba(168,85,247,0.3);
+  }
+  .t8 .branch-icon { background: linear-gradient(135deg, #6366f1, #a855f7); }
+  .t8 .branch-title { color: #c4b5fd; }
+
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+  .arch-box {
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 120px;
+  }
+  .arch-arrow {
+    font-size: 1.4rem;
+    color: #6366f1;
+  }
+  .arch-input { background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.4); color: #93c5fd; }
+  .arch-process { background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.4); color: #d8b4fe; }
+  .arch-output { background: rgba(16,185,129,0.2); border: 1px solid rgba(16,185,129,0.4); color: #6ee7b7; }
+
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .wf-item {
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .wf-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .stat {
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+  }
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #38bdf8, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: #8888aa;
+    margin-top: 0.25rem;
+  }
+
+  footer {
+    text-align: center;
+    color: #555;
+    font-size: 0.8rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+</style>
+</head>
+<body>
+
+<h1>📋 DocumentQualityAssessmentSkill</h1>
+<p class="subtitle">文档质量评估工具 — 项目架构思维导图 &nbsp;|&nbsp; 工单18</p>
+
+<!-- 实际运行数据 -->
+<div style="max-width:1400px;margin:0 auto 1.5rem;">
+  <div class="stats-row">
+    <div class="stat"><div class="stat-value">1700</div><div class="stat-label">评估文件数</div></div>
+    <div class="stat"><div class="stat-value">726MB</div><div class="stat-label">总文件大小</div></div>
+    <div class="stat"><div class="stat-value">117.5s</div><div class="stat-label">评估耗时</div></div>
+    <div class="stat"><div class="stat-value">6</div><div class="stat-label">功能模块</div></div>
+    <div class="stat"><div class="stat-value">3</div><div class="stat-label">集成层级</div></div>
+    <div class="stat"><div class="stat-value">11</div><div class="stat-label">分类标签</div></div>
+  </div>
+</div>
+
+<div class="mindmap">
+
+  <!-- ====== 1. 核心架构 ====== -->
+  <div class="branch t1">
+    <div class="branch-header">
+      <div class="branch-icon">🏗️</div>
+      <div>
+        <div class="branch-title">核心架构</div>
+        <div class="branch-subtitle">三层集成 + 六大模块</div>
+      </div>
+    </div>
+
+    <div class="leaf">
+      <div class="leaf-title">第一层：命令行 CLI</div>
+      <div class="leaf-desc">assess_documents.py 直接运行，支持 8 个参数</div>
+      <span class="leaf-tag">开发调试</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">第二层：RAGFlow API 端点</div>
+      <div class="leaf-desc">Quart Blueprint 注册 POST /v1/document/quality-inspection</div>
+      <span class="leaf-tag">Web服务集成</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">第三层：Agent Tool + 工作流</div>
+      <div class="leaf-desc">继承 ToolBase 自动注册，含完整 DSL 工作流定义</div>
+      <span class="leaf-tag">智能编排</span>
+    </div>
+
+    <div class="arch-flow">
+      <div class="arch-box arch-input">📁 文档目录</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box arch-process">📋 质量评估</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box arch-process">🏷️ 分类标签</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box arch-output">📊 JSON+HTML</div>
+    </div>
+  </div>
+
+  <!-- ====== 2. 六大功能模块 ====== -->
+  <div class="branch t2">
+    <div class="branch-header">
+      <div class="branch-icon">🧩</div>
+      <div>
+        <div class="branch-title">六大功能模块</div>
+        <div class="branch-subtitle">独立可组合的评估单元</div>
+      </div>
+    </div>
+
+    <div class="leaf">
+      <div class="leaf-title">① 格式分布统计</div>
+      <div class="leaf-desc">按扩展名统计文件数量、占比、总大小。支持 11 种格式</div>
+      <span class="leaf-tag">format_distribution</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">② PDF 页面类型识别</div>
+      <div class="leaf-desc">逐页分析：text / scanned / mixed / empty。多数投票法判定文档级类型</div>
+      <span class="leaf-tag">pdf_page_types</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">③ 文档长度分布</div>
+      <div class="leaf-desc">5 级分位数统计 + 5 个长度区间。支持 PDF/DOCX/TXT/MD/HTML 等</div>
+      <span class="leaf-tag">length_distribution</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">④ 重复检测</div>
+      <div class="leaf-desc">MD5 精确匹配 + SimHash 近似匹配。大小差异 3x 自动跳过优化</div>
+      <span class="leaf-tag">duplicates</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">⑤ 敏感信息检测</div>
+      <div class="leaf-desc">手机号 / 邮箱 / 身份证正则扫描，结果自动脱敏（保留前3后4）</div>
+      <span class="leaf-tag">sensitive_info</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">⑥ 文档分类标签</div>
+      <div class="leaf-desc">11 种标签：Text_PDF / Scan_PDF / Mixed_PDF / Needs_OCR / DOCX / Markdown / Short_Doc / Long_Doc / Duplicate / Sensitive / Unsupported</div>
+      <span class="leaf-tag">classification</span>
+    </div>
+  </div>
+
+  <!-- ====== 3. 核心算法 ====== -->
+  <div class="branch t3">
+    <div class="branch-header">
+      <div class="branch-icon">⚡</div>
+      <div>
+        <div class="branch-title">核心算法亮点</div>
+        <div class="branch-subtitle">精妙的数据处理策略</div>
+      </div>
+    </div>
+
+    <div class="leaf">
+      <div class="leaf-title">PDF 逐页细粒度分析</div>
+      <div class="leaf-desc">不是简单整体判定，而是逐页检查文本长度 + 图像存在性，再用 mode 投票</div>
+      <span class="leaf-tag">页面级分析</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">SimHash 性能优化</div>
+      <div class="leaf-desc">跳过文件大小差异超过 3 倍的文件对，大幅减少 O(n²) 比较次数</div>
+      <span class="leaf-tag">算法优化</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">多编码自动降级</div>
+      <div class="leaf-desc">utf-8 → gbk → gb2312 → latin-1，四层容错确保文本提取不中断</div>
+      <span class="leaf-tag">鲁棒性</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">敏感信息脱敏</div>
+      <div class="leaf-desc">手机 138****5678 / 邮箱 zh***@domain / 身份证 110***1234</div>
+      <span class="leaf-tag">数据安全</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">配置深度合并</div>
+      <div class="leaf-desc">_deep_merge 递归合并：用户只需写覆盖字段，其余自动继承默认值</div>
+      <span class="leaf-tag">_deep_merge()</span>
+    </div>
+  </div>
+
+  <!-- ====== 4. 配置化设计 ====== -->
+  <div class="branch t4">
+    <div class="branch-header">
+      <div class="branch-icon">⚙️</div>
+      <div>
+        <div class="branch-title">配置化设计</div>
+        <div class="branch-subtitle">零代码修改即可调整所有阈值</div>
+      </div>
+    </div>
+
+    <div class="leaf">
+      <div class="leaf-title">YAML 全配置化</div>
+      <div class="leaf-desc">pdf_type / duplicate / sensitive / length / classification / format 六大配置组</div>
+      <span class="leaf-tag">assessment_config.yaml</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">命令行参数覆盖</div>
+      <div class="leaf-desc">--simhash-threshold / --context-chars / --recursive / --no-classify / --resume</div>
+      <span class="leaf-tag">8 个 CLI 参数</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">中断恢复 (--resume)</div>
+      <div class="leaf-desc">SIGINT 信号捕获 → 保存已完成结果 → 下次从 JSON 恢复</div>
+      <span class="leaf-tag">生产级可靠性</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">配置验证</div>
+      <div class="leaf-desc">YAML 格式校验 + 阈值范围检查 + 缺失字段检测</div>
+      <span class="leaf-tag">deploy.sh 集成</span>
+    </div>
+  </div>
+
+  <!-- ====== 5. 用户体验 ====== -->
+  <div class="branch t5">
+    <div class="branch-header">
+      <div class="branch-icon">🎯</div>
+      <div>
+        <div class="branch-title">用户体验</div>
+        <div class="branch-subtitle">细致入微的交互设计</div>
+      </div>
+    </div>
+
+    <div class="leaf">
+      <div class="leaf-title">双平台支持</div>
+      <div class="leaf-desc">run.sh (Linux/Mac/WSL) + run.bat (Windows)，覆盖主流系统</div>
+      <span class="leaf-tag">跨平台</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">进度条可视化</div>
+      <div class="leaf-desc">tqdm 进度条，无 tqdm 时降级为文本输出，含速度统计</div>
+      <span class="leaf-tag">ProgressTracker</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">零依赖 HTML 简报</div>
+      <div class="leaf-desc">内联 CSS，浏览器直接打开。卡片布局 + 表格 + 条形图</div>
+      <span class="leaf-tag">quality_brief.html</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">错误容限设计</div>
+      <div class="leaf-desc">PDF 解析失败记录后跳过，不中断整体评估。错误汇总到 meta.errors</div>
+      <span class="leaf-tag">优雅降级</span>
+    </div>
+  </div>
+
+  <!-- ====== 6. 测试与质量 ====== -->
+  <div class="branch t6">
+    <div class="branch-header">
+      <div class="branch-icon">🧪</div>
+      <div>
+        <div class="branch-title">测试与代码质量</div>
+        <div class="branch-subtitle">完整覆盖的测试体系</div>
+      </div>
+    </div>
+
+    <div class="leaf">
+      <div class="leaf-title">7 个测试类</div>
+      <div class="leaf-desc">TestFormatDistribution / TestPdfPageTypes / TestLengthDistribution / TestDuplicates / TestSensitiveInfo / TestClassification / TestFullAssessment + TestConfig</div>
+      <span class="leaf-tag">pytest</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">Fixture 自动造数据</div>
+      <div class="leaf-desc">sample_dir 自动创建测试样本：文本 / 重复 / 敏感信息 / 二进制 / 无扩展名</div>
+      <span class="leaf-tag">零外部依赖测试</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">类型标注 + Docstring</div>
+      <div class="leaf-desc">函数签名完整标注，API 端点含 Request/Response 文档</div>
+      <span class="leaf-tag">自文档化</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">JSON 可序列化验证</div>
+      <div class="leaf-desc">测试确保完整评估结果可序列化为 JSON，保证输出格式可靠性</div>
+      <span class="leaf-tag">数据完整性</span>
+    </div>
+  </div>
+
+  <!-- ====== 7. 文档体系 ====== -->
+  <div class="branch t7">
+    <div class="branch-header">
+      <div class="branch-icon">📚</div>
+      <div>
+        <div class="branch-title">文档体系</div>
+        <div class="branch-subtitle">多层次、全覆盖的文档</div>
+      </div>
+    </div>
+
+    <div class="leaf">
+      <div class="leaf-title">SKILL.md — 使用说明</div>
+      <div class="leaf-desc">步骤化工作流指引 + 故障排除表 + 6 个功能模块详解</div>
+      <span class="leaf-tag">Cursor Skills 格式</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">reference.md — 输出 Schema</div>
+      <div class="leaf-desc">JSON 完整 Schema + HTML 结构说明 + 字段含义 + 脱敏规则表</div>
+      <span class="leaf-tag">API 参考</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">assessment_config.yaml — 配置参考</div>
+      <div class="leaf-desc">所有阈值 + 中文注释，修改即生效</div>
+      <span class="leaf-tag">配置文档</span>
+    </div>
+    <div class="leaf">
+      <div class="leaf-title">代码内嵌文档</div>
+      <div class="leaf-desc">API docstring (Request/Response) + Agent Tool 参数描述 + 算法判定条件</div>
+      <span class="leaf-tag">自描述代码</span>
+    </div>
+  </div>
+
+  <!-- ====== 8. Agent 工作流全景 ====== -->
+  <div class="branch t8">
+    <div class="branch-header">
+      <div class="branch-icon">🔄</div>
+      <div>
+        <div class="branch-title">Agent 工作流 — 文档入库质检流水线</div>
+        <div class="branch-subtitle">document_ingestion_workflow.json — 智能路由</div>
+      </div>
+    </div>
+
+    <div class="workflow-grid">
+      <div class="wf-item" style="border-left:3px solid #3b82f6;">
+        <div class="wf-dot" style="background:#3b82f6;"></div>
+        <div><strong>begin</strong> — 输入文档目录路径</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #8b5cf6;">
+        <div class="wf-dot" style="background:#8b5cf6;"></div>
+        <div><strong>quality_assessment</strong> — 执行质量评估，获取分类标签</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #ec4899;">
+        <div class="wf-dot" style="background:#ec4899;"></div>
+        <div><strong>categorize</strong> — 根据标签智能路由（7 条分支）</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #10b981;">
+        <div class="wf-dot" style="background:#10b981;"></div>
+        <div><strong>Text_PDF</strong> → 直接文本提取（无需 OCR）</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #f59e0b;">
+        <div class="wf-dot" style="background:#f59e0b;"></div>
+        <div><strong>Scan_PDF</strong> → OCR 解析器（deepdoc）</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #ef4444;">
+        <div class="wf-dot" style="background:#ef4444;"></div>
+        <div><strong>Mixed_PDF</strong> → 逐页判断混合解析</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #06b6d4;">
+        <div class="wf-dot" style="background:#06b6d4;"></div>
+        <div><strong>DOCX</strong> → python-docx 直接解析</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #84cc16;">
+        <div class="wf-dot" style="background:#84cc16;"></div>
+        <div><strong>Markdown</strong> → 直接读取保留格式</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #6b7280;">
+        <div class="wf-dot" style="background:#6b7280;"></div>
+        <div><strong>Short_Doc / Unsupported</strong> → 跳过警告</div>
+      </div>
+      <div class="wf-item" style="border-left:3px solid #a855f7;">
+        <div class="wf-dot" style="background:#a855f7;"></div>
+        <div><strong>exit</strong> — 所有路由汇聚退出</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  DocumentQualityAssessmentSkill — 项目思维导图 &nbsp;|&nbsp; Generated for 工单18 实训项目
+</footer>
+
+</body>
+</html>

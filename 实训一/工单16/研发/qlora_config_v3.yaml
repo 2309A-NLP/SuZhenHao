@@ -1,0 +1,46 @@
+### 工单16 - QLoRA 微调（v1 格式）
+### RTX 4060 8GB 适配
+
+model: /home/su/llamafactory_env/models/Qwen2-VL-2B-Instruct
+model_class: qwen2_vl
+
+template: qwen2_vl
+
+# PEFT Configuration
+peft_config:
+  name: lora
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: all
+
+# Quantization Config
+quant_config:
+  name: bnb
+  quantization_bit: 4
+
+# FSDP Config
+dist_config:
+  name: none
+
+### data
+train_dataset: data/v1_sft_demo.yaml
+
+### training
+output_dir: /home/su/ragflow_vlm_data/saves_v3
+micro_batch_size: 1
+gradient_accumulation_steps: 8
+cutoff_len: 600
+learning_rate: 1.0e-4
+max_steps: 250
+lr_scheduler_type: cosine
+warmup_steps: 10
+weight_decay: 0.01
+bf16: true
+gradient_checkpointing: true
+logging_steps: 5
+save_steps: 500
+save_total_limit: 2
+eval_strategy: "no"
+preprocessing_num_workers: 4
+seed: 42

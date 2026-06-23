@@ -1,0 +1,280 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RAGFlow VLM 微调项目 — 思维导图</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+    --accent1: #6366f1;
+    --accent2: #0891b2;
+    --accent3: #059669;
+    --accent4: #d97706;
+    --accent5: #dc2626;
+    --accent6: #7c3aed;
+    --accent7: #db2777;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --fg: #e5e7eb;
+      --muted: #a3adbd;
+      --line: #94a3b8;
+      --neutral: #334155;
+      --input: #1d4ed8;
+      --process: #4338ca;
+      --storage: #0f766e;
+      --external: #92400e;
+      --risk: #991b1b;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 13px/1.4 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  main {
+    max-width: 1400px;
+    margin: 24px auto;
+    padding: 0 20px;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .title { font-size: 22px; font-weight: 700; }
+  .subtitle { font-size: 12px; fill: var(--muted); }
+  .branch-label { font-size: 15px; font-weight: 700; }
+  .leaf-label { font-size: 12px; font-weight: 600; }
+  .leaf-detail { font-size: 10.5px; fill: var(--muted); }
+  .center-circle { fill: var(--accent1); }
+  .center-text { fill: #fff; font-size: 16px; font-weight: 700; }
+  .center-sub { fill: rgba(255,255,255,0.8); font-size: 11px; }
+  .edge { stroke-width: 2; fill: none; }
+  .edge-thin { stroke-width: 1.2; fill: none; }
+  .node-box { rx: 8; ry: 8; }
+  .leaf-box { rx: 6; ry: 6; }
+</style>
+<main>
+<svg viewBox="0 0 1360 980" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+  </marker>
+</defs>
+
+<!-- Title -->
+<text x="680" y="30" text-anchor="middle" class="title" fill="var(--fg)">RAGFlow VLM 微调项目 — 思维导图</text>
+<text x="680" y="48" text-anchor="middle" class="subtitle">工单16 | Qwen2-VL-2B-Instruct + QLoRA | RTX 4060 8GB</text>
+
+<!-- ====== CENTER NODE ====== -->
+<circle cx="680" cy="490" r="72" class="center-circle"/>
+<text x="680" y="482" text-anchor="middle" class="center-text">RAGFlow</text>
+<text x="680" y="500" text-anchor="middle" class="center-text">VLM 微调</text>
+<text x="680" y="518" text-anchor="middle" class="center-sub">专利图纸问答</text>
+
+<!-- ====== BRANCH 1: 问题定义 (TOP-LEFT) ====== -->
+<!-- Main branch node -->
+<line x1="620" y1="440" x2="340" y2="180" class="edge" stroke="#6366f1" marker-end="url(#arrow)"/>
+<rect x="200" y="148" width="280" height="64" class="node-box" fill="#eef2ff" stroke="#6366f1"/>
+<text x="340" y="174" text-anchor="middle" class="branch-label" fill="#4338ca">📋 问题定义</text>
+<text x="340" y="194" text-anchor="middle" class="leaf-detail">从 RAG 到 VLM 的技术跃迁</text>
+
+<!-- Leaves for 问题定义 -->
+<line x1="200" y1="165" x2="60" y2="90" class="edge-thin" stroke="#6366f1"/>
+<rect x="10" y="70" width="100" height="46" class="leaf-box" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="60" y="89" text-anchor="middle" class="leaf-label" fill="#3730a3">纯文本局限</text>
+<text x="60" y="105" text-anchor="middle" class="leaf-detail">RAG 看不见图纸</text>
+
+<line x1="210" y1="195" x2="60" y2="210" class="edge-thin" stroke="#6366f1"/>
+<rect x="10" y="190" width="100" height="46" class="leaf-box" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="60" y="209" text-anchor="middle" class="leaf-label" fill="#3730a3">模态扩展</text>
+<text x="60" y="225" text-anchor="middle" class="leaf-detail">视觉+语言多模态</text>
+
+<line x1="250" y1="210" x2="120" y2="290" class="edge-thin" stroke="#6366f1"/>
+<rect x="55" y="270" width="130" height="46" class="leaf-box" fill="#e0e7ff" stroke="#a5b4fc"/>
+<text x="120" y="289" text-anchor="middle" class="leaf-label" fill="#3730a3">三类问题分类</text>
+<text x="120" y="305" text-anchor="middle" class="leaf-detail">文本/位置/推理</text>
+
+<!-- ====== BRANCH 2: 数据工程 (TOP-RIGHT) ====== -->
+<line x1="740" y1="440" x2="1020" y2="140" class="edge" stroke="#0891b2" marker-end="url(#arrow)"/>
+<rect x="880" y="108" width="280" height="64" class="node-box" fill="#ecfeff" stroke="#0891b2"/>
+<text x="1020" y="134" text-anchor="middle" class="branch-label" fill="#0e7490">🗃️ 数据工程</text>
+<text x="1020" y="154" text-anchor="middle" class="leaf-detail">按需提取 · 精简 95%+</text>
+
+<!-- Leaves for 数据工程 -->
+<line x1="1160" y1="125" x2="1260" y2="60" class="edge-thin" stroke="#0891b2"/>
+<rect x="1195" y="38" width="130" height="46" class="leaf-box" fill="#cffafe" stroke="#67e8f9"/>
+<text x="1260" y="57" text-anchor="middle" class="leaf-label" fill="#155e75">图片提取</text>
+<text x="1260" y="73" text-anchor="middle" class="leaf-detail">PyMuPDF · DPI=200</text>
+
+<line x1="1160" y1="145" x2="1280" y2="145" class="edge-thin" stroke="#0891b2"/>
+<rect x="1215" y="123" width="130" height="46" class="leaf-box" fill="#cffafe" stroke="#67e8f9"/>
+<text x="1280" y="142" text-anchor="middle" class="leaf-label" fill="#155e75">按页码提取</text>
+<text x="1280" y="158" text-anchor="middle" class="leaf-detail">正则匹配 · 仅需页面</text>
+
+<line x1="1160" y1="165" x2="1260" y2="230" class="edge-thin" stroke="#0891b2"/>
+<rect x="1195" y="208" width="130" height="46" class="leaf-box" fill="#cffafe" stroke="#67e8f9"/>
+<text x="1260" y="227" text-anchor="middle" class="leaf-label" fill="#155e75">ShareGPT 格式</text>
+<text x="1260" y="243" text-anchor="middle" class="leaf-detail">image 标记 · 对话格式</text>
+
+<line x1="1100" y1="172" x2="1200" y2="290" class="edge-thin" stroke="#0891b2"/>
+<rect x="1135" y="268" width="130" height="46" class="leaf-box" fill="#cffafe" stroke="#67e8f9"/>
+<text x="1200" y="287" text-anchor="middle" class="leaf-label" fill="#155e75">8:1:1 划分</text>
+<text x="1200" y="303" text-anchor="middle" class="leaf-detail">8076 / 1009 / 1011</text>
+
+<!-- ====== BRANCH 3: 模型训练 (RIGHT) ====== -->
+<line x1="750" y1="490" x2="1060" y2="430" class="edge" stroke="#059669" marker-end="url(#arrow)"/>
+<rect x="920" y="398" width="280" height="64" class="node-box" fill="#ecfdf5" stroke="#059669"/>
+<text x="1060" y="424" text-anchor="middle" class="branch-label" fill="#047857">🧠 模型训练</text>
+<text x="1060" y="444" text-anchor="middle" class="leaf-detail">QLoRA + DeepSpeed · 8GB 显存适配</text>
+
+<!-- Leaves for 模型训练 -->
+<line x1="1200" y1="405" x2="1290" y2="350" class="edge-thin" stroke="#059669"/>
+<rect x="1225" y="328" width="130" height="46" class="leaf-box" fill="#d1fae5" stroke="#6ee7b7"/>
+<text x="1290" y="347" text-anchor="middle" class="leaf-label" fill="#065f46">4-bit NF4 量化</text>
+<text x="1290" y="363" text-anchor="middle" class="leaf-detail">bitsandbytes · ~1.5GB</text>
+
+<line x1="1200" y1="425" x2="1300" y2="425" class="edge-thin" stroke="#059669"/>
+<rect x="1235" y="403" width="130" height="46" class="leaf-box" fill="#d1fae5" stroke="#6ee7b7"/>
+<text x="1300" y="422" text-anchor="middle" class="leaf-label" fill="#065f46">LoRA r=16 α=32</text>
+<text x="1300" y="438" text-anchor="middle" class="leaf-detail">~3000万参数 · 1.5%</text>
+
+<line x1="1200" y1="445" x2="1290" y2="500" class="edge-thin" stroke="#059669"/>
+<rect x="1225" y="478" width="130" height="46" class="leaf-box" fill="#d1fae5" stroke="#6ee7b7"/>
+<text x="1290" y="497" text-anchor="middle" class="leaf-label" fill="#065f46">梯度检查点</text>
+<text x="1290" y="513" text-anchor="middle" class="leaf-detail">计算换显存</text>
+
+<line x1="1060" y1="462" x2="1100" y2="530" class="edge-thin" stroke="#059669"/>
+<rect x="1035" y="520" width="130" height="46" class="leaf-box" fill="#d1fae5" stroke="#6ee7b7"/>
+<text x="1100" y="539" text-anchor="middle" class="leaf-label" fill="#065f46">DeepSpeed ZeRO-2</text>
+<text x="1100" y="555" text-anchor="middle" class="leaf-detail">+ CPU Offload 推荐</text>
+
+<!-- ====== BRANCH 4: 训练配置 (BOTTOM-RIGHT) ====== -->
+<line x1="740" y1="540" x2="1020" y2="650" class="edge" stroke="#d97706" marker-end="url(#arrow)"/>
+<rect x="880" y="618" width="280" height="64" class="node-box" fill="#fffbeb" stroke="#d97706"/>
+<text x="1020" y="644" text-anchor="middle" class="branch-label" fill="#92400e">⚙️ 训练配置</text>
+<text x="1020" y="664" text-anchor="middle" class="leaf-detail">三版迭代 · 问题驱动优化</text>
+
+<!-- Leaves for 训练配置 -->
+<line x1="1160" y1="630" x2="1260" y2="580" class="edge-thin" stroke="#d97706"/>
+<rect x="1195" y="558" width="130" height="46" class="leaf-box" fill="#fef3c7" stroke="#fcd34d"/>
+<text x="1260" y="577" text-anchor="middle" class="leaf-label" fill="#78350f">v1: 初始配置</text>
+<text x="1260" y="593" text-anchor="middle" class="leaf-detail">cutoff=512 · epoch=3</text>
+
+<line x1="1160" y1="650" x2="1280" y2="650" class="edge-thin" stroke="#d97706"/>
+<rect x="1215" y="628" width="130" height="46" class="leaf-box" fill="#fef3c7" stroke="#fcd34d"/>
+<text x="1280" y="647" text-anchor="middle" class="leaf-label" fill="#78350f">v2: 扩大序列</text>
+<text x="1280" y="663" text-anchor="middle" class="leaf-detail">cutoff=600 · epoch=1</text>
+
+<line x1="1160" y1="670" x2="1260" y2="720" class="edge-thin" stroke="#d97706"/>
+<rect x="1195" y="698" width="130" height="46" class="leaf-box" fill="#fef3c7" stroke="#fcd34d"/>
+<text x="1260" y="717" text-anchor="middle" class="leaf-label" fill="#78350f">v3: 精确控制</text>
+<text x="1260" y="733" text-anchor="middle" class="leaf-detail">max_steps=250</text>
+
+<!-- ====== BRANCH 5: 效果评估 (BOTTOM-LEFT) ====== -->
+<line x1="620" y1="540" x2="340" y2="680" class="edge" stroke="#dc2626" marker-end="url(#arrow)"/>
+<rect x="200" y="648" width="280" height="64" class="node-box" fill="#fef2f2" stroke="#dc2626"/>
+<text x="340" y="674" text-anchor="middle" class="branch-label" fill="#991b1b">📊 效果评估</text>
+<text x="340" y="694" text-anchor="middle" class="leaf-detail">贪心解码 · 300 条抽样 · 可复现</text>
+
+<!-- Leaves for 效果评估 -->
+<line x1="200" y1="665" x2="60" y2="600" class="edge-thin" stroke="#dc2626"/>
+<rect x="5" y="578" width="110" height="46" class="leaf-box" fill="#fee2e2" stroke="#fca5a5"/>
+<text x="60" y="597" text-anchor="middle" class="leaf-label" fill="#7f1d1d">基座模型</text>
+<text x="60" y="613" text-anchor="middle" class="leaf-detail">准确率 29.7%</text>
+
+<line x1="200" y1="685" x2="50" y2="680" class="edge-thin" stroke="#dc2626"/>
+<rect x="-5" y="658" width="110" height="46" class="leaf-box" fill="#fee2e2" stroke="#fca5a5"/>
+<text x="50" y="677" text-anchor="middle" class="leaf-label" fill="#7f1d1d">微调模型</text>
+<text x="50" y="693" text-anchor="middle" class="leaf-detail">准确率 67.7%</text>
+
+<line x1="250" y1="712" x2="120" y2="770" class="edge-thin" stroke="#dc2626"/>
+<rect x="55" y="748" width="130" height="46" class="leaf-box" fill="#fee2e2" stroke="#fca5a5"/>
+<text x="120" y="767" text-anchor="middle" class="leaf-label" fill="#7f1d1d">提升 +38.0%</text>
+<text x="120" y="783" text-anchor="middle" class="leaf-detail">89→203/300 正确</text>
+
+<line x1="340" y1="712" x2="340" y2="780" class="edge-thin" stroke="#dc2626"/>
+<rect x="275" y="758" width="130" height="46" class="leaf-box" fill="#fee2e2" stroke="#fca5a5"/>
+<text x="340" y="777" text-anchor="middle" class="leaf-label" fill="#7f1d1d">错误模式分析</text>
+<text x="340" y="793" text-anchor="middle" class="leaf-detail">方向混淆·推理链</text>
+
+<!-- ====== BRANCH 6: 技术选型 (LEFT) ====== -->
+<line x1="610" y1="490" x2="300" y2="440" class="edge" stroke="#7c3aed" marker-end="url(#arrow)"/>
+<rect x="160" y="408" width="280" height="64" class="node-box" fill="#f5f3ff" stroke="#7c3aed"/>
+<text x="300" y="434" text-anchor="middle" class="branch-label" fill="#5b21b6">🔧 技术选型</text>
+<text x="300" y="454" text-anchor="middle" class="leaf-detail">Qwen2-VL · QLoRA · LLaMA-Factory</text>
+
+<!-- Leaves for 技术选型 -->
+<line x1="160" y1="425" x2="50" y2="370" class="edge-thin" stroke="#7c3aed"/>
+<rect x="-5" y="348" width="110" height="46" class="leaf-box" fill="#ede9fe" stroke="#c4b5fd"/>
+<text x="50" y="367" text-anchor="middle" class="leaf-label" fill="#4c1d95">Qwen2-VL-2B</text>
+<text x="50" y="383" text-anchor="middle" class="leaf-detail">中文 · 图表理解</text>
+
+<line x1="160" y1="445" x2="40" y2="445" class="edge-thin" stroke="#7c3aed"/>
+<rect x="-15" y="423" width="110" height="46" class="leaf-box" fill="#ede9fe" stroke="#c4b5fd"/>
+<text x="40" y="442" text-anchor="middle" class="leaf-label" fill="#4c1d95">LLaMA-Factory</text>
+<text x="40" y="458" text-anchor="middle" class="leaf-detail">WebUI + CLI</text>
+
+<line x1="180" y1="472" x2="60" y2="520" class="edge-thin" stroke="#7c3aed"/>
+<rect x="5" y="498" width="110" height="46" class="leaf-box" fill="#ede9fe" stroke="#c4b5fd"/>
+<text x="60" y="517" text-anchor="middle" class="leaf-label" fill="#4c1d95">PyMuPDF</text>
+<text x="60" y="533" text-anchor="middle" class="leaf-detail">轻量 PDF 渲染</text>
+
+<!-- ====== BRANCH 7: 工程亮点 (BOTTOM) ====== -->
+<line x1="680" y1="562" x2="680" y2="760" class="edge" stroke="#db2777" marker-end="url(#arrow)"/>
+<rect x="540" y="740" width="280" height="64" class="node-box" fill="#fdf2f8" stroke="#db2777"/>
+<text x="680" y="766" text-anchor="middle" class="branch-label" fill="#9d174d">🏗️ 工程亮点</text>
+<text x="680" y="786" text-anchor="middle" class="leaf-detail">端到端自动化 · 模块独立 · 故障恢复</text>
+
+<!-- Leaves for 工程亮点 -->
+<line x1="540" y1="755" x2="430" y2="830" class="edge-thin" stroke="#db2777"/>
+<rect x="365" y="810" width="130" height="42" class="leaf-box" fill="#fce7f3" stroke="#f9a8d4"/>
+<text x="430" y="829" text-anchor="middle" class="leaf-label" fill="#831843">四阶段流水线</text>
+<text x="430" y="843" text-anchor="middle" class="leaf-detail">提取→构建→训练→评估</text>
+
+<line x1="680" y1="804" x2="680" y2="860" class="edge-thin" stroke="#db2777"/>
+<rect x="615" y="842" width="130" height="42" class="leaf-box" fill="#fce7f3" stroke="#f9a8d4"/>
+<text x="680" y="861" text-anchor="middle" class="leaf-label" fill="#831843">一键部署脚本</text>
+<text x="680" y="875" text-anchor="middle" class="leaf-detail">8 种命令行模式</text>
+
+<line x1="820" y1="755" x2="930" y2="830" class="edge-thin" stroke="#db2777"/>
+<rect x="865" y="810" width="130" height="42" class="leaf-box" fill="#fce7f3" stroke="#f9a8d4"/>
+<text x="930" y="829" text-anchor="middle" class="leaf-label" fill="#831843">断点续传</text>
+<text x="930" y="843" text-anchor="middle" class="leaf-detail">已存在自动跳过</text>
+
+<!-- ====== BRANCH 8: 数据规模 (TOP-CENTER) ====== -->
+<line x1="680" y1="418" x2="680" y2="120" class="edge" stroke="#0ea5e9" marker-end="url(#arrow)"/>
+<rect x="560" y="88" width="240" height="64" class="node-box" fill="#f0f9ff" stroke="#0ea5e9"/>
+<text x="680" y="114" text-anchor="middle" class="branch-label" fill="#0369a1">📈 数据规模</text>
+<text x="680" y="134" text-anchor="middle" class="leaf-detail">10,096 题 · 1,700 PDF · ~3,400 图片</text>
+
+<!-- Leaves for 数据规模 -->
+<line x1="560" y1="105" x2="460" y2="60" class="edge-thin" stroke="#0ea5e9"/>
+<rect x="395" y="38" width="130" height="42" class="leaf-box" fill="#e0f2fe" stroke="#7dd3fc"/>
+<text x="460" y="57" text-anchor="middle" class="leaf-label" fill="#075985">Group 1: 文本</text>
+<text x="460" y="71" text-anchor="middle" class="leaf-detail">纯文本理解题</text>
+
+<line x1="680" y1="88" x2="680" y2="40" class="edge-thin" stroke="#0ea5e9"/>
+<rect x="615" y="18" width="130" height="42" class="leaf-box" fill="#e0f2fe" stroke="#7dd3fc"/>
+<text x="680" y="37" text-anchor="middle" class="leaf-label" fill="#075985">Group 2: 位置</text>
+<text x="680" y="51" text-anchor="middle" class="leaf-detail">图纸空间关系题</text>
+
+<line x1="800" y1="105" x2="900" y2="60" class="edge-thin" stroke="#0ea5e9"/>
+<rect x="835" y="38" width="130" height="42" class="leaf-box" fill="#e0f2fe" stroke="#7dd3fc"/>
+<text x="900" y="57" text-anchor="middle" class="leaf-label" fill="#075985">Group 3: 推理</text>
+<text x="900" y="71" text-anchor="middle" class="leaf-detail">视觉+逻辑推理题</text>
+
+</svg>
+</main>
