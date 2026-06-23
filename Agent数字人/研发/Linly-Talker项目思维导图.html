@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linly-Talker 数字人智能对话系统 — 项目思维导图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 40%, #0d1b2a 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, #ff6b6b, #ffa94d, #ffd43b, #69db7c, #4dabf7, #cc5de8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.3rem;
+    letter-spacing: 2px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #7788aa;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .grid {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 1.4rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .card-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+  .card-sub { font-size: 0.78rem; color: #7788aa; margin-top: 2px; }
+  .item {
+    margin: 0.45rem 0;
+    padding: 0.55rem 0.75rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.025);
+    border-left: 3px solid;
+    transition: background 0.2s;
+  }
+  .item:hover { background: rgba(255,255,255,0.05); }
+  .item-title { font-weight: 600; font-size: 0.88rem; margin-bottom: 0.15rem; }
+  .item-desc { font-size: 0.78rem; color: #8899bb; line-height: 1.5; }
+  .tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 5px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+
+  /* 9 color themes */
+  .c1 .card-icon { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+  .c1 .card-title { color: #ff6b6b; }
+  .c1 .item { border-left-color: #ff6b6b; }
+  .c1 .item-title { color: #ffb4b4; }
+  .c1 .tag { background: rgba(255,107,107,0.15); color: #ff6b6b; }
+
+  .c2 .card-icon { background: linear-gradient(135deg, #ffa94d, #e17055); }
+  .c2 .card-title { color: #ffa94d; }
+  .c2 .item { border-left-color: #ffa94d; }
+  .c2 .item-title { color: #ffd8a8; }
+  .c2 .tag { background: rgba(255,169,77,0.15); color: #ffa94d; }
+
+  .c3 .card-icon { background: linear-gradient(135deg, #ffd43b, #f9ca24); }
+  .c3 .card-title { color: #ffd43b; }
+  .c3 .item { border-left-color: #ffd43b; }
+  .c3 .item-title { color: #fff3bf; }
+  .c3 .tag { background: rgba(255,212,59,0.15); color: #ffd43b; }
+
+  .c4 .card-icon { background: linear-gradient(135deg, #69db7c, #2ecc71); }
+  .c4 .card-title { color: #69db7c; }
+  .c4 .item { border-left-color: #69db7c; }
+  .c4 .item-title { color: #b2f2bb; }
+  .c4 .tag { background: rgba(105,219,124,0.15); color: #69db7c; }
+
+  .c5 .card-icon { background: linear-gradient(135deg, #4dabf7, #3498db); }
+  .c5 .card-title { color: #4dabf7; }
+  .c5 .item { border-left-color: #4dabf7; }
+  .c5 .item-title { color: #a5d8ff; }
+  .c5 .tag { background: rgba(77,171,247,0.15); color: #4dabf7; }
+
+  .c6 .card-icon { background: linear-gradient(135deg, #cc5de8, #8e44ad); }
+  .c6 .card-title { color: #cc5de8; }
+  .c6 .item { border-left-color: #cc5de8; }
+  .c6 .item-title { color: #e599f7; }
+  .c6 .tag { background: rgba(204,93,232,0.15); color: #cc5de8; }
+
+  .c7 .card-icon { background: linear-gradient(135deg, #20c997, #00b894); }
+  .c7 .card-title { color: #20c997; }
+  .c7 .item { border-left-color: #20c997; }
+  .c7 .item-title { color: #96f2d7; }
+  .c7 .tag { background: rgba(32,201,151,0.15); color: #20c997; }
+
+  .c8 .card-icon { background: linear-gradient(135deg, #748ffc, #5f3dc4); }
+  .c8 .card-title { color: #748ffc; }
+  .c8 .item { border-left-color: #748ffc; }
+  .c8 .item-title { color: #bac8ff; }
+  .c8 .tag { background: rgba(116,143,252,0.15); color: #748ffc; }
+
+  .c9 .card-icon { background: linear-gradient(135deg, #f783ac, #e84393); }
+  .c9 .card-title { color: #f783ac; }
+  .c9 .item { border-left-color: #f783ac; }
+  .c9 .item-title { color: #fcc2d7; }
+  .c9 .tag { background: rgba(247,131,172,0.15); color: #f783ac; }
+
+  /* Wide cards */
+  .wide { grid-column: span 2; }
+  .full { grid-column: span 3; }
+
+  /* Pipeline */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    margin: 0.8rem 0;
+  }
+  .pipe-box {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 110px;
+  }
+  .pipe-arrow { font-size: 1.3rem; color: #4dabf7; }
+  .pipe-in { background: rgba(59,130,246,0.2); border: 1px solid rgba(59,130,246,0.35); color: #93c5fd; }
+  .pipe-proc { background: rgba(168,85,247,0.2); border: 1px solid rgba(168,85,247,0.35); color: #d8b4fe; }
+  .pipe-out { background: rgba(16,185,129,0.2); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7; }
+  .pipe-stream { background: rgba(255,107,107,0.2); border: 1px solid rgba(255,107,107,0.35); color: #ffb4b4; }
+
+  /* Model grid */
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+  }
+  .model-item {
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .model-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Stats */
+  .stats {
+    max-width: 1500px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    padding: 0.7rem;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .stat-val {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ff6b6b, #4dabf7, #cc5de8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-lbl { font-size: 0.75rem; color: #7788aa; margin-top: 0.15rem; }
+
+  footer {
+    text-align: center;
+    color: #445;
+    font-size: 0.78rem;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+</style>
+</head>
+<body>
+
+<h1>🎭 Linly-Talker</h1>
+<p class="subtitle">数字人智能对话系统 — 项目架构思维导图 &nbsp;|&nbsp; Digital Human Intelligent Dialogue System</p>
+
+<div class="stats">
+  <div class="stat"><div class="stat-val">18.4 GB</div><div class="stat-lbl">项目总大小</div></div>
+  <div class="stat"><div class="stat-val">1,313+</div><div class="stat-lbl">文件总数</div></div>
+  <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">ASR 方案</div></div>
+  <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">TTS 方案</div></div>
+  <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">THG 方案</div></div>
+  <div class="stat"><div class="stat-val">5</div><div class="stat-lbl">LLM 方案</div></div>
+  <div class="stat"><div class="stat-val">2年+</div><div class="stat-lbl">持续维护</div></div>
+</div>
+
+<div class="grid">
+
+  <!-- ====== 1. 核心管线 ====== -->
+  <div class="card full">
+    <div class="card-header">
+      <div class="card-icon">🔄</div>
+      <div><div class="card-title">核心处理管线 — 四大模块串联</div><div class="card-sub">ASR → LLM → TTS → THG，每个模块可独立替换</div></div>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-box pipe-in">🎙️ ASR<br><small>语音识别</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-proc">🤖 LLM<br><small>智能对话</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-proc">🗣️ TTS<br><small>语音合成</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-out">👤 THG<br><small>人脸驱动</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-stream">🎬 输出<br><small>说话视频</small></div>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-box pipe-in" style="min-width:180px;">📥 用户语音/文字输入</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-proc" style="min-width:180px;">🧠 LLM 多轮对话 (流式)</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-out" style="min-width:180px;">📹 唇形同步数字人视频</div>
+    </div>
+  </div>
+
+  <!-- ====== 2. ASR 语音识别 ====== -->
+  <div class="card c1">
+    <div class="card-header">
+      <div class="card-icon">🎙️</div>
+      <div><div class="card-title">ASR 语音识别</div><div class="card-sub">3 种方案 · 支持中英文</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">FunASR（推荐）</div>
+      <div class="item-desc">阿里达摩院，Paraformer-large 模型，速度极快</div>
+      <span class="tag">modelscope 预训练</span>
+    </div>
+    <div class="item">
+      <div class="item-title">Whisper</div>
+      <div class="item-desc">OpenAI 开源，多语言支持，tiny/base 可选</div>
+      <span class="tag">whisper tiny.pt / base.pt</span>
+    </div>
+    <div class="item">
+      <div class="item-title">OmniSenseVoice（新增）</div>
+      <div class="item-desc">更快的语音识别，阿里 SenseVoice 模型</div>
+      <span class="tag">2025.02 新增</span>
+    </div>
+  </div>
+
+  <!-- ====== 3. LLM 大模型 ====== -->
+  <div class="card c5">
+    <div class="card-header">
+      <div class="card-icon">🤖</div>
+      <div><div class="card-title">LLM 大语言模型</div><div class="card-sub">5 种方案 · 本地+云端双模式</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">Qwen-1.8B-Chat（本地）</div>
+      <div class="item-desc">通义千问，3.5GB，无需联网，隐私安全</div>
+      <span class="tag">Qwen/ 目录</span>
+    </div>
+    <div class="item">
+      <div class="item-title">ChatGLM（本地）</div>
+      <div class="item-desc">智谱AI，中文对话优秀</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Gemini / GPT4Free / QAnything</div>
+      <div class="item-desc">云端API / 免费接口 / RAG知识库问答</div>
+      <span class="tag">云端免GPU</span>
+    </div>
+    <div class="item">
+      <div class="item-title">多轮对话系统</div>
+      <div class="item-desc">System Prompt 自定义 + 对话历史 + 流式输出</div>
+    </div>
+  </div>
+
+  <!-- ====== 4. TTS 语音合成 ====== -->
+  <div class="card c3">
+    <div class="card-header">
+      <div class="card-icon">🗣️</div>
+      <div><div class="card-title">TTS 语音合成 + 声音克隆</div><div class="card-sub">4 种方案 · 含声音克隆</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">Edge-TTS（免费）</div>
+      <div class="item-desc">微软在线TTS，100+音色，无需GPU</div>
+      <span class="tag">推荐入门</span>
+    </div>
+    <div class="item">
+      <div class="item-title">GPT-SoVITS（推荐）</div>
+      <div class="item-desc">1分钟音频克隆声音，支持3秒极速/跨语种复刻</div>
+      <span class="tag">声音克隆 · 1.2GB</span>
+    </div>
+    <div class="item">
+      <div class="item-title">CosyVoice</div>
+      <div class="item-desc">阿里高质量合成，预训练/3s复刻/跨语种/instruct</div>
+      <span class="tag">4.3GB 模型</span>
+    </div>
+    <div class="item">
+      <div class="item-title">PaddleTTS</div>
+      <div class="item-desc">百度离线TTS，无需网络</div>
+    </div>
+  </div>
+
+  <!-- ====== 5. THG 人脸驱动 ====== -->
+  <div class="card c6">
+    <div class="card-header">
+      <div class="card-icon">👤</div>
+      <div><div class="card-title">THG 数字人驱动</div><div class="card-sub">5 种方案 · 一张图片即可</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">SadTalker</div>
+      <div class="item-desc">头部姿态+表情驱动，成熟稳定，691MB</div>
+      <span class="tag">通用推荐</span>
+    </div>
+    <div class="item">
+      <div class="item-title">Wav2Lip / Wav2Lip_v2</div>
+      <div class="item-desc">唇形同步驱动，v2 增强版更自然</div>
+      <span class="tag">唇形精确</span>
+    </div>
+    <div class="item">
+      <div class="item-title">MuseTalk</div>
+      <div class="item-desc">实时唇形驱动，支持流式处理，4.1GB</div>
+      <span class="tag">实时对话</span>
+    </div>
+    <div class="item">
+      <div class="item-title">NeRFTalk</div>
+      <div class="item-desc">NeRF 神经渲染，超写实数字人</div>
+      <span class="tag">实验性</span>
+    </div>
+  </div>
+
+  <!-- ====== 6. WebUI 界面 ====== -->
+  <div class="card c4">
+    <div class="card-header">
+      <div class="card-icon">📺</div>
+      <div><div class="card-title">Gradio WebUI</div><div class="card-sub">全功能交互界面 · 1000+ 行</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">三大功能区</div>
+      <div class="item-desc">个性化角色生成 / 多轮智能对话 / 实时MuseTalk</div>
+    </div>
+    <div class="item">
+      <div class="item-title">摄像头 + 麦克风</div>
+      <div class="item-desc">实时采集人脸，麦克风语音对话（需HTTPS）</div>
+    </div>
+    <div class="item">
+      <div class="item-title">丰富参数调节</div>
+      <div class="item-desc">语速/音量/音调/批次大小/FPS/表情权重/眨眼/种子</div>
+    </div>
+    <div class="item">
+      <div class="item-title">字幕自动生成</div>
+      <div class="item-desc">TTS 同步生成 VTT 字幕文件</div>
+    </div>
+  </div>
+
+  <!-- ====== 7. API 接口 ====== -->
+  <div class="card c7">
+    <div class="card-header">
+      <div class="card-icon">🔌</div>
+      <div><div class="card-title">FastAPI 接口体系</div><div class="card-sub">生产级集成 · REST API</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">LLM API / TTS API / Talker API</div>
+      <div class="item-desc">三大独立 API 端点，各自可独立部署</div>
+      <span class="tag">端口 7871</span>
+    </div>
+    <div class="item">
+      <div class="item-title">客户端 SDK</div>
+      <div class="item-desc">llm_client / tts_client / talker_client 示例</div>
+    </div>
+    <div class="item">
+      <div class="item-title">WebUI + API 分离</div>
+      <div class="item-desc">WebUI 6006 / API 7871，可独立扩展</div>
+    </div>
+  </div>
+
+  <!-- ====== 8. 模型生态 ====== -->
+  <div class="card c2">
+    <div class="card-header">
+      <div class="card-icon">📦</div>
+      <div><div class="card-title">模型生态</div><div class="card-sub">双平台下载 · 预置完整</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">HuggingFace + ModelScope</div>
+      <div class="item-desc">国际+国内双平台下载脚本</div>
+    </div>
+    <div class="item">
+      <div class="item-title">checkpoints/ (6.9GB)</div>
+      <div class="item-desc">SadTalker + Wav2Lip + CosyVoice + GFPGAN 全部预置</div>
+    </div>
+    <div class="item">
+      <div class="item-title">Colab 一键体验</div>
+      <div class="item-desc">colab_webui.ipynb 零配置运行</div>
+    </div>
+    <div class="item">
+      <div class="item-title">ModelScope 下载脚本</div>
+      <div class="item-desc">scripts/modelscope_download.py 国内加速</div>
+    </div>
+  </div>
+
+  <!-- ====== 9. 工程化细节 ====== -->
+  <div class="card c8 wide">
+    <div class="card-header">
+      <div class="card-icon">⚙️</div>
+      <div><div class="card-title">工程化细节</div><div class="card-sub">生产级品质</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+      <div class="item">
+        <div class="item-title">⏱️ @calculate_time 装饰器</div>
+        <div class="item-desc">自动追踪每个函数执行耗时</div>
+      </div>
+      <div class="item">
+        <div class="item-title">🧹 clear_memory()</div>
+        <div class="item-desc">自动清理 GPU 显存 + Python GC</div>
+      </div>
+      <div class="item">
+        <div class="item-title">🔤 zhconv 繁简转换</div>
+        <div class="item-desc">自动繁体→简体，兼容港澳台</div>
+      </div>
+      <div class="item">
+        <div class="item-title">🎲 随机种子控制</div>
+        <div class="item-desc">set_all_random_seed 确保可复现</div>
+      </div>
+      <div class="item">
+        <div class="item-title">🔒 SSL 证书支持</div>
+        <div class="item-desc">HTTPS 麦克风安全访问</div>
+      </div>
+      <div class="item">
+        <div class="item-title">📁 Temp 目录管理</div>
+        <div class="item-desc">GRADIO_TEMP_DIR 统一临时文件</div>
+      </div>
+      <div class="item">
+        <div class="item-title">📊 WebUI 默认不加载 LLM</div>
+        <div class="item-desc">降低显存占用，4-6GB 可用</div>
+      </div>
+      <div class="item">
+        <div class="item-title">🔄 TTS 实时切换</div>
+        <div class="item-desc">选中即生效，无需重启</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== 10. 实时流式架构 ====== -->
+  <div class="card c9 full">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div><div class="card-title">Linly-Talker-Stream — 实时流式交互架构（2026.02 新增）</div><div class="card-sub">WebRTC 低延迟 · 全双工对话 · 可打断自然交互</div></div>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-box pipe-stream">🎙️ 实时语音流<br><small>WebRTC</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-in">⚡ 流式 ASR<br><small>边说边识别</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-proc">🧠 流式 LLM<br><small>逐句生成</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-proc">🗣️ 流式 TTS<br><small>逐句合成</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-out">👤 流式 Avatar<br><small>实时驱动</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-box pipe-stream">📺 实时视频流<br><small>WebRTC</small></div>
+    </div>
+    <div style="display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center;margin-top:0.5rem;">
+      <span class="tag" style="background:rgba(255,107,107,0.2);color:#ff6b6b;font-size:0.78rem;padding:3px 12px;">全双工（边听边说）</span>
+      <span class="tag" style="background:rgba(77,171,247,0.2);color:#4dabf7;font-size:0.78rem;padding:3px 12px;">可打断 (barge-in)</span>
+      <span class="tag" style="background:rgba(204,93,232,0.2);color:#cc5de8;font-size:0.78rem;padding:3px 12px;">模块化管道</span>
+      <span class="tag" style="background:rgba(105,219,124,0.2);color:#69db7c;font-size:0.78rem;padding:3px 12px;">复用现有 ASR/LLM/TTS/Avatar</span>
+      <span class="tag" style="background:rgba(255,169,77,0.2);color:#ffa94d;font-size:0.78rem;padding:3px 12px;">GitHub: Kedreamix/Linly-Talker-Stream</span>
+    </div>
+  </div>
+
+  <!-- ====== 11. 系统流程全景 ====== -->
+  <div class="card full">
+    <div class="card-header">
+      <div class="card-icon">🗺️</div>
+      <div><div class="card-title">系统流程全景 — 从输入到输出</div><div class="card-sub">完整数据流 + 模型选择矩阵</div></div>
+    </div>
+    <div class="model-grid">
+      <div class="model-item"><div class="model-dot" style="background:#ff6b6b;"></div><strong>用户输入</strong> — 语音(麦克风) / 文字(文本框) / 图片(摄像头)</div>
+      <div class="model-item"><div class="model-dot" style="background:#ffa94d;"></div><strong>ASR 识别</strong> — FunASR / Whisper / OmniSenseVoice</div>
+      <div class="model-item"><div class="model-dot" style="background:#ffd43b;"></div><strong>LLM 对话</strong> — Qwen / ChatGLM / Gemini / GPT4Free / QAnything</div>
+      <div class="model-item"><div class="model-dot" style="background:#69db7c;"></div><strong>TTS 合成</strong> — Edge-TTS / GPT-SoVITS / CosyVoice / PaddleTTS</div>
+      <div class="model-item"><div class="model-dot" style="background:#4dabf7;"></div><strong>THG 驱动</strong> — SadTalker / Wav2Lip / Wav2Lip_v2 / MuseTalk / NeRFTalk</div>
+      <div class="model-item"><div class="model-dot" style="background:#cc5de8;"></div><strong>GFPGAN</strong> — 人脸增强（可选）</div>
+      <div class="model-item"><div class="model-dot" style="background:#20c997;"></div><strong>字幕生成</strong> — VTT 格式自动同步</div>
+      <div class="model-item"><div class="model-dot" style="background:#748ffc;"></div><strong>视频输出</strong> — MP4 格式 + 字幕</div>
+    </div>
+  </div>
+
+  <!-- ====== 12. 模型权重矩阵 ====== -->
+  <div class="card wide">
+    <div class="card-header">
+      <div class="card-icon">💾</div>
+      <div><div class="card-title">模型权重矩阵 (checkpoints/ 6.9GB)</div><div class="card-sub">预置完整，开箱即用</div></div>
+    </div>
+    <div class="model-grid">
+      <div class="model-item"><div class="model-dot" style="background:#ff6b6b;"></div><strong>SadTalker</strong> 691MB</div>
+      <div class="model-item"><div class="model-dot" style="background:#ffa94d;"></div><strong>wav2lip.pth</strong> 416MB</div>
+      <div class="model-item"><div class="model-dot" style="background:#ffd43b;"></div><strong>wav2lip_gan.pth</strong> 416MB</div>
+      <div class="model-item"><div class="model-dot" style="background:#69db7c;"></div><strong>wav2lipv2.pth</strong> 205MB</div>
+      <div class="model-item"><div class="model-dot" style="background:#4dabf7;"></div><strong>CosyVoice</strong> 4.3GB</div>
+      <div class="model-item"><div class="model-dot" style="background:#cc5de8;"></div><strong>GFPGAN</strong> 703MB</div>
+      <div class="model-item"><div class="model-dot" style="background:#20c997;"></div><strong>lipsync_expert</strong> 188MB</div>
+      <div class="model-item"><div class="model-dot" style="background:#748ffc;"></div><strong>visual_quality_disc</strong> 162MB</div>
+      <div class="model-item"><div class="model-dot" style="background:#f783ac;"></div><strong>YOLOv8-face</strong> 43MB</div>
+    </div>
+  </div>
+
+  <!-- ====== 13. 文档体系 ====== -->
+  <div class="card c2">
+    <div class="card-header">
+      <div class="card-icon">📚</div>
+      <div><div class="card-title">文档与社区</div><div class="card-sub">中英文 · Colab · FAQ</div></div>
+    </div>
+    <div class="item">
+      <div class="item-title">README.md / README_zh.md</div>
+      <div class="item-desc">中英文完整项目说明</div>
+    </div>
+    <div class="item">
+      <div class="item-title">AutoDL部署.md</div>
+      <div class="item-desc">一键部署教程</div>
+    </div>
+    <div class="item">
+      <div class="item-title">常见问题汇总.md</div>
+      <div class="item-desc">FAQ 问题集</div>
+    </div>
+    <div class="item">
+      <div class="item-title">colab_webui.ipynb</div>
+      <div class="item-desc">Google Colab 零配置体验</div>
+      <span class="tag">notebook</span>
+    </div>
+    <div class="item">
+      <div class="item-title">2年持续更新</div>
+      <div class="item-desc">2023.12 → 2026.02，社区活跃</div>
+      <span class="tag">GitHub: Kedreamix</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Linly-Talker 数字人智能对话系统 — 项目思维导图 &nbsp;|&nbsp; GitHub: Kedreamix/Linly-Talker &nbsp;|&nbsp; Generated for 研发项目
+</footer>
+
+</body>
+</html>
